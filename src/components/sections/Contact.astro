@@ -1,0 +1,195 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Heading from '../ui/Heading.astro';
+import Text from '../ui/Text.astro';
+import Card from '../ui/Card.astro';
+import type { ContactSection } from '../../types/content';
+
+interface Props {
+  section: ContactSection['value'];
+}
+
+const { section } = Astro.props;
+---
+
+<Section variant="muted">
+  <Container>
+    <div class="contact">
+      <div class="contact__info">
+        {section.eyebrow && <p class="contact__eyebrow">{section.eyebrow}</p>}
+        <Heading as="h2" size="lg">{section.headline}</Heading>
+        {section.subheadline && <Text variant="lead">{section.subheadline}</Text>}
+
+        <ul class="contact__details">
+          <li>
+            <span class="contact__label">Email</span>
+            <a href={`mailto:${section.email}`}>{section.email}</a>
+          </li>
+          <li>
+            <span class="contact__label">Phone</span>
+            <a href={`tel:${section.phone.replace(/\s/g, '')}`}>{section.phone}</a>
+          </li>
+          <li>
+            <span class="contact__label">Address</span>
+            <span>{section.address}</span>
+          </li>
+        </ul>
+      </div>
+
+      <Card>
+        {section.formNote && <Text variant="muted" class="contact__note">{section.formNote}</Text>}
+        <form
+          class="contact__form"
+          data-json-form
+          data-endpoint="/api/contact"
+          data-success-message="Thanks! Our travel team will reply within one business day."
+          novalidate
+        >
+          <label class="contact__field">
+            <span>Name</span>
+            <input type="text" name="name" placeholder="Your name" required />
+          </label>
+          <label class="contact__field">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label class="contact__field">
+            <span>Message</span>
+            <textarea name="message" rows="4" placeholder="Tell us about your dream trip..." required />
+          </label>
+          <button type="submit" class="contact__submit">Send message</button>
+          <p class="contact__status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+      </Card>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .contact__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-brand);
+    margin-bottom: var(--space-3);
+  }
+
+  .contact__info :global(.text) {
+    margin-top: var(--space-4);
+  }
+
+  .contact__details {
+    margin-top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .contact__details li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .contact__label {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .contact__details a {
+    color: var(--color-brand);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .contact__details a:hover {
+    text-decoration: underline;
+  }
+
+  .contact__note {
+    margin-bottom: var(--space-6);
+  }
+
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .contact__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .contact__field input,
+  .contact__field textarea {
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font: inherit;
+    background: var(--color-surface);
+    transition: border-color var(--transition-base);
+  }
+
+  .contact__field input:focus,
+  .contact__field textarea:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+
+  .contact__submit {
+    padding: var(--space-3) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-on-brand);
+    background-color: var(--color-brand);
+    border: none;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-base);
+  }
+
+  .contact__submit:hover {
+    background-color: var(--color-brand-hover);
+  }
+
+  .contact__submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .contact__status {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .contact__status:empty {
+    display: none;
+  }
+
+  .contact__status.is-success {
+    color: var(--color-success);
+  }
+
+  .contact__status.is-error {
+    color: var(--color-error);
+  }
+
+  @media (max-width: 768px) {
+    .contact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

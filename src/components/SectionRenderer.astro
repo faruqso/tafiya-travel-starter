@@ -1,0 +1,51 @@
+---
+import Hero from './sections/Hero.astro';
+import DestinationGrid from './sections/DestinationGrid.astro';
+import Features from './sections/Features.astro';
+import BookTrip from './sections/BookTrip.astro';
+import Testimonials from './sections/Testimonials.astro';
+import LogoCloud from './sections/LogoCloud.astro';
+import Subscribe from './sections/Subscribe.astro';
+import Stats from './sections/Stats.astro';
+import TextBlock from './sections/TextBlock.astro';
+import Cta from './sections/Cta.astro';
+import Contact from './sections/Contact.astro';
+import type { PageSection } from '../types/content';
+
+interface Props {
+  sections: PageSection[];
+}
+
+const { sections } = Astro.props;
+---
+
+{
+  sections.map((section) => {
+    switch (section.discriminant) {
+      case 'hero':
+        return <Hero {...{ section: section.value }} />;
+      case 'destinationGrid':
+        return <DestinationGrid {...{ section: section.value }} />;
+      case 'features':
+        return <Features {...{ section: section.value }} />;
+      case 'bookTrip':
+        return <BookTrip {...{ section: section.value }} />;
+      case 'testimonials':
+        return <Testimonials {...{ section: section.value }} />;
+      case 'logoCloud':
+        return <LogoCloud {...{ section: section.value }} />;
+      case 'subscribe':
+        return <Subscribe {...{ section: section.value }} />;
+      case 'stats':
+        return <Stats {...{ section: section.value }} />;
+      case 'textBlock':
+        return <TextBlock {...{ section: section.value }} />;
+      case 'cta':
+        return <Cta {...{ section: section.value }} />;
+      case 'contact':
+        return <Contact {...{ section: section.value }} />;
+      default:
+        return null;
+    }
+  })
+}

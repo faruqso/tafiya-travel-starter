@@ -1,0 +1,46 @@
+---
+type SectionVariant = 'default' | 'muted' | 'brand' | 'dark';
+
+interface Props {
+  variant?: SectionVariant;
+  compact?: boolean;
+  class?: string;
+  id?: string;
+}
+
+const { variant = 'default', compact = false, class: className = '', id } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['section', `section--${variant}`, compact && 'section--compact', className]}
+>
+  <slot />
+</section>
+
+<style>
+  .section {
+    padding-block: var(--section-padding-y);
+  }
+
+  .section--compact {
+    padding-block: var(--section-padding-y-sm);
+  }
+
+  .section--default {
+    background-color: var(--color-surface);
+  }
+
+  .section--muted {
+    background-color: var(--color-surface-raised);
+  }
+
+  .section--brand {
+    background-color: var(--color-brand-subtle);
+  }
+
+  .section--dark {
+    background-color: var(--color-text);
+    color: var(--color-text-inverse);
+  }
+</style>

@@ -1,0 +1,198 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import type { TestimonialsSection } from '../../types/content';
+
+interface Props {
+  section: TestimonialsSection['value'];
+}
+
+const { section } = Astro.props;
+
+const [featured, secondary] = section.items;
+---
+
+<Section variant="default" class="testimonials">
+  <Container>
+    <div class="testimonials__grid">
+      <div class="testimonials__intro">
+        <SectionHeader
+          eyebrow={section.eyebrow}
+          headline={section.headline}
+          align="left"
+          class="testimonials__header"
+        />
+
+        <div class="testimonials__dots" aria-hidden="true">
+          <img src="/images/testimonials/tafiya/dot-active.svg" alt="" width="12" height="12" />
+          <img src="/images/testimonials/tafiya/dot-inactive.svg" alt="" width="12" height="12" />
+          <img src="/images/testimonials/tafiya/dot-inactive.svg" alt="" width="12" height="12" />
+        </div>
+      </div>
+
+      {
+        featured && (
+          <div class="testimonials__cards">
+            {secondary && (
+              <article class="testimonial-card testimonial-card--secondary">
+                <blockquote class="testimonial-card__quote testimonial-card__quote--secondary">
+                  "{secondary.quote}"
+                </blockquote>
+                <p class="testimonial-card__name">{secondary.author}</p>
+                <p class="testimonial-card__role">{secondary.role}</p>
+              </article>
+            )}
+
+            <article class="testimonial-card testimonial-card--featured">
+              <img
+                src={featured.avatar}
+                alt=""
+                class="testimonial-card__avatar"
+                width="68"
+                height="68"
+              />
+              <blockquote class="testimonial-card__quote">"{featured.quote}"</blockquote>
+              <p class="testimonial-card__name">{featured.author}</p>
+              <p class="testimonial-card__role">{featured.role}</p>
+            </article>
+
+            <div class="testimonials__nav" aria-hidden="true">
+              <img src="/images/testimonials/tafiya/arrow-up.svg" alt="" width="14" height="7" />
+              <img src="/images/testimonials/tafiya/arrow-down.svg" alt="" width="14" height="7" />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .testimonials :global(.testimonials__header) {
+    margin-bottom: var(--space-8);
+  }
+
+  .testimonials__dots {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .testimonials__cards {
+    position: relative;
+    min-height: 22rem;
+    padding-right: var(--space-10);
+  }
+
+  .testimonial-card {
+    position: relative;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: var(--space-8) var(--space-8) var(--space-6);
+  }
+
+  .testimonial-card--featured {
+    position: relative;
+    z-index: 2;
+    max-width: 31.5rem;
+    margin-left: var(--space-10);
+    margin-top: var(--space-8);
+    box-shadow: var(--shadow-card);
+  }
+
+  .testimonial-card--secondary {
+    position: absolute;
+    top: 0;
+    left: var(--space-10);
+    z-index: 1;
+    width: min(100%, 31.375rem);
+    padding-top: var(--space-10);
+    border: 2px solid var(--color-border-light);
+    box-shadow:
+      0 100px 40px rgba(0, 0, 0, 0.02), 0 64.815px 23.426px rgba(0, 0, 0, 0.02),
+      0 38.519px 12.741px rgba(0, 0, 0, 0.01), 0 20px 6.5px rgba(0, 0, 0, 0.01),
+      0 8.148px 3.259px rgba(0, 0, 0, 0.01), 0 1.852px 1.574px rgba(0, 0, 0, 0);
+  }
+
+  .testimonial-card__avatar {
+    position: absolute;
+    top: calc(var(--space-8) * -1);
+    left: calc(var(--space-6) * -1);
+    width: 4.25rem;
+    height: 4.25rem;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+  }
+
+  .testimonial-card__quote {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 2;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+    max-width: 25.125rem;
+  }
+
+  .testimonial-card__quote--secondary {
+    font-family: var(--font-ui);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-quote);
+  }
+
+  .testimonial-card__name {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-tight);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .testimonial-card__role {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-tight);
+    color: var(--color-text-muted);
+  }
+
+  .testimonials__nav {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  @media (min-width: 1024px) {
+    .testimonials__grid {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: var(--space-16);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-card--featured {
+      margin-left: var(--space-8);
+    }
+
+    .testimonial-card--secondary {
+      display: none;
+    }
+
+    .testimonials__nav {
+      display: none;
+    }
+  }
+</style>

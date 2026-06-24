@@ -1,17 +1,21 @@
 ---
+export const prerender = true;
 
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionRenderer from '../components/SectionRenderer.astro';
+import { getHomePage, getSiteSettings } from '../lib/keystatic-reader';
+import { buildSeoMeta } from '../lib/seo';
+
+const site = await getSiteSettings();
+const page = await getHomePage();
+
+if (!page) {
+  throw new Error('Home page not found. Add content/pages/home.yaml with slug "home".');
+}
+
+const seo = buildSeoMeta(page, site);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout site={site} title={seo.title} description={seo.description} ogImage={seo.ogImage} locale="en">
+  <SectionRenderer sections={page.sections} />
+</BaseLayout>

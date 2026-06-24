@@ -1,0 +1,53 @@
+---
+interface Props {
+  href?: string;
+  size?: 'nav' | 'footer';
+  src?: string;
+  class?: string;
+}
+
+const {
+  href = '/',
+  size = 'nav',
+  src = '/images/brand/logo.svg',
+  class: className = '',
+} = Astro.props;
+---
+
+<a href={href} class:list={['brand-logo', `brand-logo--${size}`, className]} aria-label="tafiya home">
+  <img
+    src={src}
+    alt="tafiya"
+    class="brand-logo__image"
+    width="126"
+    height="41"
+    loading="eager"
+    decoding="async"
+  />
+</a>
+
+<style>
+  .brand-logo {
+    display: inline-flex;
+    flex-shrink: 0;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .brand-logo__image {
+    display: block;
+    width: auto;
+    height: 2.5625rem;
+  }
+
+  .brand-logo--footer .brand-logo__image {
+    height: 2.75rem;
+    max-height: 2.75rem;
+  }
+
+  @media (max-width: 1023px) {
+    .brand-logo--nav .brand-logo__image {
+      height: 1.875rem;
+    }
+  }
+</style>

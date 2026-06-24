@@ -1,0 +1,105 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import type { LogoCloudSection } from '../../types/content';
+
+interface Props {
+  section: LogoCloudSection['value'];
+}
+
+const { section } = Astro.props;
+---
+
+<Section variant="default" compact class="logo-cloud">
+  <Container>
+    <ul class="logo-cloud__list">
+      {
+        section.logos.map((logo) => (
+          <li class:list={['logo-cloud__item', logo.featured && 'logo-cloud__item--featured']}>
+            {logo.href ? (
+              <a href={logo.href} class="logo-cloud__link">
+                <img
+                  src={logo.image}
+                  alt={logo.alt ?? ''}
+                  class:list={['logo-cloud__logo', !logo.featured && 'logo-cloud__logo--muted']}
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <img
+                src={logo.image}
+                alt={logo.alt ?? ''}
+                class:list={['logo-cloud__logo', !logo.featured && 'logo-cloud__logo--muted']}
+                loading="lazy"
+              />
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>
+
+<style>
+  .logo-cloud__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-10) var(--space-16);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .logo-cloud__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-cloud__item--featured {
+    padding: var(--space-5) var(--space-10);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    min-height: 5.375rem;
+  }
+
+  .logo-cloud__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-cloud__logo {
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: 5rem;
+    max-width: 10.75rem;
+    object-fit: contain;
+  }
+
+  .logo-cloud__item--featured .logo-cloud__logo {
+    max-height: 6.5rem;
+    max-width: 10.125rem;
+  }
+
+  .logo-cloud__logo--muted {
+    mix-blend-mode: luminosity;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    .logo-cloud__list {
+      gap: var(--space-8);
+    }
+
+    .logo-cloud__logo {
+      max-height: 3.5rem;
+      max-width: 7rem;
+    }
+  }
+</style>

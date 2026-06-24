@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionRenderer from '../components/SectionRenderer.astro';
+import { locales } from '../config/locales';
+import { getAllPages, getSiteSettings } from '../lib/keystatic-reader';
+import { buildSeoMeta } from '../lib/seo';
+import { buildSlugParam } from '../lib/i18n';
+import type { Locale } from '../config/locales';
+
+export async function getStaticPaths() {
+  const pages = await getAllPages();
+
+  return locales.flatMap((locale) =>
+    pages
+      .filter((page) => page.slug !== 'home' || locale.code !== 'en')
+      .map((page) => ({
+        params: { slug: buildSlugParam(locale.code, page.slug) },
+        props: { page, locale: locale.code as Locale },
+      })),
+  );
+}
+
+const site = await getSiteSettings();
+const { page, locale } = Astro.props;
+const seo = buildSeoMeta(page, site);
+---
+
+<BaseLayout
+  site={site}
+  title={seo.title}
+  description={seo.description}
+  ogImage={seo.ogImage}
+  locale={locale}
+>
+  <SectionRenderer sections={page.sections} />
+</BaseLayout>

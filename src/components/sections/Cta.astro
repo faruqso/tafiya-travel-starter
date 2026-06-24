@@ -1,0 +1,53 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Heading from '../ui/Heading.astro';
+import Text from '../ui/Text.astro';
+import Button from '../ui/Button.astro';
+import type { CtaSection } from '../../types/content';
+
+interface Props {
+  section: CtaSection['value'];
+}
+
+const { section } = Astro.props;
+---
+
+<Section variant="dark">
+  <Container>
+    <div class="cta">
+      <Heading as="h2" size="lg" class="text-balance">{section.headline}</Heading>
+      {section.subheadline && <Text variant="lead" class="cta__sub">{section.subheadline}</Text>}
+      {
+        section.buttons && section.buttons.length > 0 && (
+          <div class="cta__actions">
+            {section.buttons.map((btn) => (
+              <Button href={btn.href} label={btn.label} variant={btn.variant ?? 'primary'} size="lg" />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .cta {
+    text-align: center;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+
+  .cta__sub {
+    margin-top: var(--space-4);
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+</style>

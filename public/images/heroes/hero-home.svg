@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="50%" stop-color="#2d4a6f"/>
+      <stop offset="100%" stop-color="#c45d3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="810" fill="url(#g)"/>
+  <text x="720" y="420" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Georgia,serif" font-size="48">Hero  Home</text>
+</svg>

@@ -1,7 +1,13 @@
 {
-  "name": "day-1",
+  "name": "wanderlust-travel-starter",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Open-source Astro + Keystatic travel website starter with a token-driven design system",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/faruqso/tafiya-travel-starter.git"
+  },
   "engines": {
     "node": ">=22.12.0"
   },
@@ -12,6 +18,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.0.2"
+    "@astrojs/markdoc": "^1.0.6",
+    "@astrojs/react": "5.0.7",
+    "@astrojs/vercel": "^10.0.8",
+    "@keystatic/astro": "^5.1.0",
+    "@keystatic/core": "^0.5.50",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.4.8",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "keywords": [
+    "astro",
+    "keystatic",
+    "travel",
+    "cms",
+    "design-system",
+    "starter",
+    "template"
+  ],
+  "overrides": {
+    "vite": "7.3.5"
   }
 }

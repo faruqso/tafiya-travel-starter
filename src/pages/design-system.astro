@@ -1,0 +1,305 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandLogo from '../components/ui/BrandLogo.astro';
+import Button from '../components/ui/Button.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import SubscribeForm from '../components/ui/SubscribeForm.astro';
+import PlusGrid from '../components/ui/PlusGrid.astro';
+import { getSiteSettings } from '../lib/keystatic-reader';
+
+const site = await getSiteSettings();
+
+const colorTokens = [
+  { name: 'Brand', token: '--color-brand', use: 'Primary CTA, logo accent' },
+  { name: 'Accent', token: '--color-accent', use: 'Eyebrows, highlights' },
+  { name: 'Text', token: '--color-text', use: 'Hero headlines' },
+  { name: 'Text section', token: '--color-text-section', use: 'Section titles' },
+  { name: 'Text muted', token: '--color-text-muted', use: 'Body copy, nav' },
+  { name: 'Text strong', token: '--color-text-strong', use: 'Card titles, footer headings' },
+  { name: 'Purple', token: '--color-purple', use: 'Progress, accents' },
+  { name: 'Step 1', token: '--color-step-1', use: 'Book trip step icons' },
+  { name: 'Step 2', token: '--color-step-2', use: 'Book trip step icons' },
+  { name: 'Step 3', token: '--color-step-3', use: 'Book trip step icons' },
+  { name: 'Subscribe start', token: '--color-subscribe-start', use: 'Subscribe button gradient' },
+  { name: 'Subscribe end', token: '--color-subscribe-end', use: 'Subscribe button gradient' },
+];
+---
+
+<BaseLayout
+  site={site}
+  title={`Design System | ${site.brandName}`}
+  description="tafiya design tokens, typography, and UI components."
+>
+  <div class="ds">
+    <header class="ds__hero">
+      <p class="ds__eyebrow">Design system</p>
+      <h1 class="ds__title">tafiya UI reference</h1>
+      <p class="ds__lead">
+        Single source of truth for colors, type, and components. Edit tokens in
+        <code>src/styles/tokens.css</code> to rebrand the entire site.
+      </p>
+    </header>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Brand logo</h2>
+      <div class="ds__row">
+        <BrandLogo size="nav" src={site.logo} />
+        <BrandLogo size="footer" src={site.logo} />
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Color tokens</h2>
+      <div class="ds__swatches">
+        {
+          colorTokens.map((color) => (
+            <div class="ds__swatch">
+              <div class="ds__swatch-color" style={`background: var(${color.token})`}></div>
+              <p class="ds__swatch-name">{color.name}</p>
+              <code class="ds__swatch-token">{color.token}</code>
+              <p class="ds__swatch-use">{color.use}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Typography</h2>
+      <div class="ds__type-stack">
+        <p class="ds__type-hero">Hero display — Volkhov 84px</p>
+        <p class="ds__type-section">Section title — Volkhov 50px</p>
+        <p class="ds__type-eyebrow">Eyebrow — Poppins Semibold 18px</p>
+        <p class="ds__type-body">Body — Poppins Regular 16px. Used for descriptions across services, destinations, and book-a-trip steps.</p>
+        <p class="ds__type-ui">UI label — Open Sans Semibold. Used for card titles and subscribe button.</p>
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Section header</h2>
+      <SectionHeader eyebrow="Category" headline="We Offer Best Services" />
+      <SectionHeader
+        eyebrow="Easy and Fast"
+        headline={'Book your next trip\nin 3 easy steps'}
+        align="left"
+        uppercaseEyebrow={false}
+      />
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Buttons</h2>
+      <div class="ds__row">
+        <Button href="#" label="Find out more" variant="primary" size="lg" />
+        <Button href="#" label="View destinations" variant="secondary" size="md" />
+        <Button href="#" label="Play Demo" variant="ghost" size="md" />
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Subscribe form</h2>
+      <div class="ds__subscribe-demo">
+        <SubscribeForm id="ds-subscribe" />
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Decorative plus grids</h2>
+      <div class="ds__row ds__row--start">
+        <div>
+          <p class="ds__label">Services variant</p>
+          <PlusGrid variant="services" />
+        </div>
+        <div>
+          <p class="ds__label">Subscribe variant</p>
+          <PlusGrid variant="subscribe" />
+        </div>
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Shadows & radii</h2>
+      <div class="ds__cards">
+        <div class="ds__card ds__card--shadow">Card shadow</div>
+        <div class="ds__card ds__card--cta">CTA shadow</div>
+        <div class="ds__card ds__card--radius">Service radius</div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .ds {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-16) var(--container-padding-x) var(--space-24);
+  }
+
+  .ds__hero {
+    margin-bottom: var(--space-16);
+    max-width: 42rem;
+  }
+
+  .ds__eyebrow {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .ds__title {
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    color: var(--color-text-section);
+    margin-bottom: var(--space-4);
+  }
+
+  .ds__lead {
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .ds__section {
+    margin-bottom: var(--space-16);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .ds__section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text-section);
+    margin-bottom: var(--space-8);
+  }
+
+  .ds__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .ds__row--start {
+    align-items: flex-start;
+  }
+
+  .ds__swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .ds__swatch-color {
+    height: 4rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-light);
+    margin-bottom: var(--space-3);
+  }
+
+  .ds__swatch-name {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-sm);
+  }
+
+  .ds__swatch-token {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+    margin-block: var(--space-1);
+  }
+
+  .ds__swatch-use {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .ds__type-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .ds__type-hero {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, var(--text-hero));
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    line-height: var(--leading-hero);
+  }
+
+  .ds__type-section {
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-section);
+  }
+
+  .ds__type-eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .ds__type-body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 36rem;
+  }
+
+  .ds__type-ui {
+    font-family: var(--font-ui);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-card);
+  }
+
+  .ds__subscribe-demo {
+    padding: var(--space-10);
+    background: var(--color-subscribe-bg);
+    border-radius: var(--radius-lg);
+  }
+
+  .ds__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .ds__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  .ds__card {
+    padding: var(--space-8);
+    background: var(--color-surface);
+    min-width: 10rem;
+    text-align: center;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .ds__card--shadow {
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .ds__card--cta {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-cta);
+    background: var(--color-brand-muted);
+  }
+
+  .ds__card--radius {
+    border-radius: var(--radius-service-card);
+    border: 1px solid var(--color-border-light);
+  }
+</style>

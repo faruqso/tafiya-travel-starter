@@ -1,0 +1,466 @@
+---
+import Container from '../ui/Container.astro';
+import type { HeroSection } from '../../types/content';
+
+interface Props {
+  section: HeroSection['value'];
+}
+
+const { section } = Astro.props;
+const isCompact = section.variant === 'compact';
+const isFull = !isCompact;
+
+const headlineLines = section.headline.split('\n').map((line) => line.trim()).filter(Boolean);
+const highlightWord = section.highlightWord?.trim();
+const primaryButton = section.buttons?.[0];
+const playDemoLabel = section.playDemoLabel ?? 'Play Demo';
+const playDemoHref = section.playDemoHref ?? '#';
+
+function renderLineWithHighlight(line: string) {
+  if (!highlightWord || !line.includes(highlightWord)) {
+    return line;
+  }
+
+  const parts = line.split(highlightWord);
+  return parts.flatMap((part, index) => {
+    const nodes: Array<{ type: 'text' | 'highlight'; value: string }> = [];
+    if (part) nodes.push({ type: 'text', value: part });
+    if (index < parts.length - 1) nodes.push({ type: 'highlight', value: highlightWord });
+    return nodes;
+  });
+}
+---
+
+{
+  isFull ? (
+    <section class="hero hero--tafiya">
+      <div class="hero__decore" aria-hidden="true">
+        <img src="/images/heroes/tafiya/decore-bg.svg" alt="" />
+      </div>
+
+      <Container class="hero__container">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            {section.eyebrow && <p class="hero__eyebrow">{section.eyebrow}</p>}
+
+            <h1 class="hero__headline">
+              {headlineLines.map((line) => {
+                const segments = renderLineWithHighlight(line);
+                return (
+                  <span class="hero__headline-line">
+                    {Array.isArray(segments)
+                      ? segments.map((segment) =>
+                          segment.type === 'highlight' ? (
+                            <span class="hero__highlight">
+                              {segment.value}
+                              <img
+                                class="hero__highlight-underline"
+                                src="/images/heroes/tafiya/headline-underline.png"
+                                alt=""
+                                width="385"
+                                height="12"
+                              />
+                            </span>
+                          ) : (
+                            segment.value
+                          ),
+                        )
+                      : segments}
+                  </span>
+                );
+              })}
+            </h1>
+
+            {section.subheadline && <p class="hero__subheadline">{section.subheadline}</p>}
+
+            <div class="hero__actions">
+              {primaryButton && (
+                <a href={primaryButton.href} class="hero__cta">
+                  {primaryButton.label}
+                </a>
+              )}
+
+              {(section.playDemoLabel || section.showPlayDemo !== false) && (
+                <a href={playDemoHref} class="hero__play">
+                  <span class="hero__play-icon" aria-hidden="true">
+                    <img src="/images/heroes/tafiya/play-button.svg" alt="" />
+                  </span>
+                  <span class="hero__play-label">{playDemoLabel}</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div class="hero__visual" aria-hidden="true">
+            <img class="hero__plane hero__plane--left" src="/images/heroes/tafiya/plane.svg" alt="" />
+            <img class="hero__plane hero__plane--right" src="/images/heroes/tafiya/plane.svg" alt="" />
+            <div class="hero__traveller">
+              <img class="hero__traveller-shadow" src="/images/heroes/tafiya/traveller-shadow.png" alt="" />
+              <img class="hero__traveller-photo" src="/images/heroes/tafiya/traveller.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  ) : (
+    <section class="hero hero--compact">
+      {
+        section.image && (
+          <div class="hero__bg" aria-hidden="true">
+            <img src={section.image} alt="" />
+          </div>
+        )
+      }
+      <div class="hero__overlay" aria-hidden="true" />
+      <Container class="hero__content hero__content--compact">
+        {section.eyebrow && <p class="hero__eyebrow hero__eyebrow--compact">{section.eyebrow}</p>}
+        <h1 class="hero__headline hero__headline--compact">{section.headline}</h1>
+        {section.subheadline && (
+          <p class="hero__subheadline hero__subheadline--compact">{section.subheadline}</p>
+        )}
+        {
+          section.buttons && section.buttons.length > 0 && (
+            <div class="hero__actions hero__actions--compact">
+              {section.buttons.map((btn) => (
+                <a
+                  href={btn.href}
+                  class:list={['hero__cta', btn.variant === 'ghost' && 'hero__cta--ghost']}
+                >
+                  {btn.label}
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </Container>
+    </section>
+  )
+}
+
+<style>
+  /* ── Tafiya full hero (Figma) ── */
+  .hero--tafiya {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-surface);
+    padding-block: 2.5rem 4rem;
+    min-height: 42rem;
+  }
+
+  .hero__decore {
+    position: absolute;
+    top: -9.3rem;
+    left: -26.25rem;
+    width: 120rem;
+    max-width: none;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero__decore img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero__container {
+    position: relative;
+    z-index: 1;
+    padding-inline: var(--container-padding-x);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  .hero__copy {
+    max-width: 33rem;
+  }
+
+  .hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0;
+    color: var(--color-accent);
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__headline {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-hero);
+    letter-spacing: -0.04em;
+    color: var(--color-text);
+    margin-bottom: var(--space-10);
+  }
+
+  .hero__headline-line {
+    display: block;
+  }
+
+  .hero__highlight {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero__highlight-underline {
+    position: absolute;
+    left: 50%;
+    bottom: 0.05em;
+    width: min(24rem, 115%);
+    max-width: 385px;
+    height: auto;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .hero__subheadline {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.875;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-10);
+    max-width: 29.8125rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 10.625rem;
+    height: 3.75rem;
+    padding-inline: var(--space-8);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-on-brand);
+    background-color: var(--color-brand);
+    border-radius: 0.625rem;
+    box-shadow: var(--shadow-cta);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .hero__cta:hover {
+    background-color: var(--color-brand-hover);
+    transform: translateY(-1px);
+  }
+
+  .hero__play {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-5);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-base);
+  }
+
+  .hero__play:hover {
+    color: var(--color-text);
+  }
+
+  .hero__play-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    flex-shrink: 0;
+  }
+
+  .hero__play-icon img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__play-label {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .hero__visual {
+    position: relative;
+    width: 100%;
+    max-width: 47.8125rem;
+    margin-inline: auto;
+    aspect-ratio: 765 / 764;
+  }
+
+  .hero__traveller {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__traveller-shadow,
+  .hero__traveller-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .hero__traveller-shadow {
+    opacity: 0.4;
+  }
+
+  .hero__plane {
+    position: absolute;
+    width: 8rem;
+    height: auto;
+    z-index: 2;
+  }
+
+  .hero__plane--left {
+    top: 7%;
+    left: 18%;
+    transform: rotate(-44deg) scaleY(0.93) skewX(-22deg);
+  }
+
+  .hero__plane--right {
+    top: 0;
+    right: 8%;
+    transform: rotate(-44deg) scaleY(0.93) skewX(-22deg);
+  }
+
+  @media (min-width: 1024px) {
+    .hero--tafiya {
+      padding-block: 1.5rem 5rem;
+      min-height: 48rem;
+    }
+
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: var(--space-6);
+    }
+
+    .hero__visual {
+      margin-inline: 0;
+      justify-self: end;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero__grid {
+      gap: var(--space-12);
+    }
+  }
+
+  /* ── Compact hero (inner pages) ── */
+  .hero--compact {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 42vh;
+    color: var(--color-text-inverse);
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(24, 30, 75, 0.82) 0%,
+      rgba(24, 30, 75, 0.55) 50%,
+      rgba(241, 165, 1, 0.25) 100%
+    );
+  }
+
+  .hero__content--compact {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-16);
+    max-width: 42rem;
+  }
+
+  .hero__eyebrow--compact {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__headline--compact {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__subheadline--compact {
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: var(--space-8);
+    max-width: 36rem;
+  }
+
+  .hero__actions--compact {
+    gap: var(--space-4);
+  }
+
+  .hero__cta--ghost {
+    background-color: transparent;
+    color: var(--color-text-inverse);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+  }
+
+  .hero__cta--ghost:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: var(--color-text-inverse);
+  }
+
+  @media (max-width: 768px) {
+    .hero--compact {
+      min-height: 36vh;
+    }
+
+    .hero--tafiya {
+      min-height: auto;
+      padding-block: var(--space-8) var(--space-12);
+    }
+
+    .hero__eyebrow {
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-4);
+    }
+
+    .hero__headline {
+      margin-bottom: var(--space-6);
+    }
+
+    .hero__subheadline {
+      margin-bottom: var(--space-8);
+    }
+
+    .hero__plane {
+      width: 4.5rem;
+    }
+  }
+</style>

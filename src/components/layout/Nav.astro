@@ -1,0 +1,228 @@
+---
+import BrandLogo from '../ui/BrandLogo.astro';
+import LanguageSwitcher from '../ui/LanguageSwitcher.astro';
+import { getNavLabel, ui, type Locale } from '../../config/locales';
+import { getLocalizedPath } from '../../lib/i18n';
+import type { SiteSettings } from '../../types/content';
+
+interface Props {
+  site: SiteSettings;
+  locale: Locale;
+  currentPath?: string;
+}
+
+const { site, locale, currentPath = Astro.url.pathname } = Astro.props;
+const strings = ui[locale];
+---
+
+<header class="nav">
+  <div class="nav__inner">
+    <BrandLogo size="nav" src={site.logo} href={getLocalizedPath('/', locale)} />
+
+    <button
+      type="button"
+      class="nav__toggle"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="Open menu"
+    >
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    </button>
+
+    <div id="nav-menu" class="nav__menu">
+      <nav class="nav__links" aria-label="Main navigation">
+        {
+          site.navLinks.map((link) => {
+            const href = getLocalizedPath(link.href, locale);
+            const label = getNavLabel(link.label, locale);
+            const isActive = currentPath === href || currentPath === `${href}/`;
+
+            return (
+              <a
+                href={href}
+                class:list={['nav__link', isActive && 'nav__link--active']}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {label}
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      <div class="nav__actions">
+        <a href={getLocalizedPath('/contact', locale)} class="nav__login">
+          {strings.login}
+        </a>
+        <a href={getLocalizedPath('/contact', locale)} class="nav__signup">
+          {strings.signup}
+        </a>
+        <LanguageSwitcher locale={locale} currentPath={currentPath} />
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('#nav-menu');
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    menu?.classList.toggle('is-open', !open);
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.setAttribute('aria-label', 'Open menu');
+      menu?.classList.remove('is-open');
+    });
+  });
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border-light);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-3) var(--container-padding-x);
+    min-height: var(--header-height);
+  }
+
+  .nav__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3125rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .nav__toggle-bar {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background: var(--color-nav-text);
+    border-radius: 1px;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+  }
+
+  .nav__menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--container-padding-x) var(--space-8);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav__menu.is-open {
+    display: flex;
+  }
+
+  .nav__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .nav__link {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-nav-text);
+    transition: color var(--transition-base);
+  }
+
+  .nav__link:hover,
+  .nav__link--active {
+    color: var(--color-accent);
+  }
+
+  .nav__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .nav__login,
+  .nav__signup {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-nav-text);
+  }
+
+  .nav__signup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 6.375rem;
+    height: 2.5rem;
+    padding-inline: var(--space-5);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition-base), color var(--transition-base);
+  }
+
+  .nav__signup:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 1024px) {
+    .nav__inner {
+      position: relative;
+    }
+
+    .nav__toggle {
+      display: none;
+    }
+
+    .nav__menu {
+      position: static;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+      padding: 0;
+      border: none;
+      box-shadow: none;
+    }
+
+    .nav__links {
+      flex-direction: row;
+      gap: 2.75rem;
+      margin-inline: auto;
+    }
+  }
+</style>

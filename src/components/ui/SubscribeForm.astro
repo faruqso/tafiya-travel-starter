@@ -1,0 +1,155 @@
+---
+interface Props {
+  id?: string;
+  buttonLabel?: string;
+  successMessage?: string;
+  class?: string;
+}
+
+const {
+  id = 'subscribe-form',
+  buttonLabel = 'Subscribe',
+  successMessage = 'You are subscribed! Check your inbox for travel deals from tafiya.',
+  class: className = '',
+} = Astro.props;
+---
+
+<form
+  id={id}
+  class:list={['subscribe-form', className]}
+  data-json-form
+  data-endpoint="/api/subscribe"
+  data-success-message={successMessage}
+  novalidate
+>
+  <label class="subscribe-form__field" for={`${id}-email`}>
+    <img
+      src="/images/subscribe/tafiya/email-icon.svg"
+      alt=""
+      class="subscribe-form__icon"
+      width="21"
+      height="18"
+      aria-hidden="true"
+    />
+    <input
+      id={`${id}-email`}
+      type="email"
+      name="email"
+      placeholder="Your email"
+      autocomplete="email"
+      required
+    />
+  </label>
+  <button type="submit" class="subscribe-form__submit">{buttonLabel}</button>
+  <p class="subscribe-form__status" data-form-status role="status" aria-live="polite"></p>
+</form>
+
+<style>
+  .subscribe-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 38.8125rem;
+    margin-inline: auto;
+  }
+
+  .subscribe-form__field {
+    position: relative;
+    flex: 1 1 16rem;
+    min-width: min(100%, 16rem);
+    max-width: 26.3125rem;
+  }
+
+  .subscribe-form__icon {
+    position: absolute;
+    left: 1.9375rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .subscribe-form__field input {
+    width: 100%;
+    height: 4.25rem;
+    padding: 0 1.5625rem 0 4.125rem;
+    font-family: var(--font-subscribe-input);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-normal);
+    color: var(--color-input-text);
+    background: var(--color-surface);
+    border: none;
+    border-radius: var(--radius-md);
+  }
+
+  .subscribe-form__field input::placeholder {
+    color: var(--color-input-text);
+    opacity: 0.85;
+  }
+
+  .subscribe-form__field input:focus {
+    outline: 2px solid var(--color-purple);
+    outline-offset: 2px;
+  }
+
+  .subscribe-form__submit {
+    flex: 0 0 auto;
+    width: 11.25rem;
+    height: 4.25rem;
+    padding-inline: var(--space-6);
+    font-family: var(--font-ui);
+    font-size: 1.0625rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-on-brand);
+    background: linear-gradient(180deg, var(--color-subscribe-start) 0%, var(--color-subscribe-end) 100%);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: opacity var(--transition-base), transform var(--transition-base);
+  }
+
+  .subscribe-form__submit:hover:not(:disabled) {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+
+  .subscribe-form__submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .subscribe-form__status {
+    flex: 1 1 100%;
+    min-height: 1.25rem;
+    font-size: var(--text-sm);
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  .subscribe-form__status:empty {
+    display: none;
+  }
+
+  .subscribe-form__status.is-success {
+    color: var(--color-success);
+  }
+
+  .subscribe-form__status.is-error {
+    color: var(--color-error);
+  }
+
+  @media (max-width: 640px) {
+    .subscribe-form {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .subscribe-form__field,
+    .subscribe-form__submit {
+      width: 100%;
+      max-width: none;
+    }
+  }
+</style>

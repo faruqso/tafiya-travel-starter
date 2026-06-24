@@ -1,5 +1,6 @@
 # build output
 dist/
+.vercel/
 # generated types
 .astro/
 
@@ -16,6 +17,9 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+
+# form submissions (demo API)
+data/
 
 # macOS-specific files
 .DS_Store

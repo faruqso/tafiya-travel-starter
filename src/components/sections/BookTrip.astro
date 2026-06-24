@@ -1,0 +1,150 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import type { BookTripSection } from '../../types/content';
+
+interface Props {
+  section: BookTripSection['value'];
+}
+
+const { section } = Astro.props;
+
+const stepColors: Record<string, string> = {
+  yellow: 'var(--color-step-1)',
+  orange: 'var(--color-step-2)',
+  teal: 'var(--color-step-3)',
+};
+---
+
+<Section variant="default" class="book-trip">
+  <Container>
+    <div class="book-trip__grid">
+      <div class="book-trip__content">
+        <SectionHeader
+          eyebrow={section.eyebrow}
+          headline={section.headline}
+          align="left"
+          uppercaseEyebrow={false}
+          class="book-trip__header"
+        />
+
+        <ol class="book-trip__steps">
+          {
+            section.steps.map((step) => (
+              <li class="book-trip__step">
+                <div
+                  class="book-trip__step-icon"
+                  style={`background-color: ${stepColors[step.color] ?? stepColors.yellow}`}
+                >
+                  <img src={step.icon} alt="" width="47" height="48" />
+                </div>
+                <div class="book-trip__step-copy">
+                  <h3 class="book-trip__step-title">{step.title}</h3>
+                  <p class="book-trip__step-desc">{step.description}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <div class="book-trip__visual" aria-hidden="true">
+        <img
+          src={section.previewImage ?? '/images/book-trip/tafiya/trip-preview.png'}
+          alt=""
+          class="book-trip__preview"
+          width="645"
+          height="582"
+        />
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .book-trip__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .book-trip :global(.book-trip__header) {
+    margin-bottom: var(--space-10);
+  }
+
+  .book-trip__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .book-trip__step {
+    display: grid;
+    grid-template-columns: 2.9375rem 1fr;
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  .book-trip__step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.9375rem;
+    height: 3rem;
+    border-radius: 0.8125rem;
+    flex-shrink: 0;
+  }
+
+  .book-trip__step-icon img {
+    width: 2.9375rem;
+    height: 3rem;
+    object-fit: contain;
+  }
+
+  .book-trip__step-title {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.245;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-1);
+  }
+
+  .book-trip__step-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.245;
+    color: var(--color-text-muted);
+    max-width: 28rem;
+    white-space: pre-line;
+  }
+
+  .book-trip__visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .book-trip__preview {
+    width: 100%;
+    max-width: 40.3125rem;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (min-width: 1024px) {
+    .book-trip__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: var(--space-16);
+    }
+
+    .book-trip__visual {
+      justify-content: flex-end;
+    }
+  }
+</style>

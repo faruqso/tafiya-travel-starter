@@ -1,0 +1,38 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Heading from '../ui/Heading.astro';
+import type { TextBlockSection } from '../../types/content';
+
+interface Props {
+  section: TextBlockSection['value'];
+}
+
+const { section } = Astro.props;
+const paragraphs = section.body.split('\n\n').filter(Boolean);
+---
+
+<Section variant="default">
+  <Container narrow>
+    {section.eyebrow && <p class="text-block__eyebrow">{section.eyebrow}</p>}
+    {section.headline && <Heading as="h2" size="lg">{section.headline}</Heading>}
+    <div class="prose">
+      {paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .text-block__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-brand);
+    margin-bottom: var(--space-3);
+  }
+
+  :global(.heading) {
+    margin-bottom: var(--space-6);
+  }
+</style>

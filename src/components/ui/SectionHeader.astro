@@ -1,0 +1,73 @@
+---
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  align?: 'left' | 'center';
+  uppercaseEyebrow?: boolean;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  headline,
+  align = 'center',
+  uppercaseEyebrow = true,
+  class: className = '',
+} = Astro.props;
+
+const headlineLines = headline.split('\n').map((line) => line.trim()).filter(Boolean);
+---
+
+<div
+  class:list={[
+    'section-header',
+    align === 'left' && 'section-header--left',
+    !uppercaseEyebrow && 'section-header--no-uppercase',
+    className,
+  ]}
+>
+  {eyebrow && <p class="section-header__eyebrow">{eyebrow}</p>}
+  <h2 class="section-header__title">
+    {headlineLines.map((line) => (
+      <span class="section-header__title-line">{line}</span>
+    ))}
+  </h2>
+</div>
+
+<style>
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header--left {
+    text-align: left;
+  }
+
+  .section-header__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-header--no-uppercase .section-header__eyebrow {
+    text-transform: none;
+  }
+
+  .section-header__title {
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-text-section);
+    text-transform: capitalize;
+  }
+
+  .section-header__title-line {
+    display: block;
+  }
+</style>

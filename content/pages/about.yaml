@@ -1,0 +1,55 @@
+slug: about
+title: About
+description: >-
+  Learn how tafiya helps travelers book smarter — with curated trips, trusted
+  partners, and support at every step.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Our story
+      headline: Travel should feel exciting, not exhausting
+      subheadline: >-
+        tafiya started with a simple idea — compare the best routes, stays, and
+        local experiences without juggling a dozen tabs.
+      image: /images/destinations/tafiya/rome.jpg
+  - discriminant: textBlock
+    value:
+      eyebrow: Who we are
+      headline: Built for modern travelers
+      body: >-
+        We partner with airlines, boutique hotels, and local guides across 50+
+        destinations. Our team verifies every itinerary for realistic timing,
+        clear pricing, and reliable support.
+
+
+        Whether you are booking a 10-day tour of Rome or a multi-city European
+        rail adventure, tafiya keeps your documents, payments, and updates in one
+        dashboard — on web and mobile.
+
+
+        This open-source starter reflects our product vision: fast pages, honest
+        copy, and a design system you can fork for your own travel brand.
+  - discriminant: features
+    value:
+      eyebrow: Why travelers choose us
+      headline: What you can expect
+      items:
+        - icon: /images/services/tafiya/icon-flights.png
+          title: Transparent pricing
+          description: >-
+            See taxes, baggage, and resort fees upfront — no surprises at
+            checkout.
+          featured: false
+        - icon: /images/services/tafiya/icon-events.png
+          title: Local expertise
+          description: >-
+            Guides and concierges vetted in each destination, with reviews from
+            real tafiya travelers.
+          featured: false
+        - icon: /images/services/tafiya/icon-customization.png
+          title: Flexible plans
+          description: >-
+            Change dates or add activities up to 72 hours before departure on
+            eligible packages.
+          featured: false

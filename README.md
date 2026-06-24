@@ -1,43 +1,57 @@
-# Astro Starter Kit: Minimal
+# Wanderlust Travel Starter
 
-```sh
-npm create astro@latest -- --template minimal
+An open-source travel website starter built with **Astro**, **Keystatic**, and a **token-driven design system**. Fork it, rebrand it, and launch your own travel site in minutes.
+
+## Features
+
+- **CMS-driven pages** — edit content at `/keystatic` or in `content/` YAML files
+- **Design system** — rebrand the entire site by editing one file: `src/styles/tokens.css`
+- **Travel-focused sections** — Hero, Destination Grid, Features, Testimonials, Stats, CTA, Contact
+- **Zero-JS public site** — fast static HTML; React only powers the Keystatic admin
+- **Fork-ready** — MIT license, demo content, customization docs
+
+## Quick start
+
+```bash
+git clone https://github.com/your-username/wanderlust-travel-starter.git
+cd wanderlust-travel-starter
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Site:** [http://localhost:4321](http://localhost:4321)
+- **CMS admin:** [http://localhost:4321/keystatic](http://localhost:4321/keystatic)
 
-## 🚀 Project Structure
+## Project structure
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+content/           Keystatic CMS content (YAML)
+public/images/     Static assets organized by purpose
+src/components/ui/ Design system primitives
+src/components/sections/  CMS page blocks
+src/styles/tokens.css     Single source of truth for branding
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+See [docs/customization.md](docs/customization.md) for rebrand and deploy instructions.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Scripts
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server |
+| `npm run build` | Build static site to `dist/` |
+| `npm run preview` | Preview production build |
 
-## 🧞 Commands
+## Tech stack
 
-All commands are run from the root of the project, from a terminal:
+- [Astro 6](https://astro.build) — static site generator
+- [Keystatic](https://keystatic.com) — git-based CMS
+- CSS design tokens — no UI framework on the public site
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## License
 
-## 👀 Want to learn more?
+MIT — see [LICENSE](LICENSE). Use freely for personal and commercial projects.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).

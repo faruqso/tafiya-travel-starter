@@ -1,0 +1,41 @@
+---
+type TextVariant = 'body' | 'lead' | 'muted' | 'small';
+
+interface Props {
+  as?: 'p' | 'span' | 'div';
+  variant?: TextVariant;
+  class?: string;
+}
+
+const { as: Tag = 'p', variant = 'body', class: className = '' } = Astro.props;
+---
+
+<Tag class:list={['text', `text--${variant}`, className]}>
+  <slot />
+</Tag>
+
+<style>
+  .text {
+    line-height: var(--leading-normal);
+  }
+
+  .text--body {
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+
+  .text--lead {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+  }
+
+  .text--muted {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+  }
+
+  .text--small {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+</style>

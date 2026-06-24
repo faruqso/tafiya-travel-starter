@@ -1,0 +1,165 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import PlusGrid from '../ui/PlusGrid.astro';
+import type { FeaturesSection } from '../../types/content';
+
+interface Props {
+  section: FeaturesSection['value'];
+}
+
+const { section } = Astro.props;
+---
+
+<Section variant="default" class="services">
+  <Container class="services__container">
+    <PlusGrid variant="services" class="services__plus" />
+
+    <SectionHeader eyebrow={section.eyebrow} headline={section.headline} />
+
+    <div class="services__grid">
+      {
+        section.items.map((item) => (
+          <article class:list={['service-item', item.featured && 'service-item--featured']}>
+            {item.featured && <div class="service-item__accent" aria-hidden="true" />}
+            <div class="service-item__icon-wrap">
+              <img src={item.icon} alt="" class="service-item__icon" width="92" height="78" />
+            </div>
+            <div class:list={['service-item__body', item.featured && 'service-item__body--card']}>
+              <h3 class="service-item__title">{item.title}</h3>
+              <p class="service-item__desc">{item.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .services :global(.services__container) {
+    position: relative;
+  }
+
+  .services :global(.services__plus) {
+    position: absolute;
+    top: 0;
+    right: var(--container-padding-x);
+    display: none;
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .service-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .service-item--featured {
+    padding-bottom: var(--space-8);
+  }
+
+  .service-item__accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 6.25rem;
+    height: 6.25rem;
+    background-color: var(--color-accent);
+    border-radius: 1.875rem 0 var(--radius-md) 0;
+    z-index: 0;
+  }
+
+  .service-item__icon-wrap {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .service-item--featured .service-item__icon-wrap {
+    margin-bottom: calc(var(--space-2) * -1);
+  }
+
+  .service-item__icon {
+    width: auto;
+    height: auto;
+    max-width: 10.5rem;
+    max-height: 6.5rem;
+    object-fit: contain;
+  }
+
+  .service-item__body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .service-item__body--card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-service-card);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-10) var(--space-6) var(--space-8);
+    min-height: 14.5rem;
+    width: 100%;
+    max-width: 16.6875rem;
+  }
+
+  .service-item__title {
+    font-family: var(--font-ui);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-tight);
+    color: var(--color-text-card);
+    margin-bottom: var(--space-3);
+  }
+
+  .service-item__desc {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-service);
+    color: var(--color-text-muted);
+    max-width: 11.3125rem;
+  }
+
+  @media (min-width: 1024px) {
+    .services :global(.services__plus) {
+      display: grid;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-10);
+    }
+
+    .services :global(.services__plus) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .services__grid {
+      grid-template-columns: 1fr;
+      max-width: 20rem;
+      margin-inline: auto;
+    }
+  }
+</style>
