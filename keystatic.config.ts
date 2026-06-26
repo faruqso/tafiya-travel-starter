@@ -473,10 +473,26 @@ function createPagesCollection(locale: Locale, label: string) {
   });
 }
 
+const KEYSTATIC_REPO = 'faruqso/tafiya-travel-starter';
+
+function getKeystaticStorage() {
+  const hasGithubCredentials =
+    process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
+    process.env.KEYSTATIC_GITHUB_CLIENT_SECRET &&
+    process.env.KEYSTATIC_SECRET;
+
+  if (hasGithubCredentials) {
+    return {
+      kind: 'github' as const,
+      repo: KEYSTATIC_REPO,
+    };
+  }
+
+  return { kind: 'local' as const };
+}
+
 export default config({
-  storage: {
-    kind: 'local',
-  },
+  storage: getKeystaticStorage(),
   collections: {
     site: collection({
       label: '1. Site Settings',
