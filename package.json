@@ -23,9 +23,7 @@
     "content:export-catalog": "npx tsx scripts/export-catalog-to-cms.mjs",
     "content:split-catalog": "node scripts/split-catalog-by-locale.mjs",
     "content:seed-page-translations": "node scripts/seed-page-translations.mjs",
-    "content:seed-catalog-translations": "node scripts/seed-catalog-translations.mjs",
-    "setup:keystatic": "node scripts/setup-keystatic-github.mjs",
-    "setup:keystatic:manual": "node scripts/finish-keystatic-github.mjs"
+    "content:seed-catalog-translations": "node scripts/seed-catalog-translations.mjs"
   },
   "dependencies": {
     "@astrojs/markdoc": "^1.0.6",
