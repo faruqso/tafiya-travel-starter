@@ -7,7 +7,8 @@ Thank you for helping improve **tafiya Travel Starter**!
 1. Fork and clone [tafiya-travel-starter](https://github.com/faruqso/tafiya-travel-starter)
 2. Run `npm install`
 3. Run `npm run dev` to start the dev server
-4. Run `npm run build` before submitting a PR to verify the build passes
+4. To use the CMS admin on your fork, follow [docs/keystatic-setup.md](docs/keystatic-setup.md)
+5. Run `npm run build` before submitting a PR to verify the build passes
 
 ## Where to make changes
 

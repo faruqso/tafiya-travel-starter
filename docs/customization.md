@@ -172,29 +172,16 @@ Deploy the prerendered static HTML from `dist/client/` to any static host:
 
 Content is stored in your git repo. The public site reads YAML at **build time** — no CMS server needed to serve pages.
 
-The `/keystatic` admin on Vercel needs extra setup:
+To connect `/keystatic` to **your fork** (GitHub App, env vars, browse-only demo vs full edit mode), follow:
 
-#### Browse content (automatic)
+**→ [docs/keystatic-setup.md](./keystatic-setup.md)**
 
-The Vercel adapter bundles `content/**` into serverless functions so collections show your entries after deploy.
+Quick summary:
 
-#### Edit content on the live site (GitHub mode)
-
-Local storage cannot write on Vercel. To edit in the browser and commit to GitHub:
-
-1. Run `npm run dev` locally and open [http://localhost:4321/keystatic](http://localhost:4321/keystatic)
-2. Click **Login with GitHub** → **Create GitHub App** (links to `faruqso/tafiya-travel-starter`)
-3. Copy the env vars from your local `.env` file (see `.env.example`)
-4. In [Vercel → Project → Settings → Environment Variables](https://vercel.com/docs/projects/environment-variables), add:
-   - `KEYSTATIC_GITHUB_CLIENT_ID`
-   - `KEYSTATIC_GITHUB_CLIENT_SECRET`
-   - `KEYSTATIC_SECRET`
-   - `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`
-5. Redeploy — Keystatic will use GitHub mode and show all collections with edit access
-
-Without GitHub mode, edit YAML locally and push to git (triggers rebuild), or use `/admin/translations` to check coverage.
-
-See [Keystatic GitHub mode](https://keystatic.com/docs/github-mode) for details.
+- Update `KEYSTATIC_REPO` in `keystatic.config.ts` to your `username/repo`
+- Create a GitHub App and add the four `KEYSTATIC_*` env vars locally and on your host
+- Only GitHub users with **write access** to your repo can edit via `/keystatic`
+- Without GitHub mode, edit YAML in `content/` and push to git (works everywhere)
 
 ## 8. Design system reference
 

@@ -475,10 +475,22 @@ function createPagesCollection(locale: Locale, label: string) {
 
 const KEYSTATIC_REPO = 'faruqso/tafiya-travel-starter';
 
+function isEditEnabled(): boolean {
+  return import.meta.env.PUBLIC_KEYSTATIC_EDIT_ENABLED === 'true';
+}
+
 function getKeystaticStorage() {
-  // Config is bundled for the browser — never touch process.env there
+  const github = { kind: 'github' as const, repo: KEYSTATIC_REPO };
+  const local = { kind: 'local' as const };
+
+  // Browse-only demo: local storage shows the dashboard without GitHub login
+  if (!isEditEnabled()) {
+    return local;
+  }
+
+  // Client with edit enabled: GitHub mode (login required)
   if (!import.meta.env.SSR) {
-    return { kind: 'github' as const, repo: KEYSTATIC_REPO };
+    return github;
   }
 
   const hasGithubCredentials =
@@ -487,22 +499,15 @@ function getKeystaticStorage() {
     process.env.KEYSTATIC_SECRET;
 
   if (hasGithubCredentials) {
-    return {
-      kind: 'github' as const,
-      repo: KEYSTATIC_REPO,
-    };
+    return github;
   }
 
-  // Dev uses github mode so the /keystatic/setup flow can create the GitHub App
+  // Dev without credentials: GitHub setup flow at /keystatic/setup
   if (process.env.NODE_ENV === 'development') {
-    return {
-      kind: 'github' as const,
-      repo: KEYSTATIC_REPO,
-    };
+    return github;
   }
 
-  // Prod without credentials: local read-only (content bundled via includeFiles)
-  return { kind: 'local' as const };
+  return local;
 }
 
 export default config({

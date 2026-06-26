@@ -4,9 +4,9 @@ import { readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
-import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel';
 import { catalogCacheInvalidation } from './integrations/catalog-cache.mjs';
+import { keystaticAdmin } from './integrations/keystatic-admin.mjs';
 
 /** Recursively list files under content/ for Keystatic on Vercel serverless */
 function listContentFiles(dir = 'content', root = process.cwd()) {
@@ -33,7 +33,7 @@ export default defineConfig({
     // Keystatic admin reads content/ at runtime — bundle every YAML into serverless functions
     includeFiles: [...contentFiles, './keystatic.config.ts'],
   }),
-  integrations: [react(), markdoc(), keystatic(), catalogCacheInvalidation()],
+  integrations: [react(), markdoc(), keystaticAdmin(), catalogCacheInvalidation()],
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'fr', 'de', 'ar'],

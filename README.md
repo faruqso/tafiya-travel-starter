@@ -6,7 +6,7 @@ Live demo: [tafiya-travel-starter](https://github.com/faruqso/tafiya-travel-star
 
 ## Features
 
-- **CMS-driven pages** — edit content at `/keystatic` or in `content/` YAML files
+- **CMS-driven pages** — browse the admin demo at `/keystatic`; fork + setup to enable saves (see [Keystatic setup](docs/keystatic-setup.md))
 - **Catalog (destinations, hotels, flights)** — filterable listings with per-locale CMS folders
 - **Design system** — rebrand the entire site by editing one file: `src/styles/tokens.css`
 - **Travel-focused sections** — Hero, Destination Grid, Features, Testimonials, Stats, CTA, Contact
@@ -23,7 +23,7 @@ npm run dev
 ```
 
 - **Site:** [http://localhost:4321](http://localhost:4321)
-- **CMS admin:** [http://localhost:4321/keystatic](http://localhost:4321/keystatic)
+- **CMS admin:** [http://localhost:4321/keystatic](http://localhost:4321/keystatic) — see [Keystatic setup](docs/keystatic-setup.md) to connect your fork
 - **Translation status:** [http://localhost:4321/admin/translations](http://localhost:4321/admin/translations)
 
 ## Project structure
@@ -46,7 +46,7 @@ src/components/sections/  CMS page blocks
 src/styles/tokens.css     Single source of truth for branding
 ```
 
-See [docs/customization.md](docs/customization.md) for rebrand and deploy instructions.
+See [docs/customization.md](docs/customization.md) for rebrand and deploy instructions, and [docs/keystatic-setup.md](docs/keystatic-setup.md) to connect the CMS to your own GitHub repo.
 
 ## Scripts
 

@@ -1,0 +1,82 @@
+---
+import KeystaticAdmin from '../src/components/KeystaticAdmin.tsx';
+import { isKeystaticEditEnabled, getTemplateForkUrl } from '../src/lib/keystatic-public';
+
+export const prerender = false;
+
+const editEnabled = isKeystaticEditEnabled();
+---
+
+{!editEnabled && (
+  <div class="ks-demo-banner">
+    <p>
+      <strong>Browse-only demo.</strong> You can explore all collections and entries. Saving changes
+      requires your own fork and CMS setup.
+    </p>
+    <div class="ks-demo-banner__actions">
+      <a class="ks-demo-banner__btn ks-demo-banner__btn--primary" href={getTemplateForkUrl()}>
+        Fork on GitHub
+      </a>
+      <a class="ks-demo-banner__btn" href="/keystatic/get-started">Set up Keystatic</a>
+      <a class="ks-demo-banner__btn" href="/">Back to site</a>
+    </div>
+  </div>
+)}
+
+<KeystaticAdmin client:only="react" />
+
+<style is:global>
+  .ks-demo-banner {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;
+    background: #fffbeb;
+    border-bottom: 1px solid #fcd34d;
+    color: #78350f;
+    font-family: system-ui, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .ks-demo-banner p {
+    margin: 0;
+    flex: 1 1 16rem;
+  }
+
+  .ks-demo-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ks-demo-banner__btn {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    border: 1px solid #d97706;
+    color: #92400e;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .ks-demo-banner__btn:hover {
+    background: #fef3c7;
+  }
+
+  .ks-demo-banner__btn--primary {
+    background: #d97706;
+    border-color: #d97706;
+    color: #fff;
+  }
+
+  .ks-demo-banner__btn--primary:hover {
+    background: #b45309;
+  }
+</style>
