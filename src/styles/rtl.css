@@ -74,18 +74,6 @@
   }
 }
 
-@media (min-width: 1280px) {
-  [dir='rtl'] .hero--tafiya .hero__visual {
-    margin-inline-start: -6rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  [dir='rtl'] .hero--tafiya .hero__visual {
-    margin-inline-start: calc((var(--container-max) - 100%) / -2 - 4rem);
-  }
-}
-
 @media (max-width: 768px) {
   [dir='rtl'] .hero--tafiya .hero__decore-cream {
     left: -62%;

@@ -476,6 +476,11 @@ function createPagesCollection(locale: Locale, label: string) {
 const KEYSTATIC_REPO = 'faruqso/tafiya-travel-starter';
 
 function getKeystaticStorage() {
+  // Config is bundled for the browser — never touch process.env there
+  if (!import.meta.env.SSR) {
+    return { kind: 'github' as const, repo: KEYSTATIC_REPO };
+  }
+
   const hasGithubCredentials =
     process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
     process.env.KEYSTATIC_GITHUB_CLIENT_SECRET &&
