@@ -488,6 +488,15 @@ function getKeystaticStorage() {
     };
   }
 
+  // Dev uses github mode so the /keystatic/setup flow can create the GitHub App
+  if (process.env.NODE_ENV === 'development') {
+    return {
+      kind: 'github' as const,
+      repo: KEYSTATIC_REPO,
+    };
+  }
+
+  // Prod without credentials: local read-only (content bundled via includeFiles)
   return { kind: 'local' as const };
 }
 
