@@ -3,28 +3,32 @@ export const prerender = true;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionRenderer from '../components/SectionRenderer.astro';
-import { locales } from '../config/locales';
-import { getAllPages, getSiteSettings } from '../lib/keystatic-reader';
+import CatalogIndex from '../components/pages/CatalogIndex.astro';
+import CatalogDetail from '../components/pages/CatalogDetail.astro';
+import AuthPage from '../components/pages/AuthPage.astro';
+import BookingsDashboard from '../components/pages/BookingsDashboard.astro';
+import Container from '../components/ui/Container.astro';
+import { getSiteSettings } from '../lib/keystatic-reader';
+import { getAllAppPaths, getRouteDescription, getRouteTitle } from '../lib/app-routes';
 import { buildSeoMeta } from '../lib/seo';
-import { buildSlugParam } from '../lib/i18n';
 import type { Locale } from '../config/locales';
+import type { RouteKind } from '../lib/app-routes';
 
 export async function getStaticPaths() {
-  const pages = await getAllPages();
-
-  return locales.flatMap((locale) =>
-    pages
-      .filter((page) => page.slug !== 'home' || locale.code !== 'en')
-      .map((page) => ({
-        params: { slug: buildSlugParam(locale.code, page.slug) },
-        props: { page, locale: locale.code as Locale },
-      })),
-  );
+  return getAllAppPaths();
 }
 
-const site = await getSiteSettings();
-const { page, locale } = Astro.props;
-const seo = buildSeoMeta(page, site);
+const route = Astro.props as RouteKind;
+const locale = route.locale;
+const site = await getSiteSettings(locale);
+
+const pseudoPage = {
+  title: getRouteTitle(route, site.brandName),
+  description: getRouteDescription(route, site.seoDescription),
+  slug: route.type === 'cms' ? route.page.slug : route.type,
+};
+
+const seo = buildSeoMeta(pseudoPage, site);
 ---
 
 <BaseLayout
@@ -33,6 +37,37 @@ const seo = buildSeoMeta(page, site);
   description={seo.description}
   ogImage={seo.ogImage}
   locale={locale}
+  transparentNav={false}
 >
-  <SectionRenderer sections={page.sections} />
+  {
+    route.type === 'cms' && <SectionRenderer sections={route.page.sections} locale={locale} />
+  }
+
+  {
+    route.type === 'catalog-index' && (
+      <CatalogIndex kind={route.kind} locale={locale} />
+    )
+  }
+
+  {
+    route.type === 'catalog-detail' && (
+      <Container>
+        <CatalogDetail kind={route.kind} item={route.item} locale={locale} />
+      </Container>
+    )
+  }
+
+  {
+    route.type === 'auth' && <AuthPage page={route.page} locale={locale} site={site} />
+  }
+
+  {
+    route.type === 'bookings' && <BookingsDashboard locale={locale} />
+  }
 </BaseLayout>
+
+<style is:global>
+  .catalog-detail {
+    padding-block: var(--space-10);
+  }
+</style>

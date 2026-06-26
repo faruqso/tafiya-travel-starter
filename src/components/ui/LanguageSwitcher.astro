@@ -1,6 +1,7 @@
 ---
 import { locales, getLocaleMeta, ui, type Locale } from '../../config/locales';
 import { getLocalizedPath } from '../../lib/i18n';
+import LabelSweep from './LabelSweep.astro';
 
 interface Props {
   locale: Locale;
@@ -22,7 +23,7 @@ const strings = ui[locale];
     id="lang-switcher-trigger"
   >
     <span class="lang-switcher__flag" aria-hidden="true">{current.flag}</span>
-    <span class="lang-switcher__code">{locale.toUpperCase()}</span>
+    <LabelSweep label={locale.toUpperCase()} class="lang-switcher__code" />
     <img
       class="lang-switcher__chevron"
       src="/images/heroes/tafiya/chevron-down.svg"
@@ -58,10 +59,11 @@ const strings = ui[locale];
               <span class="lang-switcher__flag" aria-hidden="true">
                 {entry.flag}
               </span>
-              <span class="lang-switcher__label">{entry.label}</span>
-              <span class="lang-switcher__code lang-switcher__code--menu">
-                {entry.code.toUpperCase()}
-              </span>
+              <LabelSweep label={entry.label} class="lang-switcher__label" />
+              <LabelSweep
+                label={entry.code.toUpperCase()}
+                class="lang-switcher__code lang-switcher__code--menu"
+              />
             </a>
           </li>
         );
@@ -83,10 +85,14 @@ const strings = ui[locale];
     border: none;
     background: none;
     font-family: var(--font-body);
-    font-size: 1.0625rem;
+    font-size: var(--text-nav-desktop);
     font-weight: var(--font-weight-medium);
     color: var(--color-nav-text);
     cursor: pointer;
+  }
+
+  .lang-switcher__trigger :global(.lang-switcher__code) {
+    display: inline-block;
   }
 
   .lang-switcher__trigger[aria-expanded='true'] .lang-switcher__chevron {
@@ -94,7 +100,7 @@ const strings = ui[locale];
   }
 
   .lang-switcher__flag {
-    font-size: 1.125rem;
+    font-size: var(--text-lg);
     line-height: 1;
   }
 
@@ -134,7 +140,6 @@ const strings = ui[locale];
   .lang-switcher__option:hover,
   .lang-switcher__option:focus-visible {
     background: var(--color-surface-raised);
-    color: var(--color-accent);
     outline: none;
   }
 
@@ -145,14 +150,28 @@ const strings = ui[locale];
 
   .lang-switcher__label {
     flex: 1;
+    min-width: 0;
+  }
+
+  .lang-switcher__label :global(.sweep-label) {
+    display: block;
   }
 
   .lang-switcher__code--menu {
     font-size: 0.75rem;
+  }
+
+  .lang-switcher__code--menu :global(.sweep-label__line),
+  .lang-switcher__code--menu :global(.sweep-label__line--hover) {
+    font-size: 0.75rem;
     color: var(--color-text-muted);
   }
 
-  .lang-switcher__option--active .lang-switcher__code--menu {
+  .lang-switcher__code--menu :global(.sweep-label__line--hover) {
+    color: var(--color-accent);
+  }
+
+  .lang-switcher__option--active .lang-switcher__code--menu :global(.sweep-label__line) {
     color: var(--color-text-secondary);
   }
 

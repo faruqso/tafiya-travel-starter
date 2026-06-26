@@ -1,0 +1,76 @@
+slug: help-faq
+title: Hilfe und FAQ
+description: Antworten zu tafiya-Buchungen, Zahlungen, Stornierungen und Kontosupport.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Support
+      headline: Wie können wir helfen?
+      subheadline: Durchsuchen Sie häufige Fragen oder erreichen Sie unser Team — wir antworten innerhalb eines Werktags.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: textBlock
+    value:
+      eyebrow: Buchungen
+      headline: Vor der Reise
+      body: |-
+        ### Wie ändere ich meine Daten?
+
+        Öffnen Sie Ihre Reise in der App oder im Web-Dashboard, wählen Sie Daten ändern und entscheiden Sie aus Live-Verfügbarkeit. Änderungsgebühren von Airline oder Hotel werden vor Bestätigung angezeigt.
+
+
+        ### Kann ich nach der Buchung Gepäck hinzufügen?
+
+        Ja — gehen Sie zu Ihren Flugdetails und tippen Sie Gepäck hinzufügen. Preise kommen direkt von der Airline und können im Voraus günstiger sein.
+
+
+        ### Wo sind meine Dokumente?
+
+        Bordkarten, Hotelgutscheine und Aktivitätstickets finden Sie unter Dokumente in jeder Reise. Sie können sie von dort an Mitreisende weiterleiten.
+  - discriminant: textBlock
+    value:
+      eyebrow: Zahlungen
+      headline: Abrechnung und Erstattungen
+      body: |-
+        ### Welche Zahlungsmethoden akzeptieren Sie?
+
+        Gängige Kredit- und Debitkarten, Apple Pay, Google Pay und Banküberweisung für ausgewählte Pakete über £2.000.
+
+
+        ### Wann werde ich belastet?
+
+        Flüge und Hotels werden bei Buchung belastet, außer der Tarif ist haltbar — Halteoptionen zeigen eine klare Ablaufzeit beim Checkout.
+
+
+        ### Wie funktionieren Erstattungen?
+
+        Die Erstattungsfähigkeit hängt von den vor dem Kauf angezeigten Tarifregeln ab. Genehmigte Erstattungen gehen innerhalb von 5–10 Werktagen auf Ihre ursprüngliche Zahlungsmethode zurück.
+  - discriminant: textBlock
+    value:
+      eyebrow: Konto
+      headline: Profil und Sicherheit
+      body: |-
+        ### Ich habe mein Passwort vergessen
+
+        Nutzen Sie Passwort vergessen auf dem Anmeldebildschirm. Reset-Links laufen aus Sicherheitsgründen nach 24 Stunden ab.
+
+
+        ### Wie lösche ich mein Konto?
+
+        Schreiben Sie an privacy@tafiya.co von der Adresse Ihres Kontos. Wir schließen die Löschung innerhalb von 30 Tagen ab und bestätigen per E-Mail.
+
+
+        Immer noch nicht weiter? Kontaktieren Sie support@tafiya.co oder rufen Sie +44 20 7946 0958 Montag–Freitag, 9:00–18:00 GMT an.
+  - discriminant: contact
+    value:
+      purpose: support
+      eyebrow: Kontaktieren Sie uns
+      headline: Mit einem Spezialisten sprechen
+      subheadline: Teilen Sie Ihre Buchungsreferenz und wir setzen dort an, wo die FAQ aufhört.
+      email: support@tafiya.co
+      phone: +44 20 7946 0958
+      address: |-
+        221B Baker Street
+        London, NW1 6XE
+        United Kingdom
+      formNote: Geben Sie Ihre Reise-ID für schnellere Hilfe an. Für Presseanfragen nutzen Sie press@tafiya.co.

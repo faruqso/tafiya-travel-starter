@@ -1,0 +1,48 @@
+slug: airline-fees
+title: رسوم شركات الطيران
+description: افهم رسوم الأمتعة والمقاعد والتغيير قبل الحجز على tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: رحلات الطيران
+      headline: افهم رسوم شركات الطيران مبكرًا
+      subheadline: نعرض رسوم الأمتعة واختيار المقعد والتغيير قبل الدفع لمقارنة التكلفة الحقيقية لكل سعر.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: أنواع الرسوم
+      headline: ما نعرضه قبل الدفع
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: الأمتعة
+          description: حصص اليد والشحن، وأسعار الأمتعة المدفوعة مسبقًا عندما توفرها الشركات.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: اختيار المقعد
+          description: مقاعد عادية ومفضلة ومساحة إضافية للساقين بأسعار لكل مقطع.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: التغييرات والإلغاء
+          description: رسوم تغيير شركة الطيران وتقديرات فرق السعر لتغيير التاريخ أو المسار.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: لماذا يهم
+      headline: لا مفاجآت في المطار
+      body: |-
+        قد تبدو أسعار الاقتصاد الأساسي رخيصة حتى تُضاف رسوم الأمتعة والمقاعد. يُوسم tafiya كل سعر بتقدير شامل عندما تشارك الشركات بيانات الرسوم، ويُبرز عندما يتضمن تذكرة اقتصاد تقليدية حقيبة مشحونة.
+
+
+        تفرض بعض شركات منخفضة التكلفة رسومًا على حقائب المقصورة التي تدخل العلوية. نوضح ذلك في نتائج البحث لمقارنتها بخيارات الخدمة الكاملة على نفس المسار.
+
+
+        تأتي بيانات الرسوم من شركات الطيران وقد تتغير دون إشعار. تُؤكد المبالغ النهائية على شاشة دفع الشركة قبل الدفع. أسئلة عن سعر محدد؟ راسل support@tafiya.co مع مسارك وتواريخ السفر.
+  - discriminant: cta
+    value:
+      headline: قارن الأسعار الشاملة
+      subheadline: ابحث عن رحلات مع تفصيل الرسوم ظاهرًا من أول نتيجة.
+      buttons:
+        - label: البحث عن رحلات
+          href: /flights
+          variant: primary

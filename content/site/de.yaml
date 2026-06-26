@@ -1,0 +1,59 @@
+locale: de
+brandName: tafiya
+tagline: Die besten Reiseziele der Welt
+footerTagline: |-
+  Buchen Sie Ihre Reise in Minuten,
+  behalten Sie viel länger die Kontrolle.
+logo: /images/brand/logo.svg
+loginLabel: Anmelden
+signupLabel: Registrieren
+navLinks:
+  - label: Reiseziele
+    href: /destinations
+  - label: Hotels
+    href: /hotels
+  - label: Flüge
+    href: /flights
+  - label: Buchungen
+    href: /bookings
+footerColumns:
+  - title: Unternehmen
+    links:
+      - label: Über uns
+        href: /about
+      - label: Karriere
+        href: /careers
+      - label: Mobile App
+        href: /mobile
+  - title: Kontakt
+    links:
+      - label: Hilfe / FAQ
+        href: /help-faq
+      - label: Presse
+        href: /press
+      - label: Partner
+        href: /affiliates
+  - title: Mehr
+    links:
+      - label: Airline-Gebühren
+        href: /airline-fees
+      - label: Airlines
+        href: /airlines
+      - label: Spar-Tipps
+        href: /low-fare-tips
+socialLinks:
+  - label: Facebook
+    href: https://facebook.com
+  - label: Instagram
+    href: https://instagram.com
+  - label: Twitter
+    href: https://twitter.com
+appStoreLabel: Entdecken Sie unsere App
+googlePlayUrl: https://play.google.com
+appStoreUrl: https://apps.apple.com
+copyright: Alle Rechte vorbehalten · hello@tafiya.co
+seoTitleTemplate: '%s | tafiya'
+seoDescription: >-
+  Entdecken Sie die besten Reiseziele der Welt. Reisen, genießen und ein neues,
+  erfülltes Leben mit tafiya leben.
+ogImage: /images/og/default.jpg

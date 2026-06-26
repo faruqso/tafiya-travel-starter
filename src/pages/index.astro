@@ -6,16 +6,19 @@ import SectionRenderer from '../components/SectionRenderer.astro';
 import { getHomePage, getSiteSettings } from '../lib/keystatic-reader';
 import { buildSeoMeta } from '../lib/seo';
 
-const site = await getSiteSettings();
-const page = await getHomePage();
+import type { Locale } from '../config/locales';
+
+const locale: Locale = 'en';
+const site = await getSiteSettings(locale);
+const page = await getHomePage(locale);
 
 if (!page) {
-  throw new Error('Home page not found. Add content/pages/home.yaml with slug "home".');
+  throw new Error('Home page not found. Add content/pages/en/home.yaml with slug "home".');
 }
 
 const seo = buildSeoMeta(page, site);
 ---
 
-<BaseLayout site={site} title={seo.title} description={seo.description} ogImage={seo.ogImage} locale="en">
-  <SectionRenderer sections={page.sections} />
+<BaseLayout site={site} title={seo.title} description={seo.description} ogImage={seo.ogImage} locale={locale} transparentNav={true}>
+  <SectionRenderer sections={page.sections} locale={locale} />
 </BaseLayout>

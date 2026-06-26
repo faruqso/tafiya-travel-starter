@@ -9,58 +9,139 @@ interface Props {
 }
 
 const { section } = Astro.props;
+const items = section.items;
 
-const [featured, secondary] = section.items;
+const VISIBLE_LAYERS = 3;
+
+function stackDepth(cardIndex: number, activeIndex = 0, total: number) {
+  if (total < 2) return 0;
+  return (cardIndex - activeIndex + total) % total;
+}
+
+function layerIndex(offset: number) {
+  if (offset === 0) return 0;
+  if (offset === 1) return 1;
+  return 2;
+}
 ---
 
 <Section variant="default" class="testimonials">
   <Container>
-    <div class="testimonials__grid">
-      <div class="testimonials__intro">
+    <div class="testimonials__grid" data-testimonials-root>
+      <div class="testimonials__intro" data-reveal>
         <SectionHeader
           eyebrow={section.eyebrow}
           headline={section.headline}
           align="left"
           class="testimonials__header"
+          reveal={false}
         />
 
-        <div class="testimonials__dots" aria-hidden="true">
-          <img src="/images/testimonials/tafiya/dot-active.svg" alt="" width="12" height="12" />
-          <img src="/images/testimonials/tafiya/dot-inactive.svg" alt="" width="12" height="12" />
-          <img src="/images/testimonials/tafiya/dot-inactive.svg" alt="" width="12" height="12" />
-        </div>
+        {
+          items.length > 1 && (
+            <div class="testimonials__dots" data-testimonials-dots>
+              {items.map((_, index) => (
+                <button
+                  type="button"
+                  class:list={['testimonials__dot', index === 0 && 'is-active']}
+                  data-testimonial-dot={index}
+                  aria-label={`Show testimonial ${index + 1}`}
+                  aria-current={index === 0 ? 'true' : undefined}
+                >
+                  <span class="testimonials__dot-icon" aria-hidden="true" />
+                </button>
+              ))}
+            </div>
+          )
+        }
       </div>
 
       {
-        featured && (
-          <div class="testimonials__cards">
-            {secondary && (
-              <article class="testimonial-card testimonial-card--secondary">
-                <blockquote class="testimonial-card__quote testimonial-card__quote--secondary">
-                  "{secondary.quote}"
-                </blockquote>
-                <p class="testimonial-card__name">{secondary.author}</p>
-                <p class="testimonial-card__role">{secondary.role}</p>
-              </article>
-            )}
+        items.length > 0 && (
+          <div class="testimonials-slider" data-testimonials-slider tabindex="0">
+            <div class="testimonials-slider__stack" data-testimonials-stack>
+              {
+                items.map((item, index) => {
+                  const offset = stackDepth(index, 0, items.length);
+                  const layer = layerIndex(offset);
+                  const hidden = offset >= VISIBLE_LAYERS;
 
-            <article class="testimonial-card testimonial-card--featured">
-              <img
-                src={featured.avatar}
-                alt=""
-                class="testimonial-card__avatar"
-                width="68"
-                height="68"
-              />
-              <blockquote class="testimonial-card__quote">"{featured.quote}"</blockquote>
-              <p class="testimonial-card__name">{featured.author}</p>
-              <p class="testimonial-card__role">{featured.role}</p>
-            </article>
-
-            <div class="testimonials__nav" aria-hidden="true">
-              <img src="/images/testimonials/tafiya/arrow-up.svg" alt="" width="14" height="7" />
-              <img src="/images/testimonials/tafiya/arrow-down.svg" alt="" width="14" height="7" />
+                  return (
+                    <article
+                      class:list={[
+                        'testimonial-card',
+                        offset === 0 && 'is-active',
+                        offset > 0 && offset < VISIBLE_LAYERS && 'is-stacked',
+                        hidden && 'is-hidden',
+                      ]}
+                      data-testimonial-card
+                      data-index={index}
+                      data-stack-depth={layer}
+                      aria-hidden={offset === 0 ? 'false' : 'true'}
+                    >
+                      <img
+                        src={item.avatar}
+                        alt=""
+                        class="testimonial-card__avatar"
+                        width="68"
+                        height="68"
+                        loading="lazy"
+                      />
+                      <div class="testimonial-card__panel">
+                        <blockquote class="testimonial-card__quote">"{item.quote}"</blockquote>
+                        <footer class="testimonial-card__footer">
+                          <p class="testimonial-card__name">{item.author}</p>
+                          <p class="testimonial-card__role">{item.role}</p>
+                        </footer>
+                      </div>
+                    </article>
+                  );
+                })
+              }
             </div>
+
+            {
+              items.length > 1 && (
+                <div class="testimonials-slider__nav" data-testimonials-nav>
+                  <button
+                    type="button"
+                    class="testimonials-slider__nav-btn icon-btn"
+                    data-testimonial-prev
+                    aria-label="Previous testimonial"
+                  >
+                    <span class="icon-btn__fill" aria-hidden="true" />
+                    <span class="testimonials-slider__nav-circle" aria-hidden="true">
+                      <svg class="testimonials-slider__nav-icon" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+                        <path
+                          d="M1 8.5L8 1.5L15 8.5"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    class="testimonials-slider__nav-btn icon-btn"
+                    data-testimonial-next
+                    aria-label="Next testimonial"
+                  >
+                    <span class="icon-btn__fill" aria-hidden="true" />
+                    <span class="testimonials-slider__nav-circle" aria-hidden="true">
+                      <svg class="testimonials-slider__nav-icon" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+                        <path
+                          d="M1 1.5L8 8.5L15 1.5"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              )
+            }
           </div>
         )
       }
@@ -68,12 +149,169 @@ const [featured, secondary] = section.items;
   </Container>
 </Section>
 
+<script>
+  const CONTENT_FADE_MS = 80;
+  const STACK_TRANSITION_MS = 260;
+  const VISIBLE_LAYERS = 3;
+
+  function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function layerIndex(offset: number) {
+    if (offset === 0) return 0;
+    if (offset === 1) return 1;
+    return 2;
+  }
+
+  function applyCardStack(card: HTMLElement, offset: number) {
+    const hidden = offset >= VISIBLE_LAYERS;
+    const layer = layerIndex(offset);
+
+    card.dataset.stackDepth = String(layer);
+    card.classList.toggle('is-active', offset === 0);
+    card.classList.toggle('is-stacked', offset > 0 && !hidden);
+    card.classList.toggle('is-hidden', hidden);
+    card.setAttribute('aria-hidden', offset === 0 ? 'false' : 'true');
+  }
+
+  function cardByIndex(cards: Element[], cardIndex: number) {
+    return cards.find(
+      (card) => card instanceof HTMLElement && Number(card.dataset.index) === cardIndex,
+    ) as HTMLElement | undefined;
+  }
+
+  function initTestimonialsSliders() {
+    document.querySelectorAll('[data-testimonials-slider]').forEach((slider) => {
+      if (!(slider instanceof HTMLElement)) return;
+      if (slider.dataset.initialized === 'true') return;
+      slider.dataset.initialized = 'true';
+
+      const root = slider.closest('[data-testimonials-root]');
+      const stack = slider.querySelector('[data-testimonials-stack]');
+      const cards = Array.from(slider.querySelectorAll('[data-testimonial-card]'));
+      const dots = root
+        ? Array.from(root.querySelectorAll('[data-testimonial-dot]'))
+        : [];
+      const prevBtn = slider.querySelector('[data-testimonial-prev]');
+      const nextBtn = slider.querySelector('[data-testimonial-next]');
+      const count = cards.length;
+
+      if (count < 2) return;
+
+      let index = 0;
+      let isAnimating = false;
+
+      function stackOffsetFor(cardIndex: number) {
+        return (cardIndex - index + count) % count;
+      }
+
+      function render() {
+        cards.forEach((card, cardIndex) => {
+          if (!(card instanceof HTMLElement)) return;
+          applyCardStack(card, stackOffsetFor(cardIndex));
+        });
+
+        dots.forEach((dot, dotIndex) => {
+          if (!(dot instanceof HTMLButtonElement)) return;
+          const isActive = dotIndex === index;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+      }
+
+      function finishTransition(prevCard?: HTMLElement, nextCard?: HTMLElement) {
+        prevCard?.classList.remove('is-swapping');
+        nextCard?.classList.remove('is-swapping');
+        stack?.classList.remove('is-animating', 'is-content-hidden');
+        isAnimating = false;
+      }
+
+      function goTo(targetIndex: number) {
+        const nextIndex = (targetIndex + count) % count;
+        if (isAnimating || nextIndex === index) return;
+
+        const prevIndex = index;
+        const prevCard = cardByIndex(cards, prevIndex);
+        const nextCard = cardByIndex(cards, nextIndex);
+        const reducedMotion = prefersReducedMotion();
+
+        isAnimating = true;
+        prevCard?.classList.add('is-swapping');
+        nextCard?.classList.add('is-swapping');
+        stack?.classList.add('is-content-hidden');
+
+        const runMove = () => {
+          stack?.classList.add('is-animating');
+          index = nextIndex;
+          render();
+
+          window.setTimeout(() => {
+            finishTransition(prevCard, nextCard);
+          }, reducedMotion ? 0 : STACK_TRANSITION_MS);
+        };
+
+        if (reducedMotion) {
+          runMove();
+          return;
+        }
+
+        window.setTimeout(runMove, CONTENT_FADE_MS);
+      }
+
+      prevBtn?.addEventListener('click', () => goTo(index - 1));
+      nextBtn?.addEventListener('click', () => goTo(index + 1));
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const target = Number(dot.getAttribute('data-testimonial-dot'));
+          if (!Number.isNaN(target)) goTo(target);
+        });
+      });
+
+      slider.addEventListener('keydown', (event) => {
+        if (!(event instanceof KeyboardEvent)) return;
+
+        if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          goTo(index - 1);
+        }
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          goTo(index + 1);
+        }
+      });
+
+      window.addEventListener('resize', render);
+      render();
+    });
+  }
+
+  initTestimonialsSliders();
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('[data-testimonials-slider]').forEach((slider) => {
+      if (slider instanceof HTMLElement) {
+        delete slider.dataset.initialized;
+      }
+    });
+    initTestimonialsSliders();
+  });
+</script>
+
 <style>
   .testimonials__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-12);
     align-items: start;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .testimonials__intro {
+    min-width: 0;
+    width: 100%;
   }
 
   .testimonials :global(.testimonials__header) {
@@ -82,70 +320,248 @@ const [featured, secondary] = section.items;
 
   .testimonials__dots {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: var(--space-6);
+    gap: 0.5rem;
   }
 
-  .testimonials__cards {
+  .testimonials__dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .testimonials__dot-icon {
+    display: block;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-testimonial-dot);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .testimonials__dot.is-active .testimonials__dot-icon {
+    background-color: var(--color-testimonial-dot-active);
+    transform: scale(1.05);
+  }
+
+  .testimonials-slider {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-8);
+    align-items: center;
+    width: 100%;
+    max-width: 41.8125rem;
+    min-width: 0;
+    margin-inline: auto;
+  }
+
+  .testimonials-slider__stack {
     position: relative;
-    min-height: 22rem;
-    padding-right: var(--space-10);
+    width: 100%;
+    max-width: 29rem;
+    min-width: 0;
+    min-height: 21rem;
+    padding-bottom: 7rem;
   }
 
   .testimonial-card {
-    position: relative;
-    background-color: var(--color-surface);
-    border-radius: var(--radius-md);
-    padding: var(--space-8) var(--space-8) var(--space-6);
-  }
+    --stack-x: 0rem;
+    --stack-y: 0rem;
+    --stack-scale: 1;
+    --testimonial-quote-lines: 4;
 
-  .testimonial-card--featured {
-    position: relative;
-    z-index: 2;
-    max-width: 31.5rem;
-    margin-left: var(--space-10);
-    margin-top: var(--space-8);
-    box-shadow: var(--shadow-card);
-  }
-
-  .testimonial-card--secondary {
     position: absolute;
+    left: 0;
     top: 0;
-    left: var(--space-10);
-    z-index: 1;
-    width: min(100%, 31.375rem);
-    padding-top: var(--space-10);
-    border: 2px solid var(--color-border-light);
-    box-shadow:
-      0 100px 40px rgba(0, 0, 0, 0.02), 0 64.815px 23.426px rgba(0, 0, 0, 0.02),
-      0 38.519px 12.741px rgba(0, 0, 0, 0.01), 0 20px 6.5px rgba(0, 0, 0, 0.01),
-      0 8.148px 3.259px rgba(0, 0, 0, 0.01), 0 1.852px 1.574px rgba(0, 0, 0, 0);
+    width: 100%;
+    max-width: 29rem;
+    margin: 0;
+    pointer-events: none;
+    z-index: calc(var(--z-testimonial-stack-base) - var(--stack-depth, 0));
+    transform: translate3d(var(--stack-x), var(--stack-y), 0) scale(var(--stack-scale));
+    transform-origin: top left;
+    transition:
+      transform 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  .testimonial-card.is-active {
+    --stack-depth: 0;
+    --stack-x: 0rem;
+    --stack-y: 0rem;
+    --stack-scale: 1;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .testimonial-card.is-stacked[data-stack-depth='1'] {
+    --stack-depth: 1;
+    --stack-x: 2.25rem;
+    --stack-y: 3.25rem;
+    --stack-scale: 0.97;
+    opacity: 0.9;
+  }
+
+  .testimonial-card.is-stacked[data-stack-depth='2'] {
+    --stack-depth: 2;
+    --stack-x: 4.5rem;
+    --stack-y: 6.5rem;
+    --stack-scale: 0.94;
+    opacity: 0.78;
+  }
+
+  .testimonial-card.is-hidden {
+    --stack-depth: 2;
+    --stack-x: 4.5rem;
+    --stack-y: 6.5rem;
+    --stack-scale: 0.94;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .testimonial-card__avatar {
     position: absolute;
-    top: calc(var(--space-8) * -1);
-    left: calc(var(--space-6) * -1);
+    top: 0;
+    left: 0;
     width: 4.25rem;
     height: 4.25rem;
     border-radius: var(--radius-full);
     object-fit: cover;
+    z-index: 3;
+    opacity: 0;
+    transform: scale(0.92);
+    transition:
+      opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .testimonial-card.is-active:not(.is-swapping) .testimonial-card__avatar {
+    opacity: 1;
+    transform: scale(1);
+    transition-duration: 0.18s;
+    transition-delay: 0.04s;
+  }
+
+  .testimonial-card.is-stacked:not(.is-swapping) .testimonial-card__quote,
+  .testimonial-card.is-stacked:not(.is-swapping) .testimonial-card__footer {
+    opacity: 1;
+    transition-duration: 0.18s;
+    transition-delay: 0.06s;
+  }
+
+  .testimonial-card__panel {
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    width: calc(100% - 2rem);
+    max-width: 27rem;
+    min-height: 14rem;
+    padding: 1.5rem 1.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-card);
+    overflow: visible;
+    transition:
+      transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      min-height 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      padding 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      left 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      top 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .testimonials-slider__stack.is-animating .testimonial-card__panel {
+    transition:
+      transform 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .testimonial-card.is-stacked .testimonial-card__panel {
+    left: 0;
+    top: 0;
+    width: calc(100% - 0.5rem);
+    max-width: 26.875rem;
+    min-height: 13.25rem;
+    padding: 0.875rem 1.75rem 1rem;
+    background-color: transparent;
+    border-color: var(--color-border-light);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
   }
 
   .testimonial-card__quote {
     font-family: var(--font-body);
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
-    line-height: 2;
+    line-height: 1.75;
     color: var(--color-text-muted);
-    margin-bottom: var(--space-8);
-    max-width: 25.125rem;
+    margin: 0 0 var(--space-6);
+    display: -webkit-box;
+    -webkit-line-clamp: var(--testimonial-quote-lines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition:
+      color 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.1s ease;
   }
 
-  .testimonial-card__quote--secondary {
+  .testimonial-card.is-stacked .testimonial-card__quote {
+    --testimonial-quote-lines: 3;
     font-family: var(--font-ui);
     font-weight: var(--font-weight-normal);
     color: var(--color-text-quote);
+    margin-bottom: var(--space-4);
+  }
+
+  .testimonial-card[data-stack-depth='2'] .testimonial-card__quote {
+    --testimonial-quote-lines: 2;
+  }
+
+  .testimonial-card__footer {
+    margin: 0;
+    transition: opacity 0.14s ease;
+  }
+
+  .testimonial-card.is-swapping .testimonial-card__quote,
+  .testimonial-card.is-swapping .testimonial-card__footer,
+  .testimonial-card.is-swapping .testimonial-card__avatar,
+  .testimonials-slider__stack.is-content-hidden .testimonial-card__quote,
+  .testimonials-slider__stack.is-content-hidden .testimonial-card__footer,
+  .testimonials-slider__stack.is-content-hidden .testimonial-card__avatar {
+    opacity: 0;
+    transition-duration: 0.12s;
+    transition-delay: 0s;
+  }
+
+  .testimonial-card.is-active:not(.is-swapping) .testimonial-card__quote,
+  .testimonial-card.is-active:not(.is-swapping) .testimonial-card__footer {
+    opacity: 1;
+    transition-duration: 0.18s;
+    transition-delay: 0.04s;
+  }
+
+  .testimonial-card.is-stacked .testimonial-card__name {
+    font-size: var(--text-base);
+  }
+
+  .testimonial-card.is-stacked .testimonial-card__role {
+    font-size: var(--text-xs);
   }
 
   .testimonial-card__name {
@@ -154,7 +570,7 @@ const [featured, secondary] = section.items;
     font-weight: var(--font-weight-semibold);
     line-height: var(--leading-tight);
     color: var(--color-text-muted);
-    margin-bottom: var(--space-2);
+    margin: 0 0 var(--space-2);
   }
 
   .testimonial-card__role {
@@ -163,36 +579,203 @@ const [featured, secondary] = section.items;
     font-weight: var(--font-weight-medium);
     line-height: var(--leading-tight);
     color: var(--color-text-muted);
+    margin: 0;
   }
 
-  .testimonials__nav {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  .testimonials-slider__nav {
+    position: static;
+    transform: none;
     display: flex;
     flex-direction: column;
-    gap: var(--space-16);
+    align-items: center;
+    justify-content: center;
+    gap: 4.5rem;
+    z-index: var(--z-testimonial-nav);
+    flex-shrink: 0;
+  }
+
+  .testimonials-slider__nav-btn {
+    --icon-btn-fill: var(--color-brand);
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--color-testimonial-nav);
+    line-height: 0;
+  }
+
+  .testimonials-slider__nav-btn:hover,
+  .testimonials-slider__nav-btn:focus-visible {
+    outline: none;
+    color: var(--color-text-strong);
+  }
+
+  .testimonials-slider__nav-circle {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8125rem;
+    height: 2.8125rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-testimonial-dot);
+    transition:
+      color var(--motion-btn),
+      background-color var(--motion-btn),
+      border-color var(--motion-btn),
+      box-shadow var(--motion-btn);
+  }
+
+  .testimonials-slider__nav-btn:hover .testimonials-slider__nav-circle,
+  .testimonials-slider__nav-btn:focus-visible .testimonials-slider__nav-circle {
+    color: var(--color-text-on-brand);
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: var(--shadow-testimonial-dot-active);
+  }
+
+  .testimonials-slider__nav-circle svg {
+    width: 0.875rem;
+    height: auto;
+    transition: transform var(--motion-btn);
   }
 
   @media (min-width: 1024px) {
     .testimonials__grid {
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       gap: var(--space-16);
+    }
+
+    .testimonials-slider {
+      margin-inline: 0;
+      margin-left: auto;
     }
   }
 
   @media (max-width: 768px) {
-    .testimonial-card--featured {
-      margin-left: var(--space-8);
+    .testimonials__grid {
+      gap: var(--space-8);
+      text-align: center;
     }
 
-    .testimonial-card--secondary {
-      display: none;
+    .testimonials__intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .testimonials__nav {
-      display: none;
+    .testimonials__intro :global(.section-header),
+    .testimonials__intro :global(.section-header--left) {
+      text-align: center;
+      margin-bottom: var(--space-6);
+    }
+
+    .testimonials__dots {
+      justify-content: center;
+    }
+
+    .testimonials-slider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: none;
+      min-height: 0;
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+
+    .testimonials-slider__stack {
+      width: min(100%, 22.5rem);
+      max-width: 22.5rem;
+      min-height: 20rem;
+      margin-inline: auto;
+      padding-bottom: 3.25rem;
+    }
+
+    .testimonial-card {
+      left: 50%;
+      max-width: 22.5rem;
+      transform: translate3d(calc(-50% + var(--stack-x)), var(--stack-y), 0) scale(var(--stack-scale));
+      transform-origin: top center;
+    }
+
+    .testimonial-card.is-stacked[data-stack-depth='1'] {
+      --stack-x: 0.625rem;
+      --stack-y: 1.25rem;
+    }
+
+    .testimonial-card.is-stacked[data-stack-depth='2'],
+    .testimonial-card.is-hidden {
+      --stack-x: 1.25rem;
+      --stack-y: 2.5rem;
+    }
+
+    .testimonial-card.is-active .testimonial-card__avatar {
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+    }
+
+    .testimonial-card.is-active:not(.is-swapping) .testimonial-card__avatar {
+      transform: translateX(-50%) scale(1);
+    }
+
+    .testimonial-card__panel {
+      left: 0;
+      top: 2.125rem;
+      width: 100%;
+      max-width: none;
+      min-height: 15rem;
+      padding: 2.75rem 1.5rem 1.25rem;
+    }
+
+    .testimonial-card.is-stacked .testimonial-card__panel {
+      left: 0;
+      top: 0;
+      width: calc(100% - 0.375rem);
+      min-height: 12rem;
+      padding: 0.875rem 1.25rem 1rem;
+    }
+
+    .testimonial-card.is-active .testimonial-card__quote {
+      --testimonial-quote-lines: 5;
+    }
+
+    .testimonials-slider__nav {
+      flex: none;
+      flex-direction: row;
+      justify-content: center;
+      gap: var(--space-8);
+      margin-top: var(--space-6);
+      padding-top: var(--space-2);
+      width: 100%;
+    }
+
+    .testimonials-slider__nav-btn[data-testimonial-prev] .testimonials-slider__nav-icon {
+      transform: rotate(-90deg);
+    }
+
+    .testimonials-slider__nav-btn[data-testimonial-next] .testimonials-slider__nav-icon {
+      transform: rotate(-90deg);
+    }
+
+    .testimonials-slider__nav-circle {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial-card,
+    .testimonial-card__avatar,
+    .testimonial-card__panel,
+    .testimonial-card__quote,
+    .testimonial-card__footer {
+      transition: none;
     }
   }
 </style>

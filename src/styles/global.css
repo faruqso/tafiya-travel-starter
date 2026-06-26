@@ -1,5 +1,12 @@
 @import './tokens.css';
 @import './utilities.css';
+@import './forms.css';
+@import './pagination.css';
+@import './badges.css';
+@import './buttons.css';
+@import './motion.css';
+@import './rtl.css';
+@import 'lenis/dist/lenis.css';
 
 *,
 *::before,
@@ -13,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -54,18 +62,69 @@ ol {
   outline-offset: 2px;
 }
 
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.lenis {
+    scroll-behavior: auto;
+  }
+}
+
 ::selection {
   background-color: var(--color-brand-muted);
   color: var(--color-text);
 }
 
+@media (max-width: 768px) {
+  :is(.hero__subheadline, .book-trip__step-desc, .text--lead) {
+    font-size: var(--text-subhead);
+    font-weight: var(--text-subhead-weight);
+    line-height: var(--leading-normal);
+  }
+}
+
 .prose {
   color: var(--color-text-muted);
+}
+
+.prose p {
+  font-family: var(--font-body);
+  font-size: var(--text-subhead);
+  font-weight: var(--text-subhead-weight);
   line-height: var(--leading-normal);
+  color: var(--color-text-muted);
 }
 
 .prose p + p {
   margin-top: var(--space-4);
+}
+
+.prose a {
+  color: var(--color-brand);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
 }
 
 .prose h2,
@@ -82,4 +141,13 @@ ol {
 
 .prose h3 {
   font-size: var(--text-xl);
+}
+
+/* Tighter rhythm when a text block introduces a features row */
+section.text-block {
+  padding-bottom: var(--space-10);
+}
+
+section.text-block + section.services {
+  padding-top: var(--space-10);
 }

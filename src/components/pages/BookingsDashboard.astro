@@ -1,0 +1,631 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import Button from '../ui/Button.astro';
+import Badge from '../ui/Badge.astro';
+import Card from '../ui/Card.astro';
+import type { Locale } from '../../config/locales';
+import { getLocalizedPath } from '../../lib/i18n';
+import { MOCK_AUTH } from '../../lib/mock-auth';
+import {
+  MOCK_BOOKINGS,
+  formatBookingDateRange,
+  partitionBookings,
+  statusLabels,
+  type BookingStatus,
+  type MockBooking,
+} from '../../data/mock-bookings';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { upcoming, past } = partitionBookings(MOCK_BOOKINGS);
+const loginPath = getLocalizedPath('/login', locale);
+const bookPath = getLocalizedPath('/book', locale);
+const contactPath = getLocalizedPath('/contact', locale);
+
+const segmentIcons: Record<MockBooking['segments'][number]['type'], string> = {
+  flight: '✈',
+  hotel: '🏨',
+  activity: '🎫',
+};
+
+const statusBadgeVariant: Record<BookingStatus, 'success' | 'warning' | 'muted' | 'brand'> = {
+  confirmed: 'success',
+  'check-in': 'warning',
+  completed: 'muted',
+  cancelled: 'muted',
+};
+---
+
+<script is:inline define:vars={{ loginPath }}>
+  (function () {
+    try {
+      if (!sessionStorage.getItem('tafiya_mock_session')) {
+        const next = encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.replace(`${loginPath}?next=${next}`);
+      }
+    } catch {
+      window.location.replace(loginPath);
+    }
+  })();
+</script>
+
+<Section variant="muted" class="bookings-dashboard">
+  <Container>
+    <header class="bookings-dashboard__header">
+      <div>
+        <p class="bookings-dashboard__eyebrow">Your dashboard</p>
+        <h1 class="bookings-dashboard__title">My bookings</h1>
+        <p class="bookings-dashboard__lead">
+          Signed in as <strong data-dashboard-user>{MOCK_AUTH.name}</strong> · {MOCK_AUTH.email}
+        </p>
+      </div>
+      <div class="bookings-dashboard__actions">
+        <Button href={bookPath} label="New trip request" variant="primary" size="sm" />
+        <Button
+          type="button"
+          label="Sign out"
+          variant="secondary"
+          size="sm"
+          mockLogout
+          logoutRedirect={loginPath}
+        />
+      </div>
+    </header>
+
+    <dl class="bookings-dashboard__stats">
+      <div class="bookings-dashboard__stat">
+        <dt>{upcoming.length}</dt>
+        <dd>Upcoming trips</dd>
+      </div>
+      <div class="bookings-dashboard__stat">
+        <dt>{past.length}</dt>
+        <dd>Past trips</dd>
+      </div>
+      <div class="bookings-dashboard__stat">
+        <dt>£9,600</dt>
+        <dd>Total booked</dd>
+      </div>
+      <div class="bookings-dashboard__stat">
+        <dt>Gold</dt>
+        <dd>Member tier</dd>
+      </div>
+    </dl>
+
+    <section class="bookings-dashboard__section" aria-labelledby="upcoming-heading">
+      <div class="bookings-dashboard__section-head">
+        <h2 id="upcoming-heading" class="bookings-dashboard__section-title">Upcoming</h2>
+        <p class="bookings-dashboard__section-note">
+          Download your itinerary or invoice for any active trip. In a live account these open PDFs you can save or print.
+        </p>
+      </div>
+      {
+        upcoming.length === 0 ? (
+          <Card class="bookings-dashboard__empty">
+            <p>No upcoming trips. <a href={bookPath}>Start a new booking request</a>.</p>
+          </Card>
+        ) : (
+          <div class="bookings-dashboard__grid">
+            {upcoming.map((booking) => (
+              <article class="booking-card">
+                <div class="booking-card__media">
+                  <img src={booking.image} alt="" width="400" height="240" loading="lazy" />
+                  <Badge
+                    label={statusLabels[booking.status]}
+                    variant={statusBadgeVariant[booking.status]}
+                    class="booking-card__status"
+                  />
+                </div>
+                <div class="booking-card__body">
+                  <div class="booking-card__meta">
+                    <span class="booking-card__ref">{booking.reference}</span>
+                    <span class="booking-card__travelers">{booking.travelers} travelers</span>
+                  </div>
+                  <h3 class="booking-card__title">{booking.title}</h3>
+                  <p class="booking-card__destination">{booking.destination}</p>
+                  <p class="booking-card__dates">{formatBookingDateRange(booking.startDate, booking.endDate)}</p>
+                  <ul class="booking-card__segments">
+                    {booking.segments.map((segment) => (
+                      <li>
+                        <span class="booking-card__segment-icon" aria-hidden="true">{segmentIcons[segment.type]}</span>
+                        <span>
+                          <strong>{segment.label}</strong>
+                          <span class="booking-card__segment-detail">{segment.detail}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div class="booking-card__footer">
+                    <span class="booking-card__total">{booking.total}</span>
+                    <div class="booking-card__buttons">
+                      <Button
+                        type="button"
+                        label="Download itinerary"
+                        variant="secondary"
+                        size="sm"
+                        mockDownload="itinerary"
+                        bookingRef={booking.reference}
+                        ariaLabel={`Download itinerary for ${booking.title}`}
+                      />
+                      <Button
+                        type="button"
+                        label="Download invoice"
+                        variant="primary"
+                        size="sm"
+                        mockDownload="invoice"
+                        bookingRef={booking.reference}
+                        ariaLabel={`Download invoice for ${booking.title}`}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </section>
+
+  {
+    past.length > 0 && (
+      <section class="bookings-dashboard__section" aria-labelledby="past-heading">
+        <div class="bookings-dashboard__section-head">
+          <h2 id="past-heading" class="bookings-dashboard__section-title">Past trips</h2>
+          <p class="bookings-dashboard__section-note">
+            Completed bookings stay here for your records. Download a receipt for expenses or reimbursement.
+          </p>
+        </div>
+        <div class="bookings-dashboard__list">
+          {past.map((booking) => (
+            <article class="booking-row">
+              <img src={booking.image} alt="" width="112" height="84" loading="lazy" class="booking-row__thumb" />
+              <div class="booking-row__content">
+                <p class="booking-row__ref">{booking.reference}</p>
+                <h3 class="booking-row__title">{booking.title}</h3>
+                <p class="booking-row__meta">
+                  {booking.destination} · {formatBookingDateRange(booking.startDate, booking.endDate)}
+                </p>
+              </div>
+              <div class="booking-row__actions">
+                <Badge
+                  label={statusLabels[booking.status]}
+                  variant={statusBadgeVariant[booking.status]}
+                />
+                <span class="booking-row__total">{booking.total}</span>
+                <Button
+                  type="button"
+                  label="Download receipt"
+                  variant="primary"
+                  size="sm"
+                  mockDownload="receipt"
+                  bookingRef={booking.reference}
+                  ariaLabel={`Download receipt for ${booking.title}`}
+                />
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+    <Card class="bookings-dashboard__support" padding="md">
+      <h2 class="bookings-dashboard__support-title">Need help with a booking?</h2>
+      <p class="bookings-dashboard__support-text">
+        Message our team about changes, cancellations, or special requests for any reference above.
+      </p>
+      <Button href={contactPath} label="Contact support" variant="secondary" size="md" />
+    </Card>
+
+    <p class="bookings-dashboard__toast" data-download-toast hidden role="status" aria-live="polite"></p>
+  </Container>
+</Section>
+
+<script>
+  const toast = document.querySelector('[data-download-toast]');
+  let toastTimer: ReturnType<typeof setTimeout> | undefined;
+
+  const downloadMessages: Record<string, string> = {
+    itinerary: 'Itinerary PDF ready — in production this would download your day-by-day plan with times and confirmations.',
+    invoice: 'Invoice PDF ready — in production this would download your itemised bill and payment summary.',
+    receipt: 'Receipt PDF ready — in production this would download proof of payment for expenses or reimbursement.',
+  };
+
+  document.querySelectorAll('[data-mock-download]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const kind = button.getAttribute('data-mock-download') ?? '';
+      const ref = button.getAttribute('data-booking-ref') ?? '';
+      const message = downloadMessages[kind] ?? 'Document ready (demo).';
+
+      if (toast instanceof HTMLElement) {
+        toast.textContent = `${ref}: ${message}`;
+        toast.hidden = false;
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => {
+          toast.hidden = true;
+        }, 5000);
+      }
+    });
+  });
+
+  const sessionRaw = sessionStorage.getItem('tafiya_mock_session');
+  if (sessionRaw) {
+    try {
+      const session = JSON.parse(sessionRaw);
+      const userEl = document.querySelector('[data-dashboard-user]');
+      if (userEl && session.name) userEl.textContent = session.name;
+    } catch {
+      /* ignore */
+    }
+  }
+</script>
+
+<style>
+  .bookings-dashboard {
+    padding-block: var(--space-10) var(--space-16);
+  }
+
+  .bookings-dashboard__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .bookings-dashboard__eyebrow {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+  }
+
+  .bookings-dashboard__title {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, var(--text-section));
+    color: var(--color-text-section);
+  }
+
+  .bookings-dashboard__lead {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .bookings-dashboard__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .bookings-dashboard__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin: 0 0 var(--space-10);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .bookings-dashboard__stat {
+    text-align: center;
+  }
+
+  .bookings-dashboard__stat dt {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-brand);
+  }
+
+  .bookings-dashboard__stat dd {
+    margin: var(--space-1) 0 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .bookings-dashboard__section {
+    margin-bottom: var(--space-10);
+  }
+
+  .bookings-dashboard__section-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text-section);
+  }
+
+  .bookings-dashboard__section-head {
+    display: grid;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .bookings-dashboard__section-note {
+    margin: 0;
+    max-width: var(--container-narrow);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+
+  .bookings-dashboard__toast {
+    position: fixed;
+    right: var(--space-4);
+    bottom: var(--space-4);
+    z-index: var(--z-toast);
+    max-width: min(24rem, calc(100vw - 2rem));
+    margin: 0;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    background: var(--color-text-section);
+    color: var(--color-text-inverse);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .bookings-dashboard__toast[hidden] {
+    display: none;
+  }
+
+  .bookings-dashboard__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .booking-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .booking-card__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+
+  .booking-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .booking-card__status {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+  }
+
+  .booking-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--space-5);
+    gap: var(--space-3);
+  }
+
+  .booking-card__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+  }
+
+  .booking-card__ref {
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.04em;
+  }
+
+  .booking-card__title {
+    margin: 0;
+    font-size: var(--text-xl);
+    color: var(--color-text-section);
+  }
+
+  .booking-card__destination,
+  .booking-card__dates {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .booking-card__segments {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-3);
+    flex: 1;
+    padding-bottom: var(--space-2);
+  }
+
+  .booking-card__segments li {
+    display: flex;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .booking-card__segment-icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    text-align: center;
+  }
+
+  .booking-card__segments strong {
+    display: block;
+    color: var(--color-text-section);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .booking-card__segment-detail {
+    display: block;
+    margin-top: 0.125rem;
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+  }
+
+  .booking-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .booking-card__total {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-section);
+  }
+
+  .booking-card__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .bookings-dashboard__list {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .booking-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .booking-row__thumb {
+    width: var(--booking-row-thumb-width);
+    height: var(--booking-row-thumb-height);
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .booking-row__content {
+    min-width: 0;
+  }
+
+  .booking-row__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-3);
+    min-width: var(--booking-row-actions-min-width);
+  }
+
+  .booking-row__ref {
+    margin: 0 0 var(--space-1);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.04em;
+    color: var(--color-text-subtle);
+  }
+
+  .booking-row__title {
+    margin: 0 0 var(--space-1);
+    font-size: var(--text-lg);
+    color: var(--color-text-section);
+  }
+
+  .booking-row__meta {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .booking-row__total {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-section);
+  }
+
+  .bookings-dashboard__support-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-xl);
+    color: var(--color-text-section);
+  }
+
+  .bookings-dashboard__support-text {
+    margin: 0 0 var(--space-4);
+    color: var(--color-text-muted);
+    max-width: var(--content-max-sm);
+  }
+
+  .bookings-dashboard__empty {
+    color: var(--color-text-muted);
+  }
+
+  .bookings-dashboard__empty a {
+    color: var(--color-brand);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @media (max-width: 900px) {
+    .bookings-dashboard__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bookings-dashboard__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .booking-row {
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        'thumb content'
+        'actions actions';
+    }
+
+    .booking-row__thumb {
+      grid-area: thumb;
+    }
+
+    .booking-row__content {
+      grid-area: content;
+    }
+
+    .booking-row__actions {
+      grid-area: actions;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-width: 0;
+      padding-top: var(--space-4);
+      margin-top: var(--space-1);
+      border-top: 1px solid var(--color-border-light);
+    }
+  }
+</style>

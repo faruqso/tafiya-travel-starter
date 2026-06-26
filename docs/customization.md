@@ -1,12 +1,12 @@
 # Customization guide
 
-This guide walks you through forking Wanderlust Travel Starter and making it your own.
+This guide walks you through forking **tafiya Travel Starter** and making it your own.
 
 ## 1. Fork and clone
 
 ```bash
-git clone https://github.com/your-username/wanderlust-travel-starter.git
-cd wanderlust-travel-starter
+git clone https://github.com/faruqso/tafiya-travel-starter.git
+cd tafiya-travel-starter
 npm install
 npm run dev
 ```
@@ -43,25 +43,99 @@ Paths are always from `public/`, e.g. `/images/heroes/my-hero.jpg`.
 
 ## 4. Edit site settings
 
-Open **`/keystatic`** → **Site Settings**, or edit `content/site/site.yaml` directly:
+Open **`/keystatic`** → **Site Settings**, or edit the locale files under `content/site/` directly:
 
-- Brand name and tagline
-- Navigation links
-- Footer columns and social links
-- Default SEO title template and description
+- `content/site/en.yaml` — English (default)
+- `content/site/fr.yaml` — French
+- `content/site/de.yaml` — German
+- `content/site/ar.yaml` — Arabic
+
+Each file controls brand name, tagline, nav labels, footer columns, social links, and default SEO for that language.
 
 ## 5. Edit page content
 
-Each page lives in `content/pages/` as a YAML file. Use the Keystatic admin to add, reorder, or edit sections visually.
+Each page lives in `content/pages/{locale}/` as a YAML file. Use the Keystatic admin to add, reorder, or edit sections visually.
 
-**Demo pages included:**
+**Demo pages included (per locale):**
 
 - `home.yaml` — landing page
 - `destinations.yaml` — destination listing
 - `about.yaml` — about page
 - `contact.yaml` — contact page
 
-To add a new page: create an entry in Keystatic with a unique slug (not `home`). It automatically gets a route at `/{slug}`.
+To add a new page: create an entry in Keystatic with a unique slug (not `home`). It automatically gets a route at `/{slug}` for English, or `/{locale}/{slug}` for other languages.
+
+## 5b. Multilingual content
+
+The site supports **English, French, German, and Arabic** out of the box.
+
+| What | Where |
+|------|--------|
+| Supported locales | `src/config/locales.ts` |
+| Site settings per locale | `content/site/{locale}.yaml` |
+| Page content per locale | `content/pages/{locale}/{slug}.yaml` |
+| URL routing | `/about` (en), `/fr/about`, `/de/about`, `/ar/about` |
+| Language switcher | Header dropdown (flags + locale links) |
+
+**Adding a translation:**
+
+1. Copy an English page file, e.g. `content/pages/en/about.yaml` → `content/pages/fr/about.yaml`
+2. Translate all text fields (headlines, body copy, button labels, SEO fields)
+3. Keep image paths and structural fields (icons, `featured` flags) the same unless you need locale-specific assets
+4. Update `highlightWord` in hero sections to match the translated headline
+5. Keep internal links as site paths without locale prefix (e.g. `/destinations`) — the site localizes them at render time
+
+**Fallback:** If a page or site file is missing for a locale, the build falls back to English content.
+
+### Keystatic admin UX
+
+Open **`/admin/translations`** for a matrix of which pages exist per locale, live preview links (including RTL for Arabic), and quick links into Keystatic.
+
+In `/keystatic`, content is grouped by language:
+
+| Collection | Contents |
+|------------|----------|
+| 1. Site Settings | `en`, `fr`, `de`, `ar` entries (brand + tagline columns) |
+| 2. Pages (English) | `content/pages/en/*.yaml` |
+| 3. Pages (Français) | `content/pages/fr/*.yaml` |
+| 4. Pages (Deutsch) | `content/pages/de/*.yaml` |
+| 5. Pages (العربية) | `content/pages/ar/*.yaml` |
+
+Keystatic does not yet support custom filters inside a single collection — separate collections per locale is the recommended pattern. Slug fields include preview URL hints (e.g. edit `fr/home` → preview at `/fr/`).
+
+### Bulk import & clone
+
+| Script | Purpose |
+|--------|---------|
+| `npm run content:import -- file.csv` | Update site/page fields from CSV |
+| `npm run content:import:json -- file.json` | Replace full page or site YAML from JSON |
+| `npm run content:clone -- --from en --to fr --all` | Copy all English pages as a translation starter |
+| `npm run content:seed-page-translations` | Apply FR/DE/AR page copy from `scripts/page-translations-data.mjs` |
+| `npm run content:seed-catalog-translations` | Seed catalog translation files from English masters |
+
+Full translation workflow (Crowdin, Lokalise, RTL preview): **`docs/translation-workflow.md`**.
+
+### Bulk CSV import
+
+For site settings and page metadata (`title`, `description`), use the import script:
+
+```bash
+npm run content:import -- scripts/examples/content-import.sample.csv
+npm run content:import:dry --  # preview without writing
+```
+
+CSV format (`type,locale,slug,field,value`):
+
+```csv
+site,fr,,tagline,Les meilleures destinations du monde
+page,fr,home,title,Accueil
+page,fr,home,description,Decouvrez les meilleures destinations...
+```
+
+- `site` rows: leave `slug` empty; `field` is a top-level site key
+- `page` rows: set `slug` to the page slug (`home`, `about`, etc.)
+
+Section-level copy (hero headlines, features, etc.) is best edited in Keystatic or by editing the YAML files directly. For full-page JSON swaps across locales, copy an entire `content/pages/{locale}/{slug}.yaml` file.
 
 ## 6. Connect the contact form
 

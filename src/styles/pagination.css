@@ -1,0 +1,36 @@
+/**
+ * Catalog pagination — shared across catalog index and slug layout.
+ */
+
+.catalog-pagination__btn {
+  min-width: var(--pagination-btn-size);
+  min-height: var(--pagination-btn-size);
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.catalog-pagination__btn:hover:not(:disabled) {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.catalog-pagination__btn.is-active {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+  color: var(--color-text-on-brand);
+}
+
+.catalog-pagination__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

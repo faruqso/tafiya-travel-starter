@@ -1,0 +1,52 @@
+slug: bookings
+title: Bookings
+description: Sign in to manage your tafiya trips — view itineraries, invoices, and request changes.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Your account
+      headline: Manage your bookings
+      subheadline: This is your trip dashboard — sign in to view upcoming travel, download documents, and request changes.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Sign in
+          href: /login
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: What this page is for
+      headline: Your trip dashboard — not a new booking form
+      body: >-
+        Bookings is where returning travelers manage trips they have already purchased. After signing in you can:
+
+
+        ### View upcoming itineraries
+
+        Flights, hotels, and activities in one timeline with live status updates.
+
+
+        ### Download invoices & documents
+
+        Boarding passes, hotel vouchers, and receipts whenever you need them.
+
+
+        ### Request changes or support
+
+        Modify dates, add baggage, or message our team about an existing reservation.
+
+
+        ### Start a new trip?
+
+        To request a new destination, hotel, or flight, use our <a href="/book">booking form</a> — it pre-fills the trip you picked from any catalog page.
+  - discriminant: cta
+    value:
+      headline: Don't have an account yet?
+      subheadline: Create one to save favourites, track bookings, and unlock member fares — or start a new trip request without signing in.
+      buttons:
+        - label: Create account
+          href: /signup
+          variant: primary
+        - label: Start a new booking
+          href: /book
+          variant: secondary

@@ -1,0 +1,67 @@
+---
+import type { CatalogKind } from '../../data/catalog';
+import { getCatalogLabels } from '../../i18n/catalog';
+import type { Locale } from '../../config/locales';
+import CatalogFilterFields from './CatalogFilterFields.astro';
+
+interface Props {
+  kind: CatalogKind;
+  locale: Locale;
+  regions: string[];
+  categories: string[];
+  maxPrice: number;
+}
+
+const { kind, locale, regions, categories, maxPrice } = Astro.props;
+const labels = getCatalogLabels(locale);
+---
+
+<div class="catalog-filter-wrap" data-catalog-filter-wrap>
+  <aside class="catalog-filter catalog-filter--desktop" data-catalog-filter="desktop">
+    <header class="catalog-filter__header">
+      <h2 class="catalog-filter__title">{labels.filtersOnly}</h2>
+      <button type="button" class="catalog-filter__reset" data-catalog-reset>
+        {labels.resetFilters}
+      </button>
+    </header>
+    <div class="catalog-filter__body" data-lenis-prevent data-catalog-filter-scroll tabindex="-1">
+      <CatalogFilterFields
+        kind={kind}
+        locale={locale}
+        regions={regions}
+        categories={categories}
+        maxPrice={maxPrice}
+        variant="desktop"
+      />
+    </div>
+  </aside>
+
+  <div class="catalog-filter-drawer" data-catalog-filter-drawer hidden>
+    <button type="button" class="catalog-filter-drawer__scrim" data-catalog-filter-close aria-label={labels.closeFilters}></button>
+
+    <div class="catalog-filter-drawer__sheet" role="dialog" aria-modal="true" aria-labelledby="catalog-filter-drawer-title">
+      <header class="catalog-filter-drawer__header">
+        <h2 id="catalog-filter-drawer-title" class="catalog-filter-drawer__title">{labels.filtersOnly}</h2>
+        <button type="button" class="catalog-filter-drawer__close" data-catalog-filter-close aria-label={labels.closeDialog}>×</button>
+      </header>
+
+      <div class="catalog-filter-drawer__body">
+        <div class="catalog-filter catalog-filter--mobile" data-catalog-filter="mobile">
+          <CatalogFilterFields
+            kind={kind}
+            locale={locale}
+            regions={regions}
+            categories={categories}
+            maxPrice={maxPrice}
+            variant="mobile"
+          />
+        </div>
+      </div>
+
+      <footer class="catalog-filter-drawer__footer">
+        <button type="button" class="catalog-filter-drawer__reset" data-catalog-reset>{labels.resetFilters}</button>
+        <button type="button" class="catalog-filter-drawer__apply" data-catalog-apply>{labels.applyFilters}</button>
+      </footer>
+    </div>
+  </div>
+</div>

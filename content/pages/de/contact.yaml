@@ -1,0 +1,50 @@
+slug: contact
+title: Kontakt
+description: Erreichen Sie das tafiya-Team für Buchungen, Partnerschaften oder Hilfe bei der Planung Ihrer nächsten Reise.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Kontakt aufnehmen
+      headline: Wir helfen Ihnen beim Reisen
+      subheadline: Sagen Sie uns, wohin und wann Sie reisen möchten — ein tafiya-Spezialist antwortet innerhalb eines Werktags.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: contact
+    value:
+      purpose: general
+      eyebrow: Kontaktieren Sie uns
+      headline: Starten Sie noch heute mit der Planung
+      subheadline: Teilen Sie Destination, Daten und Budget. Wir senden Ihnen einen maßgeschneiderten Reiseplan mit Live-Preisen.
+      email: hello@tafiya.co
+      phone: +44 20 7946 0958
+      address: |-
+        221B Baker Street
+        London, NW1 6XE
+        United Kingdom
+      formNote: Nachrichten werden zu Demo-Zwecken sicher gespeichert. Verbinden Sie Formspree oder Ihr CRM in der Produktion — siehe docs/customization.md.
+  - discriminant: textBlock
+    value:
+      eyebrow: Keine Reiseplanung?
+      headline: Das richtige Kontaktformular finden
+      body: |-
+        Diese Seite ist nur für Reiseplanungsanfragen. Für alles andere nutzen Sie das jeweilige Formular auf jeder Seite:
+
+
+        ### Karriere — Bewerbungen
+
+        <a href="/careers#apply">Bewerben Sie sich mit Portfolio und Rollendetails</a>.
+
+
+        ### Presse — Medien und Interviews
+
+        <a href="/press#press">Assets, Zitate oder Interviews anfragen</a>.
+
+
+        ### Partner — Partnerschaftsbewerbungen
+
+        <a href="/affiliates#partners">Für das Affiliate-Programm bewerben</a>.
+
+
+        ### Support — Buchungen und Konto
+
+        <a href="/help-faq#support">Hilfe zu einer bestehenden Reise erhalten</a>.

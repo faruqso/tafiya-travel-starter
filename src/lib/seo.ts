@@ -6,7 +6,7 @@ interface PageSeo {
 }
 
 export function buildPageTitle(pageTitle: string, site: SiteSettings): string {
-  const template = site.seoTitleTemplate || '%s | Wanderlust';
+  const template = site.seoTitleTemplate || '%s | tafiya';
   return template.replace('%s', pageTitle);
 }
 

@@ -12,10 +12,10 @@ const { section } = Astro.props;
 
 <Section variant="brand" compact>
   <Container>
-    <dl class="stats">
+    <dl class="stats" data-reveal-group data-reveal-stagger="80">
       {
         section.items.map((item) => (
-          <div class="stats__item">
+          <div class="stats__item" data-reveal-item>
             <dt class="stats__value">{item.value}</dt>
             <dd class="stats__label">{item.label}</dd>
           </div>
@@ -35,7 +35,7 @@ const { section } = Astro.props;
 
   .stats__value {
     font-family: var(--font-display);
-    font-size: var(--text-4xl);
+    font-size: var(--text-stat);
     font-weight: var(--font-weight-bold);
     color: var(--color-brand);
     line-height: var(--leading-tight);
@@ -46,11 +46,13 @@ const { section } = Astro.props;
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     font-weight: var(--font-weight-medium);
+    line-height: 1.4;
   }
 
   @media (max-width: 768px) {
     .stats {
       grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
     }
   }
 </style>

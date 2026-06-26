@@ -1,0 +1,66 @@
+slug: mobile
+title: Application mobile
+description: Téléchargez l’app tafiya pour iOS et Android — itinéraires, cartes d’embarquement et alertes prix en déplacement.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Application mobile
+      headline: Vos voyages dans votre poche
+      subheadline: Téléchargez tafiya pour iOS et Android — itinéraires, cartes d’embarquement et alertes prix synchronisés avec votre compte web.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: Télécharger l’app
+          href: "#download"
+          variant: primary
+  - discriminant: appDownload
+    value:
+      eyebrow: iOS et Android
+      headline: Vos voyages, toujours avec vous
+      subheadline: Recherchez des vols, gérez vos réservations et recevez les changements de porte en temps réel — synchronisé avec votre compte web tafiya.
+      screenshot: /images/book-trip/tafiya/cards/greece-trip.jpg
+      bullets:
+        - Accès hors ligne aux itinéraires, cartes d’embarquement et bons d’hôtel
+        - Alertes baisse de prix quand vos routes enregistrées passent sous votre objectif
+        - Connexion biométrique et stockage chiffré des documents
+      googlePlayUrl: https://play.google.com
+      appStoreUrl: https://apps.apple.com
+  - discriminant: features
+    value:
+      eyebrow: Fonctionnalités
+      headline: Conçue pour les jours de voyage
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Frise de voyage en direct
+          description: Vols, hôtels et activités dans un itinéraire défilable qui se met à jour quand les plans changent.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Notifications intelligentes
+          description: Changements de porte, fenêtres d’enregistrement et baisses de prix — seulement les alertes activées.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Cartes d’embarquement mobiles
+          description: Passes compatibles Wallet avec actualisation automatique quand les compagnies réattribuent sièges ou portes.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Configuration requise
+      headline: Fonctionne sur les téléphones que vous utilisez déjà
+      body: |-
+        tafiya nécessite iOS 16 ou ultérieur, ou Android 10+. Le téléchargement est gratuit — connectez-vous avec votre compte existant et vos voyages apparaissent immédiatement.
+
+
+        ### Besoin d’aide pour l’installation ?
+
+        Écrivez à support@tafiya.co avec le modèle de votre appareil et la version du système. Pour les questions de compte ou de réservation, consultez Aide/FAQ.
+  - discriminant: cta
+    value:
+      headline: Des questions sur l’app ?
+      subheadline: Notre équipe support peut aider pour l’installation, la connexion et les paramètres de notification.
+      buttons:
+        - label: Consulter Aide et FAQ
+          href: /help-faq
+          variant: primary
+        - label: Contacter le support
+          href: /help-faq#support
+          variant: ghost

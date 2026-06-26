@@ -1,0 +1,112 @@
+/**
+ * Shared form controls — used by Auth, Contact, BookingForm, catalog filters.
+ */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-strong);
+}
+
+.form-field__label {
+  display: block;
+}
+
+.form-field__optional {
+  font-weight: var(--font-weight-normal);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-text-subtle);
+}
+
+.form-control,
+.form-field :is(input, textarea, select) {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  transition: border-color var(--transition-base);
+}
+
+.form-control--compact {
+  min-height: var(--form-control-height-compact);
+  padding-block: var(--form-control-padding-block-compact);
+  padding-inline: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-strong);
+}
+
+.form-control--search {
+  padding-inline: 2.35rem 2.25rem;
+}
+
+.form-control--select {
+  padding-inline: 0.75rem 2rem;
+  appearance: none;
+  cursor: pointer;
+  background: var(--color-surface)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235e6282' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 0.75rem center;
+}
+
+.form-control:hover,
+.form-control:focus-visible,
+.form-field :is(input, textarea, select):hover,
+.form-field :is(input, textarea, select):focus-visible {
+  border-color: var(--color-brand);
+  outline: none;
+}
+
+.form-field--auth :is(input, textarea, select) {
+  padding: 0.75rem 0.875rem;
+  border-color: var(--color-border-light);
+}
+
+.form-control:focus,
+.form-field :is(input, textarea, select):focus {
+  outline: none;
+  border-color: var(--color-brand);
+}
+
+.form-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-status {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status.is-success {
+  color: var(--color-success);
+}
+
+.form-status.is-error {
+  color: var(--color-error);
+}
+
+.form-submit {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .form-grid--2 {
+    grid-template-columns: 1fr;
+  }
+}

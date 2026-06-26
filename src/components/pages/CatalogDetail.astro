@@ -1,0 +1,282 @@
+---
+import Button from '../ui/Button.astro';
+import type { CatalogKind, CatalogItem } from '../../data/catalog';
+import { getCatalogLabels } from '../../i18n/catalog';
+import { getCatalogBasePath } from '../../lib/catalog-routes';
+import { getBookingPath } from '../../lib/booking-routes';
+import { getItemMeta } from '../../lib/catalog';
+import CatalogCard from '../catalog/CatalogCard.astro';
+import { serializeCatalogItems } from '../../lib/catalog';
+import type { Locale } from '../../config/locales';
+
+interface Props {
+  kind: CatalogKind;
+  item: CatalogItem;
+  locale: Locale;
+}
+
+const { kind, item, locale } = Astro.props;
+const labels = getCatalogLabels(locale);
+const meta = getItemMeta(item, locale);
+const bookingHref = getBookingPath(kind, item.slug, locale);
+const related = (await serializeCatalogItems(kind, locale))
+  .filter((entry) => entry.slug !== item.slug && entry.region === item.region)
+  .slice(0, 3);
+---
+
+<article class="catalog-detail">
+  <div class="catalog-detail__hero">
+    <img src={item.image} alt={item.name} class="catalog-detail__image" />
+    <div class="catalog-detail__overlay">
+      <p class="catalog-detail__eyebrow">{meta.badge}</p>
+      <h1 class="catalog-detail__title">{item.name}</h1>
+      <p class="catalog-detail__meta">{meta.subtitle}</p>
+      <p class="catalog-detail__price">
+        {labels.from} <strong>{item.priceFrom}</strong>
+      </p>
+      <div class="catalog-detail__actions">
+        <Button href={bookingHref} label={labels.bookNow} variant="primary" size="lg" />
+        <Button href={getCatalogBasePath(kind, locale)} label={`← ${labels[kind].title}`} variant="ghost" size="md" />
+      </div>
+    </div>
+  </div>
+
+  <div class="catalog-detail__body">
+    <div class="catalog-detail__content">
+      <h2 class="catalog-detail__section-title">{labels.highlights}</h2>
+      <p class="catalog-detail__description">{item.description}</p>
+      <ul class="catalog-detail__highlights">
+        {item.highlights.map((highlight) => (
+          <li>{highlight}</li>
+        ))}
+      </ul>
+
+      <div class="catalog-detail__book">
+        <h2 class="catalog-detail__section-title">Ready to book?</h2>
+        <p class="catalog-detail__book-copy">
+          {item.name} is pre-selected on our booking form — add your dates and traveler details to request a quote.
+        </p>
+        <Button href={bookingHref} label={labels.bookNow} variant="primary" size="lg" />
+      </div>
+    </div>
+
+    <aside class="catalog-detail__aside">
+      <div class="catalog-detail__stat">
+        <span class="catalog-detail__stat-label">Rating</span>
+        <span class="catalog-detail__stat-value">{item.rating.toFixed(1)} / 5</span>
+      </div>
+      <div class="catalog-detail__stat">
+        <span class="catalog-detail__stat-label">Country</span>
+        <span class="catalog-detail__stat-value">{item.country}</span>
+      </div>
+      <div class="catalog-detail__stat">
+        <span class="catalog-detail__stat-label">Region</span>
+        <span class="catalog-detail__stat-value">{labels.regions[item.region] ?? item.region}</span>
+      </div>
+      {
+        item.kind === 'destinations' && (
+          <div class="catalog-detail__stat">
+            <span class="catalog-detail__stat-label">Trip type</span>
+            <span class="catalog-detail__stat-value">{labels.categories[item.category] ?? item.category}</span>
+          </div>
+        )
+      }
+      {
+        item.kind === 'hotels' && (
+          <div class="catalog-detail__stat">
+            <span class="catalog-detail__stat-label">Amenities</span>
+            <span class="catalog-detail__stat-value">{item.amenities.join(' · ')}</span>
+          </div>
+        )
+      }
+      {
+        item.kind === 'flights' && (
+          <>
+            <div class="catalog-detail__stat">
+              <span class="catalog-detail__stat-label">From</span>
+              <span class="catalog-detail__stat-value">
+                {item.originCountry} ({labels.regions[item.originRegion] ?? item.originRegion})
+              </span>
+            </div>
+            <div class="catalog-detail__stat">
+              <span class="catalog-detail__stat-label">To</span>
+              <span class="catalog-detail__stat-value">
+                {item.destinationCountry} ({labels.regions[item.region] ?? item.region})
+              </span>
+            </div>
+            <div class="catalog-detail__stat">
+              <span class="catalog-detail__stat-label">Route</span>
+              <span class="catalog-detail__stat-value">{item.route}</span>
+            </div>
+            <div class="catalog-detail__stat">
+              <span class="catalog-detail__stat-label">Stops</span>
+              <span class="catalog-detail__stat-value">{item.stops === 0 ? 'Non-stop' : `${item.stops} stop`}</span>
+            </div>
+          </>
+        )
+      }
+    </aside>
+  </div>
+
+  {
+    related.length > 0 && (
+      <section class="catalog-detail__related">
+        <h2 class="catalog-detail__section-title">{labels.related}</h2>
+        <div class="catalog-detail__related-grid">
+          {related.map((entry) => (
+            <CatalogCard item={entry} locale={locale} kind={kind} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</article>
+
+<style>
+  .catalog-detail__hero {
+    position: relative;
+    min-height: var(--card-height-catalog-detail-min);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .catalog-detail__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: var(--card-height-catalog-detail-min);
+    object-fit: cover;
+  }
+
+  .catalog-detail__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-10);
+    background: linear-gradient(180deg, transparent 20%, var(--color-detail-overlay) 100%);
+    color: var(--color-text-inverse);
+  }
+
+  .catalog-detail__eyebrow {
+    margin: 0;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-detail-subtext);
+  }
+
+  .catalog-detail__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, var(--text-3xl));
+    line-height: var(--leading-detail-title);
+  }
+
+  .catalog-detail__meta,
+  .catalog-detail__price {
+    margin: 0;
+    color: var(--color-detail-subtext-strong);
+  }
+
+  .catalog-detail__price strong {
+    font-size: var(--text-xl);
+    color: var(--color-text-on-brand);
+  }
+
+  .catalog-detail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .catalog-detail__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 16rem;
+    gap: var(--space-12);
+    margin-top: var(--space-12);
+  }
+
+  .catalog-detail__section-title {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text-section);
+  }
+
+  .catalog-detail__description {
+    margin: 0 0 var(--space-6);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    max-width: var(--container-narrow);
+  }
+
+  .catalog-detail__highlights {
+    margin: 0;
+    padding-inline-start: 1.1rem;
+    color: var(--color-text-muted);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .catalog-detail__book {
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    background: var(--color-brand-subtle);
+  }
+
+  .catalog-detail__book-copy {
+    margin: 0 0 var(--space-6);
+    color: var(--color-text-muted);
+  }
+
+  .catalog-detail__aside {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+  }
+
+  .catalog-detail__stat {
+    padding: var(--space-4);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+
+  .catalog-detail__stat-label {
+    display: block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-subtle);
+    margin-bottom: var(--space-1);
+  }
+
+  .catalog-detail__stat-value {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-strong);
+  }
+
+  .catalog-detail__related {
+    margin-top: var(--space-16);
+  }
+
+  .catalog-detail__related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-10);
+  }
+
+  @media (max-width: 900px) {
+    .catalog-detail__body,
+    .catalog-detail__related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

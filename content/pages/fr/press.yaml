@@ -1,0 +1,67 @@
+slug: press
+title: Presse
+description: Actualités, ressources de marque et contacts médias pour la couverture voyage de tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Médias
+      headline: Presse et ressources de marque
+      subheadline: Logos, visuels produit, biographies de direction et angles éditoriaux pour les journalistes qui couvrent le voyage moderne.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: Contacter l’équipe presse
+          href: "#press"
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: Service presse
+      headline: Comment nous pouvons aider
+      body: |-
+        tafiya aide les voyageurs à comparer vols, séjours boutique et expériences locales en un seul endroit. Nous soutenons volontiers les sujets sur le voyage flexible, la transparence des prix et la planification mobile.
+
+
+        Pour des interviews, annonces sous embargo ou visuels haute résolution, écrivez à press@tafiya.co avec votre média, votre deadline et votre numéro de contact. Nous visons une réponse sous un jour ouvré.
+  - discriminant: features
+    value:
+      eyebrow: Kit de marque
+      headline: Ce que vous pouvez télécharger
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Logo et signature
+          description: Versions SVG et PNG pour fonds clairs et sombres, avec règles d’espace libre.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Captures produit
+          description: Parcours web et mobile pour la recherche, le paiement et la gestion d’itinéraire.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Biographies de direction
+          description: Biographies courtes et longues plus photos des fondateurs et responsables produit.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Actualités récentes
+      headline: Angles que nous pouvons aborder
+      body: |-
+        ### Rebooking mobile-first
+
+        Comment tafiya aide les voyageurs à modifier leurs plans depuis la porte d’embarquement avec l’inventaire en direct des compagnies.
+
+
+        ### Transparence des prix
+
+        Pourquoi afficher bagages et frais de modification dès le paiement renforce la confiance.
+
+
+        ### Itinéraires durables
+
+        Programmes partenaires qui mettent en avant les liaisons ferroviaires et les itinéraires à faibles émissions en Europe.
+  - discriminant: contact
+    value:
+      purpose: press
+      eyebrow: Demandes médias
+      headline: Contacter l’équipe presse
+      subheadline: Demandez des visuels, interviews ou citations pour votre article. Indiquez votre média et votre deadline pour que nous puissions prioriser.
+      email: press@tafiya.co
+      formNote: Pour les demandes urgentes le jour même, écrivez directement à press@tafiya.co avec URGENT dans l’objet.

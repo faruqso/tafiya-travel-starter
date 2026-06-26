@@ -1,0 +1,57 @@
+slug: low-fare-tips
+title: نصائح الأسعار المنخفضة
+description: نصائح عملية لإيجاد رحلات أرخص مع tafiya — تواريخ مرنة وتنبيهات وتوجيه ذكي.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: أدلة
+      headline: سافر بذكاء وأنفق أقل
+      subheadline: التواريخ المرنة والمطارات القريبة ونوافذ ما بين المواسم قد تخفض الأسعار بشكل كبير.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: مكاسب سريعة
+      headline: أربع عادات تخفض الأسعار
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: تواريخ مرنة
+          description: غيّر المغادرة يومًا أو يومين — رحلات منتصف الأسبوع غالبًا أرخص بنسبة 20–30% على المسارات الشائعة.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: مطارات قريبة
+          description: أدرج مطارات بديلة ضمن نطاق ساعتين لفتح شركات منخفضة التكلفة.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: تنبيهات الأسعار
+          description: احفظ بحثًا ونرسل بريدًا عندما ينخفض السعر عن هدفك.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: استراتيجيات أعمق
+      headline: متى تحجز وكيف توجّه المسار
+      body: |-
+        ### احجز في المواسم الوسطى
+
+        أوروبا في أبريل أو أكتوبر، وجنوب شرق آسيا في بداية الموسم الماطر، ومنتجعات التزلج أواخر مارس تجمع غالبًا طقسًا جيدًا وطلبًا أقل.
+
+
+        ### امزج الشركات بعناية
+
+        تذكرتان ذهاب باتجاه واحد على شركتين مختلفتين قد تتفوق على الذهاب والعودة — يُبرز tafiya أوقات التحويل الذاتي لتترك هامشًا كافيًا.
+
+
+        ### أنشئ تنبيهات مبكرًا
+
+        للعطلات المزدحمة، أنشئ تنبيهًا قبل 4–6 أشهر. نتتبع حركة السعر اليومية ونبرز أرخص يوم للشراء وفق الاتجاهات التاريخية لمسارك.
+
+
+        تريد أفكار توجيه مخصصة؟ راسل support@tafiya.co مع مطارك وشهر السفر.
+  - discriminant: cta
+    value:
+      headline: ابدأ تنبيه سعر
+      subheadline: ابحث عن مسارك واضغط حفظ وسنُعلمك عند انخفاض الأسعار.
+      buttons:
+        - label: البحث عن رحلات
+          href: /flights
+          variant: primary

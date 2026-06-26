@@ -1,0 +1,61 @@
+slug: affiliates
+title: Affiliés
+description: Rejoignez le programme d’affiliation tafiya — commissions compétitives et reporting en temps réel.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Partenaires
+      headline: Gagnez avec tafiya
+      subheadline: Partagez des voyages sélectionnés et des offres de vols avec votre audience et gagnez sur chaque réservation qualifiée.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Postuler au programme partenaire
+          href: "#partners"
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: Avantages du programme
+      headline: Conçu pour les créateurs et sites voyage
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Commissions compétitives
+          description: Gagnez sur les vols, hôtels et forfaits avec des paliers de paiement transparents.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Tableau de bord en temps réel
+          description: Suivez clics, conversions et revenus avec des rapports quotidiens et export CSV.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Support partenaire
+          description: Responsables affiliés dédiés, assets de campagne et liens profonds vers toute page destination.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Comment ça marche
+      headline: Trois étapes pour commencer à gagner
+      body: |-
+        ### Postulez en ligne
+
+        Présentez votre site, la taille de votre audience et vos marchés principaux. Nous examinons la plupart des candidatures sous trois jours ouvrés.
+
+
+        ### Partagez vos liens
+
+        Utilisez des URL suivies dans vos articles, newsletters ou réseaux sociaux. Les liens profonds mènent les voyageurs vers l’itinéraire ou l’hôtel exact que vous recommandez.
+
+
+        ### Recevez vos paiements chaque mois
+
+        Les commissions sont validées après les dates de voyage et versées par virement bancaire ou PayPal le 15 de chaque mois.
+
+
+        Des questions ? Écrivez à partners@tafiya.co — nous expliquons volontiers les taux de commission et les calendriers promotionnels.
+  - discriminant: contact
+    value:
+      purpose: partners
+      eyebrow: Candidature partenaire
+      headline: Postuler au programme d’affiliation
+      subheadline: Parlez-nous de votre audience et de la façon dont vous comptez promouvoir tafiya. Nous examinons la plupart des candidatures sous trois jours ouvrés.
+      email: partners@tafiya.co
+      formNote: Déjà approuvé ? Écrivez à partners@tafiya.co pour les assets de campagne et les liens profonds.

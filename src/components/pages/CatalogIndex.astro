@@ -1,0 +1,169 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import CatalogCard from '../catalog/CatalogCard.astro';
+import CatalogFilterSidebar from '../catalog/CatalogFilterSidebar.astro';
+import CatalogToolbar from '../catalog/CatalogToolbar.astro';
+import type { CatalogKind } from '../../data/catalog';
+import { getCatalogLabels } from '../../i18n/catalog';
+import { CATALOG_PAGE_SIZE, getMaxPrice, getUniqueCategories, getUniqueRegions } from '../../lib/catalog-routes';
+import { serializeCatalogItems } from '../../lib/catalog';
+import type { Locale } from '../../config/locales';
+import '../../styles/catalog-filters.css';
+
+interface Props {
+  kind: CatalogKind;
+  locale: Locale;
+}
+
+const { kind, locale } = Astro.props;
+const labels = getCatalogLabels(locale);
+const copy = labels[kind];
+const items = await serializeCatalogItems(kind, locale);
+const regions = await getUniqueRegions(kind);
+const categories = await getUniqueCategories(kind);
+const maxPrice = await getMaxPrice(kind);
+const catalogItemsJson = JSON.stringify(items);
+const filterLabelsJson = JSON.stringify({
+  regions: labels.regions,
+  categories: labels.categories,
+  cabins: labels.cabins,
+  priceLabel: labels.priceLabel,
+  clearAll: labels.clearAll,
+  starsShort: labels.starsShort,
+  removeFilter: labels.removeFilter,
+});
+---
+
+<Section variant="default" class="catalog-index">
+  <Container>
+    <SectionHeader eyebrow={copy.eyebrow} headline={copy.title} align="left" />
+    <p class="catalog-index__lead">{copy.description}</p>
+
+    <script type="application/json" data-catalog-items set:html={catalogItemsJson} />
+
+    <div
+      class="catalog-index__layout"
+      data-catalog-index
+      data-kind={kind}
+      data-page-size={CATALOG_PAGE_SIZE}
+      data-max-price={maxPrice}
+      data-empty-label={labels.noResults}
+      data-showing-label={labels.showing}
+      data-of-label={labels.of}
+      data-results-label={labels.results}
+      data-filter-labels={filterLabelsJson}
+    >
+      <CatalogToolbar kind={kind} locale={locale} totalCount={items.length} />
+
+      <CatalogFilterSidebar
+        kind={kind}
+        locale={locale}
+        regions={regions}
+        categories={categories}
+        maxPrice={maxPrice}
+      />
+
+      <div class="catalog-index__main">
+        <div class="catalog-index__grid" data-catalog-grid data-view="grid-3">
+          {items.map((item) => (
+            <CatalogCard item={item} locale={locale} kind={kind} />
+          ))}
+        </div>
+        <p class="catalog-index__empty" data-catalog-empty hidden>
+          {labels.noResults}
+        </p>
+        <nav class="catalog-index__pagination" data-catalog-pagination aria-label="Pagination"></nav>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script src="/scripts/catalog.js" defer></script>
+
+<style>
+  .catalog-index__lead {
+    max-width: var(--content-max-md);
+    margin: -1rem 0 var(--space-10);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    text-align: start;
+  }
+
+  .catalog-index__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+    gap: var(--space-10);
+    align-items: stretch;
+  }
+
+  .catalog-index__layout > :global(.catalog-index__sticky-head) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .catalog-index__main {
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .catalog-index__layout > :global(.catalog-filter-wrap) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .catalog-index__grid {
+    display: grid;
+    gap: var(--space-10);
+    align-items: stretch;
+  }
+
+  .catalog-index__grid[data-view='grid-2'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .catalog-index__grid[data-view='grid-3'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .catalog-index__grid[data-view='list'] {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .catalog-index__empty {
+    margin: var(--space-10) 0 0;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .catalog-index__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-top: var(--space-12);
+  }
+
+  @media (max-width: 1024px) {
+    .catalog-index__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .catalog-index__layout > :global(.catalog-index__sticky-head),
+    .catalog-index__layout > :global(.catalog-filter-wrap),
+    .catalog-index__main {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .catalog-index__grid[data-view='grid-3'],
+    .catalog-index__grid[data-view='grid-2'] {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

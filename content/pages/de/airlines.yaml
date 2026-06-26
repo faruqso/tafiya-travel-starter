@@ -1,0 +1,69 @@
+slug: airlines
+title: Fluggesellschaften
+description: Vergleichen Sie über 600 Airline-Partner weltweit auf tafiya — Netzcarrier und Low-Cost-Airlines.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Flüge
+      headline: Über 600 Airline-Partner
+      subheadline: Eine Suche über Netzcarrier, Low-Cost-Airlines und Regionalflieger — mit Filtern für Allianz, Kabine und Stopps.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: Flüge suchen
+          href: /flights
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: Smarter suchen
+      headline: Den richtigen Tarif schneller finden
+      logoTickerLabel: Tarife führender Carrier vergleichen, darunter
+      logos:
+        - image: /images/logos/tafiya/axon.png
+          alt: Axon Airlines
+          featured: false
+        - image: /images/logos/tafiya/jetstar.png
+          alt: Jetstar
+          featured: false
+        - image: /images/logos/tafiya/qantas.png
+          alt: Qantas
+          featured: false
+        - image: /images/logos/tafiya/alitalia.png
+          alt: Alitalia
+          featured: false
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Allianz- und Airline-Filter
+          description: Ergebnisse nach Star Alliance, oneworld, SkyTeam oder bevorzugter Airline eingrenzen.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Echter Kostenvergleich
+          description: Gepäck, Sitzwahl und Änderungsgebühren vor der Buchung sehen — nicht am Flughafen.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Live-Umbuchung
+          description: Anschluss verpasst? Berechtigte Reisepläne in der App umbuchen, während der Support Ihren Fall verfolgt.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Abdeckung
+      headline: Eine Suche, alle großen Carrier
+      body: |-
+        tafiya zieht Live-Flugpläne und Tarife von Full-Service-Airlines, Low-Cost-Carriern und Regionalfliegern auf sechs Kontinenten. Filtern Sie nach Allianz, Kabine, Stopps oder bevorzugter Airline — und vergleichen Sie die echten Kosten jedes Tarifs vor der Buchung.
+
+
+        Das Inventar aktualisiert sich nahezu in Echtzeit. Ändert sich ein Tarif nach dem Speichern einer Reise, benachrichtigen wir Sie, damit Sie den besseren Preis sichern oder Termine anpassen können.
+
+
+        Für Firmen- oder Gruppenbuchungen über mehrere Carrier schreiben Sie an groups@tafiya.co — unser Team koordiniert Tarife und Sitzplätze.
+  - discriminant: cta
+    value:
+      headline: Bereit, Airlines zu vergleichen?
+      subheadline: Live-Tarife mit Allianzfiltern und All-in-Preisen suchen — oder erfahren, wie Gebühren vor dem Checkout angezeigt werden.
+      buttons:
+        - label: Flüge suchen
+          href: /flights
+          variant: primary
+        - label: Airline-Gebühren verstehen
+          href: /airline-fees
+          variant: secondary

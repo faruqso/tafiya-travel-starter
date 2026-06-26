@@ -1,0 +1,22 @@
+slug: paris-dubai
+name: Paris → Dubai
+country: United Arab Emirates
+route: CDG → DXB
+airline: Emirates
+image: https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $410
+priceValue: 410
+duration: 6h 45m
+stops: 0
+cabin: business
+originCountry: France
+destinationCountry: United Arab Emirates
+originRegion: europe
+region: middle-east
+rating: 4.9
+description: Business-class lie-flat suites with chauffeur service and lounge access in both cities.
+highlights:
+  - Lie-flat seats
+  - Chauffeur drive
+  - A380 service
+  - Gourmet dining

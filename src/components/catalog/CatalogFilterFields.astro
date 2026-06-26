@@ -1,0 +1,193 @@
+---
+import type { CatalogKind } from '../../data/catalog';
+import { getCatalogLabels } from '../../i18n/catalog';
+import type { Locale } from '../../config/locales';
+
+interface Props {
+  kind: CatalogKind;
+  locale: Locale;
+  regions: string[];
+  categories: string[];
+  maxPrice: number;
+  variant: 'desktop' | 'mobile';
+}
+
+const { kind, locale, regions, categories, maxPrice, variant } = Astro.props;
+const labels = getCatalogLabels(locale);
+const idSuffix = `${kind}-${locale}-${variant}`;
+const priceId = `catalog-price-${idSuffix}`;
+const isMobile = variant === 'mobile';
+---
+
+{
+  isMobile ? (
+    <>
+      <details class="catalog-filter__accordion" data-catalog-accordion open>
+        <summary class="catalog-filter__summary">{labels.regionLabel}</summary>
+        <div class="catalog-filter__panel">
+          <div class="catalog-filter__checks">
+            {regions.map((region) => (
+              <label class="catalog-filter__check">
+                <input type="checkbox" value={region} data-catalog-region />
+                <span class="catalog-filter__box" aria-hidden="true"></span>
+                <span>{labels.regions[region] ?? region}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </details>
+
+      {kind === 'destinations' && categories.length > 0 && (
+        <details class="catalog-filter__accordion" data-catalog-accordion>
+          <summary class="catalog-filter__summary">{labels.categoryLabel}</summary>
+          <div class="catalog-filter__panel">
+            <div class="catalog-filter__checks">
+              {categories.map((category) => (
+                <label class="catalog-filter__check">
+                  <input type="checkbox" value={category} data-catalog-category />
+                  <span class="catalog-filter__box" aria-hidden="true"></span>
+                  <span>{labels.categories[category] ?? category}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </details>
+      )}
+
+      {kind === 'hotels' && (
+        <details class="catalog-filter__accordion" data-catalog-accordion>
+          <summary class="catalog-filter__summary">{labels.starsLabel}</summary>
+          <div class="catalog-filter__panel">
+            <div class="catalog-filter__checks">
+              {[5, 4, 3].map((stars) => (
+                <label class="catalog-filter__check">
+                  <input type="checkbox" value={String(stars)} data-catalog-stars />
+                  <span class="catalog-filter__box" aria-hidden="true"></span>
+                  <span>
+                    {stars}+ {labels.starsShort}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </details>
+      )}
+
+      {kind === 'flights' && (
+        <details class="catalog-filter__accordion" data-catalog-accordion>
+          <summary class="catalog-filter__summary">{labels.cabinLabel}</summary>
+          <div class="catalog-filter__panel">
+            <div class="catalog-filter__checks">
+              {Object.entries(labels.cabins).map(([value, label]) => (
+                <label class="catalog-filter__check">
+                  <input type="checkbox" value={value} data-catalog-cabin />
+                  <span class="catalog-filter__box" aria-hidden="true"></span>
+                  <span>{label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </details>
+      )}
+
+      <details class="catalog-filter__accordion" data-catalog-accordion>
+        <summary class="catalog-filter__summary">{labels.priceLabel}</summary>
+        <div class="catalog-filter__panel">
+          <div class="catalog-filter__price-row">
+            <span class="catalog-filter__label">{labels.priceLabel}</span>
+            <span class="catalog-filter__price-value" data-catalog-price-display>{maxPrice}</span>
+          </div>
+          <input
+            id={priceId}
+            type="range"
+            class="catalog-filter__range"
+            min="0"
+            max={maxPrice}
+            step={kind === 'hotels' || kind === 'flights' ? 10 : 100}
+            value={maxPrice}
+            data-catalog-price
+          />
+        </div>
+      </details>
+    </>
+  ) : (
+    <>
+      <div class="catalog-filter__group">
+        <span class="catalog-filter__label">{labels.regionLabel}</span>
+        <div class="catalog-filter__checks">
+          {regions.map((region) => (
+            <label class="catalog-filter__check">
+              <input type="checkbox" value={region} data-catalog-region />
+              <span class="catalog-filter__box" aria-hidden="true"></span>
+              <span>{labels.regions[region] ?? region}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {kind === 'destinations' && categories.length > 0 && (
+        <div class="catalog-filter__group">
+          <span class="catalog-filter__label">{labels.categoryLabel}</span>
+          <div class="catalog-filter__checks">
+            {categories.map((category) => (
+              <label class="catalog-filter__check">
+                <input type="checkbox" value={category} data-catalog-category />
+                <span class="catalog-filter__box" aria-hidden="true"></span>
+                <span>{labels.categories[category] ?? category}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {kind === 'hotels' && (
+        <div class="catalog-filter__group">
+          <span class="catalog-filter__label">{labels.starsLabel}</span>
+          <div class="catalog-filter__checks">
+            {[5, 4, 3].map((stars) => (
+              <label class="catalog-filter__check">
+                <input type="checkbox" value={String(stars)} data-catalog-stars />
+                <span class="catalog-filter__box" aria-hidden="true"></span>
+                <span>
+                  {stars}+ {labels.starsShort}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {kind === 'flights' && (
+        <div class="catalog-filter__group">
+          <span class="catalog-filter__label">{labels.cabinLabel}</span>
+          <div class="catalog-filter__checks">
+            {Object.entries(labels.cabins).map(([value, label]) => (
+              <label class="catalog-filter__check">
+                <input type="checkbox" value={value} data-catalog-cabin />
+                <span class="catalog-filter__box" aria-hidden="true"></span>
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="catalog-filter__group">
+        <div class="catalog-filter__price-row">
+          <span class="catalog-filter__label">{labels.priceLabel}</span>
+          <span class="catalog-filter__price-value" data-catalog-price-display>{maxPrice}</span>
+        </div>
+        <input
+          id={priceId}
+          type="range"
+          class="catalog-filter__range"
+          min="0"
+          max={maxPrice}
+          step={kind === 'hotels' || kind === 'flights' ? 10 : 100}
+          value={maxPrice}
+          data-catalog-price
+        />
+      </div>
+    </>
+  )
+}

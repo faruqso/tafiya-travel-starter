@@ -1,0 +1,61 @@
+slug: affiliates
+title: الشركاء
+description: انضم إلى برنامج شركاء tafiya — عمولات تنافسية وتقارير فورية.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: الشركاء
+      headline: اربح مع tafiya
+      subheadline: شارك رحلات مختارة وعروض طيران مع جمهورك واربح عن كل حجز مؤهل.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: التقديم لبرنامج الشركاء
+          href: "#partners"
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: مزايا البرنامج
+      headline: مصمم للمبدعين ومواقع السفر
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: عمولات تنافسية
+          description: اربح من رحلات الطيران والفنادق والباقات مع مستويات دفع شفافة.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: لوحة تحكم فورية
+          description: تتبع النقرات والتحويلات والأرباح بتقارير يومية وتصدير CSV.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: دعم الشركاء
+          description: مديرو شراكة مخصصون وأصول حملات وروابط عميقة لأي صفحة وجهة.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: كيف يعمل
+      headline: ثلاث خطوات لبدء الربح
+      body: |-
+        ### قدّم عبر الإنترنت
+
+        أخبرنا عن موقعك وحجم جمهورك وأسواقك الرئيسية. نراجع معظم الطلبات خلال ثلاثة أيام عمل.
+
+
+        ### شارك روابطك
+
+        استخدم روابط متتبعة في المقالات أو النشرات أو وسائل التواصل. الروابط العميقة توصل المسافرين إلى المسار أو الفندق الذي توصي به.
+
+
+        ### استلم دفعاتك شهريًا
+
+        تُعتمد العمولات بعد تواريخ السفر وتُدفع عبر تحويل بنكي أو PayPal في اليوم 15 من كل شهر.
+
+
+        أسئلة؟ راسل partners@tafiya.co — يسعدنا شرح معدلات العمولة والتقويمات الترويجية.
+  - discriminant: contact
+    value:
+      purpose: partners
+      eyebrow: طلب الشراكة
+      headline: التقديم لبرنامج الشركاء
+      subheadline: أخبرنا عن جمهورك وكيف تخطط لترويج tafiya. نراجع معظم الطلبات خلال ثلاثة أيام عمل.
+      email: partners@tafiya.co
+      formNote: موافق عليك مسبقًا؟ راسل partners@tafiya.co للحصول على أصول الحملات والروابط العميقة.

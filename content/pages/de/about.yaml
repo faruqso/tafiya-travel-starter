@@ -1,0 +1,55 @@
+slug: about
+title: Über uns
+description: >-
+  Erfahren Sie, wie tafiya Reisenden hilft, smarter zu buchen — mit kuratierten
+  Reisen, vertrauenswürdigen Partnern und Support in jedem Schritt.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Unsere Geschichte
+      headline: Reisen soll aufregend sein, nicht erschöpfend
+      subheadline: >-
+        tafiya begann mit einer einfachen Idee — die besten Routen, Unterkünfte
+        und lokalen Erlebnisse zu vergleichen, ohne ein Dutzend Tabs zu jonglieren.
+      image: /images/destinations/tafiya/rome.jpg
+  - discriminant: textBlock
+    value:
+      eyebrow: Wer wir sind
+      headline: Für moderne Reisende gebaut
+      body: >-
+        Wir arbeiten mit Airlines, Boutique-Hotels und lokalen Guides in über 50
+        Destinationen zusammen. Unser Team prüft jeden Reiseplan auf realistische
+        Zeiten, klare Preise und zuverlässigen Support.
+
+
+        Ob 10-tägige Rom-Tour oder europäisches Bahnabenteuer — tafiya bündelt
+        Dokumente, Zahlungen und Updates in einem Dashboard — im Web und mobil.
+
+
+        Dieser Open-Source-Starter spiegelt unsere Produktvision: schnelle Seiten,
+        ehrliche Texte und ein Designsystem, das Sie für Ihre eigene Reisemarke
+        forken können.
+  - discriminant: features
+    value:
+      eyebrow: Warum Reisende uns wählen
+      headline: Was Sie erwarten können
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Transparente Preise
+          description: >-
+            Steuern, Gepäck und Resortgebühren von Anfang an sichtbar — keine
+            Überraschungen an der Kasse.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Lokale Expertise
+          description: >-
+            Geprüfte Guides und Concierges an jedem Zielort, mit Bewertungen
+            echter tafiya-Reisender.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Flexible Pläne
+          description: >-
+            Daten ändern oder Aktivitäten bis 72 Stunden vor Abreise bei
+            berechtigten Paketen hinzufügen.
+          featured: false

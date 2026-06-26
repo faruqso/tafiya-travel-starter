@@ -1,0 +1,18 @@
+slug: london
+name: London, UK
+country: United Kingdom
+image: https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $4.2k
+priceValue: 4200
+duration: 12 Days Trip
+durationDays: 12
+region: europe
+category: city
+rating: 4.8
+featured: true
+description: Theatre, markets, royal landmarks, and neighbourhood pubs — London at an unhurried pace with boutique stays.
+highlights:
+  - West End show
+  - Borough Market
+  - Tower & Thames cruise
+  - Day trip to Bath

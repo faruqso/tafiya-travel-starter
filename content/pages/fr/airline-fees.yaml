@@ -1,0 +1,48 @@
+slug: airline-fees
+title: Frais aériens
+description: Comprenez les frais de bagages, sièges et modifications avant de réserver sur tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Vols
+      headline: Comprenez les frais aériens dès le départ
+      subheadline: Nous affichons bagages, choix de siège et frais de modification avant le paiement pour comparer le coût réel de chaque tarif.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: Types de frais
+      headline: Ce que nous montrons avant de payer
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Bagages
+          description: Franchises cabine et soute, plus prix des bagages prépayés quand les compagnies les fournissent.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Choix de siège
+          description: Sièges standard, préférés et extra espace jambes avec prix par segment.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Modifications et annulations
+          description: Frais de modification et estimations d’écart tarifaire pour changements de date ou d’itinéraire.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Pourquoi c’est important
+      headline: Pas de surprises à l’aéroport
+      body: |-
+        Les tarifs basic economy peuvent sembler bon marché jusqu’à l’ajout des frais bagages et siège. tafiya étiquette chaque tarif avec une estimation tout compris quand les compagnies partagent les données, et signale quand un billet economy classique inclut un bagage en soute.
+
+
+        Certaines low-cost facturent les bagages cabine qui passent en soute. Nous le signalons dans les résultats pour comparer avec les options full-service sur la même route.
+
+
+        Les données de frais viennent des compagnies et peuvent changer sans préavis. Les montants finaux sont confirmés sur l’écran de paiement de la compagnie avant paiement. Questions sur un tarif précis ? Écrivez à support@tafiya.co avec votre route et dates de voyage.
+  - discriminant: cta
+    value:
+      headline: Comparer les tarifs tout compris
+      subheadline: Recherchez des vols avec le détail des frais visible dès le premier résultat.
+      buttons:
+        - label: Rechercher des vols
+          href: /flights
+          variant: primary

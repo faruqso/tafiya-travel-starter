@@ -1,0 +1,69 @@
+slug: airlines
+title: شركات الطيران
+description: قارن أكثر من 600 شريك طيران حول العالم على tafiya — شركات تقليدية ومنخفضة التكلفة.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: رحلات الطيران
+      headline: أكثر من 600 شريك طيران
+      subheadline: بحث واحد عبر شركات تقليدية ومنخفضة التكلفة ومشغلين إقليميين — مع فلاتر للتحالف والدرجة والتوقف.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: البحث عن رحلات
+          href: /flights
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: بحث أذكى
+      headline: اعثر على السعر المناسب أسرع
+      logoTickerLabel: قارن الأسعار عبر شركات رائدة بما في ذلك
+      logos:
+        - image: /images/logos/tafiya/axon.png
+          alt: Axon Airlines
+          featured: false
+        - image: /images/logos/tafiya/jetstar.png
+          alt: Jetstar
+          featured: false
+        - image: /images/logos/tafiya/qantas.png
+          alt: Qantas
+          featured: false
+        - image: /images/logos/tafiya/alitalia.png
+          alt: Alitalia
+          featured: false
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: فلاتر التحالف وشركة الطيران
+          description: ضيّق النتائج حسب Star Alliance أو oneworld أو SkyTeam أو شركتك المفضلة.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: مقارنة التكلفة الحقيقية
+          description: اعرض الأمتعة واختيار المقعد ورسوم التغيير قبل الالتزام — وليس في المطار.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: إعادة حجز مباشرة
+          description: فاتتك رحلة الربط؟ أعد حجز المسارات المؤهلة من التطبيق بينما يتابع الدعم حالتك.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: التغطية
+      headline: بحث واحد، كل الشركات الكبرى
+      body: |-
+        يجلب tafiya جداول وأسعار مباشرة من شركات الخدمة الكاملة والمنخفضة التكلفة والإقليمية عبر ست قارات. فلتر حسب التحالف والدرجة والتوقف أو شركة الطيران المفضلة — ثم قارن التكلفة الحقيقية لكل سعر قبل الحجز.
+
+
+        يُحدَّث المخزون شبه فوريًا. إذا تغيّر السعر بعد حفظ رحلة، نُعلمك لتثبيت السعر الأفضل أو تعديل التواريخ.
+
+
+        لحجوزات الشركات أو المجموعات عبر عدة شركات، راسل groups@tafiya.co وسينسق فريقنا الأسعار والمقاعد.
+  - discriminant: cta
+    value:
+      headline: مستعد لمقارنة شركات الطيران؟
+      subheadline: ابحث عن أسعار مباشرة مع فلاتر التحالف والتسعير الشامل — أو تعرّف كيف تُعرض الرسوم قبل الدفع.
+      buttons:
+        - label: البحث عن رحلات
+          href: /flights
+          variant: primary
+        - label: فهم رسوم شركات الطيران
+          href: /airline-fees
+          variant: secondary

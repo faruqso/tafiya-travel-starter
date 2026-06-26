@@ -31,6 +31,22 @@ export function getLocalizedPath(pathname: string, locale: Locale): string {
   return `/${locale}${suffix}`;
 }
 
+export function localizeHref(href: string, locale: Locale): string {
+  if (
+    !href ||
+    href.startsWith('#') ||
+    href.startsWith('http://') ||
+    href.startsWith('https://') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:')
+  ) {
+    return href;
+  }
+
+  const normalized = href.startsWith('/') ? href : `/${href}`;
+  return getLocalizedPath(normalized, locale);
+}
+
 export function buildSlugParam(locale: Locale, pageSlug: string): string | undefined {
   if (pageSlug === 'home') {
     return locale === defaultLocale ? undefined : locale;

@@ -1,0 +1,22 @@
+slug: los-angeles-tokyo
+name: Los Angeles → Tokyo
+country: Japan
+route: LAX → HND
+airline: ANA
+image: https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $640
+priceValue: 640
+duration: 11h 45m
+stops: 0
+cabin: premium
+originCountry: United States
+destinationCountry: Japan
+originRegion: americas
+region: asia
+rating: 4.82
+description: Premium economy with Japanese hospitality and seasonal kaiseki meal options.
+highlights:
+  - Haneda arrival
+  - Seasonal menus
+  - Wi‑Fi onboard
+  - Extra legroom

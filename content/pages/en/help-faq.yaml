@@ -1,0 +1,76 @@
+slug: help-faq
+title: Help & FAQ
+description: Answers about tafiya bookings, payments, cancellations, and account support.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Support
+      headline: How can we help?
+      subheadline: Browse common questions or reach our team — we reply within one business day.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: textBlock
+    value:
+      eyebrow: Bookings
+      headline: Before you travel
+      body: >-
+        ### How do I change my dates?
+
+        Open your trip in the app or web dashboard, select Change dates, and choose from live availability. Change fees from the airline or hotel are shown before you confirm.
+
+
+        ### Can I add baggage after booking?
+
+        Yes — go to your flight details and tap Add bags. Prices come directly from the airline and may be lower when purchased in advance.
+
+
+        ### Where are my documents?
+
+        Boarding passes, hotel vouchers, and activity tickets live under Documents in each trip. You can forward them to travel companions from the same screen.
+  - discriminant: textBlock
+    value:
+      eyebrow: Payments
+      headline: Billing & refunds
+      body: >-
+        ### Which payment methods do you accept?
+
+        Major credit and debit cards, Apple Pay, Google Pay, and bank transfer for select package bookings over £2,000.
+
+
+        ### When am I charged?
+
+        Flights and hotels are charged at booking unless the fare is holdable — hold options show a clear expiry time at checkout.
+
+
+        ### How do refunds work?
+
+        Refund eligibility depends on the fare rules shown before purchase. Approved refunds return to your original payment method within 5–10 business days.
+  - discriminant: textBlock
+    value:
+      eyebrow: Account
+      headline: Profile & security
+      body: >-
+        ### I forgot my password
+
+        Use Forgot password on the sign-in screen. Reset links expire after 24 hours for security.
+
+
+        ### How do I delete my account?
+
+        Email privacy@tafiya.co from the address on your account. We complete deletion within 30 days and confirm by email.
+
+
+        Still stuck? Contact support@tafiya.co or call +44 20 7946 0958 Monday–Friday, 9:00–18:00 GMT.
+  - discriminant: contact
+    value:
+      purpose: support
+      eyebrow: Contact us
+      headline: Talk to a specialist
+      subheadline: Share your booking reference and we will pick up where the FAQ left off.
+      email: support@tafiya.co
+      phone: +44 20 7946 0958
+      address: |-
+        221B Baker Street
+        London, NW1 6XE
+        United Kingdom
+      formNote: Include your trip ID for faster help. For press inquiries use press@tafiya.co.

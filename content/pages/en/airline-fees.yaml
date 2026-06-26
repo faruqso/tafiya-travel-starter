@@ -1,0 +1,48 @@
+slug: airline-fees
+title: Airline Fees
+description: Understand baggage, seat, and change fees before you book on tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Flights
+      headline: Understand airline fees upfront
+      subheadline: We surface baggage, seat selection, and change fees before checkout so you compare the true cost of each fare.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: Fee types
+      headline: What we show before you pay
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Baggage
+          description: Carry-on and checked allowances, plus prepaid bag prices when airlines provide them.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Seat selection
+          description: Standard, preferred, and extra-legroom seats with prices per segment.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Changes & cancellations
+          description: Airline change fees and fare difference estimates for date or route changes.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Why it matters
+      headline: No surprises at the airport
+      body: >-
+        Basic economy fares can look cheap until baggage and seat fees are added. tafiya labels each fare with an All-in estimate when airlines share fee data, and highlights when a legacy economy ticket includes a checked bag.
+
+
+        Some low-cost carriers charge for cabin bags that fit overhead. We call that out in search results so you can compare against full-service options on the same route.
+
+
+        Fee data comes from airlines and may change without notice. Final amounts are confirmed on the airline checkout screen before you pay. Questions about a specific fare? Email support@tafiya.co with your route and travel dates.
+  - discriminant: cta
+    value:
+      headline: Compare all-in fares
+      subheadline: Search flights with fee breakdowns visible from the first result.
+      buttons:
+        - label: Search flights
+          href: /flights
+          variant: primary

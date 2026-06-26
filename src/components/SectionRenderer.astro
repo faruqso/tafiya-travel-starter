@@ -10,40 +10,48 @@ import Stats from './sections/Stats.astro';
 import TextBlock from './sections/TextBlock.astro';
 import Cta from './sections/Cta.astro';
 import Contact from './sections/Contact.astro';
+import AppDownload from './sections/AppDownload.astro';
+import BookingForm from './sections/BookingForm.astro';
+import type { Locale } from '../config/locales';
 import type { PageSection } from '../types/content';
 
 interface Props {
   sections: PageSection[];
+  locale: Locale;
 }
 
-const { sections } = Astro.props;
+const { sections, locale } = Astro.props;
 ---
 
 {
   sections.map((section) => {
     switch (section.discriminant) {
       case 'hero':
-        return <Hero {...{ section: section.value }} />;
+        return <Hero section={section.value} locale={locale} />;
       case 'destinationGrid':
-        return <DestinationGrid {...{ section: section.value }} />;
+        return <DestinationGrid section={section.value} locale={locale} />;
       case 'features':
-        return <Features {...{ section: section.value }} />;
+        return <Features section={section.value} locale={locale} />;
       case 'bookTrip':
-        return <BookTrip {...{ section: section.value }} />;
+        return <BookTrip section={section.value} />;
       case 'testimonials':
-        return <Testimonials {...{ section: section.value }} />;
+        return <Testimonials section={section.value} />;
       case 'logoCloud':
-        return <LogoCloud {...{ section: section.value }} />;
+        return <LogoCloud section={section.value} locale={locale} />;
       case 'subscribe':
-        return <Subscribe {...{ section: section.value }} />;
+        return <Subscribe section={section.value} />;
       case 'stats':
-        return <Stats {...{ section: section.value }} />;
+        return <Stats section={section.value} />;
       case 'textBlock':
-        return <TextBlock {...{ section: section.value }} />;
+        return <TextBlock section={section.value} />;
       case 'cta':
-        return <Cta {...{ section: section.value }} />;
+        return <Cta section={section.value} locale={locale} />;
       case 'contact':
-        return <Contact {...{ section: section.value }} />;
+        return <Contact section={section.value} />;
+      case 'appDownload':
+        return <AppDownload section={section.value} />;
+      case 'bookingForm':
+        return <BookingForm section={section.value} locale={locale} />;
       default:
         return null;
     }

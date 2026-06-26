@@ -1,0 +1,18 @@
+slug: rome
+name: Rome, Italy
+country: Italy
+image: https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $5,42k
+priceValue: 5420
+duration: 10 Days Trip
+durationDays: 10
+region: europe
+category: cultural
+rating: 4.9
+featured: true
+description: Walk through ancient history, world-class cuisine, and piazza life with a local guide on every day of your Roman holiday.
+highlights:
+  - Colosseum & Forum
+  - Vatican Museums
+  - Trastevere food tour
+  - Day trip to Tuscany

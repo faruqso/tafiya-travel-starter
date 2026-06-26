@@ -1,0 +1,26 @@
+---
+import LabelSweep from './LabelSweep.astro';
+
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'header' | 'header-login' | 'footer';
+  active?: boolean;
+  class?: string;
+}
+
+const { href, label, variant = 'header', active = false, class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'text-nav-link',
+    `text-nav-link--${variant}`,
+    active && 'text-nav-link--active',
+    className,
+  ]}
+  aria-current={active ? 'page' : undefined}
+>
+  <LabelSweep label={label} />
+</a>

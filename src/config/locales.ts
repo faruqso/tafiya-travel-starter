@@ -16,56 +16,11 @@ export function isLocale(value: string): value is Locale {
 }
 
 export const ui = {
-  en: {
-    login: 'Login',
-    signup: 'Sign up',
-    destinations: 'Desitnations',
-    hotels: 'Hotels',
-    flights: 'Flights',
-    bookings: 'Bookings',
-    selectLanguage: 'Select language',
-  },
-  fr: {
-    login: 'Connexion',
-    signup: "S'inscrire",
-    destinations: 'Destinations',
-    hotels: 'Hôtels',
-    flights: 'Vols',
-    bookings: 'Réservations',
-    selectLanguage: 'Choisir la langue',
-  },
-  de: {
-    login: 'Anmelden',
-    signup: 'Registrieren',
-    destinations: 'Reiseziele',
-    hotels: 'Hotels',
-    flights: 'Flüge',
-    bookings: 'Buchungen',
-    selectLanguage: 'Sprache wählen',
-  },
-  ar: {
-    login: 'تسجيل الدخول',
-    signup: 'إنشاء حساب',
-    destinations: 'الوجهات',
-    hotels: 'الفنادق',
-    flights: 'الرحلات',
-    bookings: 'الحجوزات',
-    selectLanguage: 'اختر اللغة',
-  },
-} as const satisfies Record<Locale, Record<string, string>>;
-
-const navLabelKeys: Record<string, keyof (typeof ui)['en']> = {
-  desitnations: 'destinations',
-  destinations: 'destinations',
-  hotels: 'hotels',
-  flights: 'flights',
-  bookings: 'bookings',
-};
-
-export function getNavLabel(label: string, locale: Locale): string {
-  const key = navLabelKeys[label.trim().toLowerCase()];
-  return key ? ui[locale][key] : label;
-}
+  en: { selectLanguage: 'Select language' },
+  fr: { selectLanguage: 'Choisir la langue' },
+  de: { selectLanguage: 'Sprache wählen' },
+  ar: { selectLanguage: 'اختر اللغة' },
+} as const satisfies Record<Locale, { selectLanguage: string }>;
 
 export function getLocaleMeta(locale: Locale) {
   return locales.find((entry) => entry.code === locale) ?? locales[0];

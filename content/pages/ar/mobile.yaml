@@ -1,0 +1,66 @@
+slug: mobile
+title: تطبيق الجوال
+description: حمّل تطبيق tafiya لـ iOS وAndroid — خطط السفر وبطاقات الصعود وتنبيهات الأسعار أثناء التنقل.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: تطبيق الجوال
+      headline: خطط سفرك في جيبك
+      subheadline: حمّل tafiya لـ iOS وAndroid — خطط السفر وبطاقات الصعود وتنبيهات الأسعار متزامنة مع حسابك على الويب.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: احصل على التطبيق
+          href: "#download"
+          variant: primary
+  - discriminant: appDownload
+    value:
+      eyebrow: iOS وAndroid
+      headline: رحلاتك معك دائمًا
+      subheadline: ابحث عن رحلات وأدر الحجوزات واستقبل تغييرات البوابة فورًا — متزامن مع حساب tafiya على الويب.
+      screenshot: /images/book-trip/tafiya/cards/greece-trip.jpg
+      bullets:
+        - وصول دون اتصال لخطط السفر وبطاقات الصعود وقسائم الفنادق
+        - تنبيهات انخفاض السعر عندما تنخفض المسارات المحفوظة عن هدفك
+        - تسجيل دخول بيومتري وتخزين مشفر للمستندات
+      googlePlayUrl: https://play.google.com
+      appStoreUrl: https://apps.apple.com
+  - discriminant: features
+    value:
+      eyebrow: ميزات التطبيق
+      headline: مصمم لأيام السفر
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: جدول رحلة مباشر
+          description: رحلات طيران وفنادق وأنشطة في خطة سفر قابلة للتمرير تتحدث مع تغيّر الخطط.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: إشعارات ذكية
+          description: تغييرات البوابة ونوافذ تسجيل الوصول وانخفاض الأسعار — التنبيهات التي تفعّلها فقط.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: بطاقات صعود للجوال
+          description: بطاقات جاهزة للمحفظة مع تحديث تلقائي عند إعادة تعيين المقاعد أو البوابات.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: المتطلبات
+      headline: يعمل على الهواتف التي تستخدمها بالفعل
+      body: |-
+        يتطلب tafiya iOS 16 أو أحدث، أو Android 10+. التحميل مجاني — سجّل الدخول بحسابك الحالي وتظهر رحلاتك فورًا.
+
+
+        ### تحتاج مساعدة في التثبيت؟
+
+        راسل support@tafiya.co مع طراز جهازك وإصدار النظام. لأسئلة الحساب أو الحجز، زُر المساعدة/الأسئلة الشائعة.
+  - discriminant: cta
+    value:
+      headline: أسئلة عن التطبيق؟
+      subheadline: يمكن لفريق الدعم المساعدة في التثبيت وتسجيل الدخول وإعدادات الإشعارات.
+      buttons:
+        - label: زيارة المساعدة والأسئلة الشائعة
+          href: /help-faq
+          variant: primary
+        - label: تواصل مع الدعم
+          href: /help-faq#support
+          variant: ghost

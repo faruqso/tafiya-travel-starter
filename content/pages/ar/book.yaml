@@ -1,0 +1,17 @@
+slug: book
+title: احجز رحلة
+description: قدّم طلب حجز لوجهات أو فنادق أو رحلات طيران على tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: الحجز
+      headline: ابدأ حجزك
+      subheadline: اختر رحلتك وحدّد التواريخ وأرسل الطلب — يؤكد فريقنا التوفر خلال يوم عمل واحد.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: bookingForm
+    value:
+      eyebrow: طلب الحجز
+      headline: أخبرنا عن رحلتك
+      subheadline: يُنقل اختيارك تلقائيًا من أي صفحة وجهة أو فندق أو رحلة. عدّل التواريخ وعدد المسافرين قبل الإرسال.
+      formNote: لا يتم الدفع هنا — سيتواصل معك أخصائي tafiya بعرض مؤكد والخطوات التالية.

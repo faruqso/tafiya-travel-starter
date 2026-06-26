@@ -1,0 +1,172 @@
+slug: home
+title: الرئيسية
+description: >-
+  اكتشف أفضل الوجهات حول العالم. سافر واستمتع وعِش حياة جديدة ومليئة مع tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: full
+      eyebrow: أفضل الوجهات حول العالم
+      headline: |
+        سافر واستمتع
+        وعِش حياة
+        جديدة ومليئة
+      highlightWord: استمتع
+      subheadline: >-
+        من رحلات نهاية الأسبوع إلى مغامرات شهر كامل، يساعدك tafiya على مقارنة
+        الرحلات والفنادق والتجارب المحلية في مكان واحد — وقت أقل للتخطيط ووقت
+        أكثر للاستكشاف.
+      buttons:
+        - label: اعرف المزيد
+          href: /destinations
+          variant: primary
+      playDemoLabel: شاهد العرض
+      playDemoHref: '#demo'
+      showPlayDemo: true
+  - discriminant: features
+    value:
+      eyebrow: الفئة
+      headline: نقدم أفضل الخدمات
+      items:
+        - icon: /images/services/tafiya/icons/illustration-weather.svg
+          title: طقس محسوب
+          description: >-
+            اطلع على متوسطات الطقس لتواريخ سفرك لتجهز حقيبتك مرة واحدة وتتجنب
+            المفاجآت.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: أفضل الرحلات
+          description: >-
+            قارن المسارات والأسعار من أكثر من 600 شركة طيران مع فلاتر الأمتعة
+            والتوقف والدرجة.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: فعاليات محلية
+          description: >-
+            اكتشف المهرجانات والأسواق والفعاليات الثقافية أثناء وجودك في المدينة.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: تخصيص
+          description: >-
+            صمّم رحلتك وفق إيقاعك — أضف جولات أو نقلًا من المطار أو ليالي إضافية
+            ببضع نقرات.
+          featured: false
+  - discriminant: destinationGrid
+    value:
+      eyebrow: الأكثر مبيعًا
+      headline: أفضل الوجهات
+      ctaLabel: عرض الوجهات
+      ctaHref: /destinations
+      destinations:
+        - name: روما، إيطاليا
+          image: https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=800&h=600&q=80
+          priceFrom: 5,420 دولار
+          duration: رحلة 10 أيام
+          href: /destinations/rome
+        - name: لندن، المملكة المتحدة
+          image: https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&h=600&q=80
+          priceFrom: 4,200 دولار
+          duration: رحلة 12 يومًا
+          href: /destinations/rome
+        - name: أوروبا كاملة
+          image: https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&h=600&q=80
+          priceFrom: 15,000 دولار
+          duration: رحلة 28 يومًا
+          href: /destinations/rome
+  - discriminant: bookTrip
+    value:
+      eyebrow: سهل وسريع
+      headline: |
+        احجز رحلتك القادمة
+        في 3 خطوات بسيطة
+      previewImage: /images/book-trip/tafiya/trip-preview.jpg
+      steps:
+        - icon: /images/book-trip/tafiya/icons/step-destination.svg
+          color: yellow
+          title: اختر الوجهة
+          description: |
+            تصفح المدن الأكثر مبيعًا أو ابحث حسب المنطقة والميزانية وتواريخ السفر.
+        - icon: /images/book-trip/tafiya/icons/step-payment.svg
+          color: orange
+          title: ادفع بأمان
+          description: |
+            ادفع بالبطاقة أو التحويل البنكي. دفعات مقسمة متاحة لبعض الباقات.
+        - icon: /images/book-trip/tafiya/icons/step-airport.svg
+          color: teal
+          title: الوصول إلى المطار في التاريخ المحدد
+          description: |
+            استلم خط سيرك وتذاكر الصعود ودعمًا على مدار الساعة قبل يوم المغادرة.
+  - discriminant: testimonials
+    value:
+      eyebrow: آراء العملاء
+      headline: |
+        ماذا يقول الناس
+        عنا.
+      items:
+        - quote: >-
+            جعل tafiya شهر العسل سهلاً للغاية. تم تأكيد الرحلات والفندق ورحلة غروب
+            الشمس في سانتوريني في ظهر واحد — والتطبيق حفظ كل المستندات في مكان واحد.
+          author: مايك تايلور
+          role: لاهور، باكستان
+          avatar: /images/testimonials/tafiya/mike-taylor.jpg
+        - quote: >-
+            أعدنا حجز رحلة فائتة من التطبيق ونحن عند البوابة. دعم العملاء رد في
+            أقل من خمس دقائق — وهذا المستوى من الخدمة الشخصية نادر حقاً اليوم.
+          author: كريس توماس
+          role: الرئيس التنفيذي لـ Red Button
+          avatar: /images/testimonials/tafiya/chris-thomas.jpg
+        - quote: >-
+            خططت لرحلة عائلية لمدة أسبوعين في اليابان دون جدول بيانات واحد. اقترح
+            tafiya أوقات قطارات أفضل وفنادق مناسبة للأطفال لم أكن لأجدها وحدي على
+            الإنترنت.
+          author: سارة تشين
+          role: سان فرانسيسكو، الولايات المتحدة
+          avatar: /images/testimonials/avatar-sarah.svg
+        - quote: >-
+            وفرت تنبيهات الأسعار أكثر من 400 جنيه إسترليني على رحلات إلى لشبونة. حجز
+            المجموعة بأكملها من مسار مشترك واحد — دون فوضى لقطات الشاشة في الدردشة.
+          author: ماركوس ويب
+          role: لندن، المملكة المتحدة
+          avatar: /images/testimonials/avatar-marcus.svg
+        - quote: >-
+            كمسافرة منفردة، أحببت كيف يحدد tafiya الأحياء الآمنة ويربطني بمرشدين
+            محليين موثوقين قبل وصولي إلى مراكش في الربيع الماضي.
+          author: إيلينا روسي
+          role: ميلانو، إيطاليا
+          avatar: /images/testimonials/avatar-elena.svg
+        - quote: >-
+            أُقيمت رحلة شركتنا لأربعين شخصاً في ظهر واحد. تم تأكيد الغرف ونقل
+            المطار والأنشطة قبل نهاية يوم العمل.
+          author: جيمس أوكونكو
+          role: رئيس الموارد البشرية، Nova Labs
+          avatar: /images/testimonials/tafiya/chris-thomas.jpg
+        - quote: >-
+            استخدمت tafiya لعطلة نهاية أسبوع مفاجئة في برشلونة. حُجزت فنادق الشاطئ
+            وجولة الطعام والتوصيل من المطار قبل انتهاء اجتماع صباحي.
+          author: بريا ناير
+          role: بنغالور، الهند
+          avatar: /images/testimonials/tafiya/mike-taylor.jpg
+  - discriminant: logoCloud
+    value:
+      logos:
+        - image: /images/logos/tafiya/axon.png
+          alt: Axon Airlines
+          featured: false
+        - image: /images/logos/tafiya/jetstar.png
+          alt: Jetstar
+          featured: false
+        - image: /images/logos/tafiya/expedia.png
+          alt: Expedia
+          featured: false
+        - image: /images/logos/tafiya/qantas.png
+          alt: Qantas
+          featured: false
+        - image: /images/logos/tafiya/alitalia.png
+          alt: Alitalia
+          featured: false
+  - discriminant: subscribe
+    value:
+      headline: |
+        اشترك للحصول على معلومات وأخبار وعروض مثيرة للاهتمام
+        حول tafiya
+      buttonLabel: اشترك

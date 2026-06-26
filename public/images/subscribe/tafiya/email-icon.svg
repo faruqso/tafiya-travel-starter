@@ -1,4 +1,6 @@
-<svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <rect x="0.5" y="0.5" width="20" height="17" rx="4.5" stroke="#39425D"/>
-  <path d="M4.50003 5.50003L9.90003 9.55003C10.2556 9.8167 10.7445 9.8167 11.1 9.55003L16.5 5.50003" stroke="#39425D" stroke-linecap="round"/>
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 46">
+<path id="Vector 5" d="M4 6L9.4 10.05C9.75556 10.3167 10.2444 10.3167 10.6 10.05L16 6" stroke="var(--stroke-0, #39425D)" stroke-linecap="round"/>
+<rect id="Rectangle 22" x="0.5" y="0.5" width="20" height="17" rx="4.5" stroke="var(--stroke-0, #39425D)"/>
+</g>
 </svg>

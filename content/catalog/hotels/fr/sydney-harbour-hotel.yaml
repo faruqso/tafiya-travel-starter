@@ -1,0 +1,16 @@
+slug: sydney-harbour-hotel
+name: Sydney Harbour Hotel
+country: Australie
+city: Sydney
+description: Adresse à Circular Quay avec vue sur l’Opéra et restauration au bord du port.
+priceFrom: $240/nuit
+highlights:
+  - Vue sur l’Opéra
+  - Jetée ferry
+  - Cinéma sur le toit
+  - Centre d’affaires
+amenities:
+  - Vue sur le port
+  - Bar sur le toit
+  - Piscine
+  - Spa

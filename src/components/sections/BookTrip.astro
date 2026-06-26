@@ -15,11 +15,19 @@ const stepColors: Record<string, string> = {
   orange: 'var(--color-step-2)',
   teal: 'var(--color-step-3)',
 };
+
+const defaultStepIcons: Record<string, string> = {
+  yellow: '/images/book-trip/tafiya/icons/step-destination.svg',
+  orange: '/images/book-trip/tafiya/icons/step-payment.svg',
+  teal: '/images/book-trip/tafiya/icons/step-airport.svg',
+};
+
+const asset = (path: string) => path;
 ---
 
 <Section variant="default" class="book-trip">
   <Container>
-    <div class="book-trip__grid">
+    <div class="book-trip__grid" data-book-trip>
       <div class="book-trip__content">
         <SectionHeader
           eyebrow={section.eyebrow}
@@ -29,15 +37,25 @@ const stepColors: Record<string, string> = {
           class="book-trip__header"
         />
 
-        <ol class="book-trip__steps">
+        <ol class="book-trip__steps" data-reveal-group data-reveal-stagger="100" data-reveal-delay="150">
           {
             section.steps.map((step) => (
-              <li class="book-trip__step">
+              <li class="book-trip__step" data-reveal-item>
                 <div
                   class="book-trip__step-icon"
                   style={`background-color: ${stepColors[step.color] ?? stepColors.yellow}`}
                 >
-                  <img src={step.icon} alt="" width="47" height="48" />
+                  <img
+                    src={step.icon || defaultStepIcons[step.color]}
+                    alt=""
+                    class:list={[
+                      'book-trip__step-glyph',
+                      step.color === 'orange' && 'book-trip__step-glyph--payment',
+                      step.color === 'teal' && 'book-trip__step-glyph--airport',
+                    ]}
+                    width="22"
+                    height="22"
+                  />
                 </div>
                 <div class="book-trip__step-copy">
                   <h3 class="book-trip__step-title">{step.title}</h3>
@@ -50,13 +68,99 @@ const stepColors: Record<string, string> = {
       </div>
 
       <div class="book-trip__visual" aria-hidden="true">
-        <img
-          src={section.previewImage ?? '/images/book-trip/tafiya/trip-preview.png'}
-          alt=""
-          class="book-trip__preview"
-          width="645"
-          height="582"
-        />
+        <div class="book-trip__illustration-wrap">
+        <div class="book-trip__illustration">
+          <div class="book-trip__glow">
+            <img src={asset('/images/book-trip/tafiya/cards/glow-ellipse.svg')} alt="" />
+          </div>
+
+          <div class="book-trip__cards">
+            <article class="book-trip__card book-trip__card--primary">
+              <div class="book-trip__card-photo" data-book-trip-photo>
+                <img src={asset('/images/book-trip/tafiya/cards/greece-trip.jpg')} alt="" />
+              </div>
+
+              <h3 class="book-trip__card-title">Trip To Greece</h3>
+
+              <div class="book-trip__card-meta">
+                <span class="book-trip__card-date">14-29 June</span>
+                <span class="book-trip__card-divider">
+                  <img src={asset('/images/book-trip/tafiya/cards/divider-line.svg')} alt="" />
+                </span>
+                <span class="book-trip__card-author">by Robbin joseph</span>
+              </div>
+
+              <div class="book-trip__options">
+                <div class="book-trip__option book-trip__option--leaf">
+                  <img
+                    class="book-trip__option-bg"
+                    src={asset('/images/book-trip/tafiya/cards/option-circle.svg')}
+                    alt=""
+                  />
+                  <div class="book-trip__option-leaf">
+                    <img src={asset('/images/book-trip/tafiya/cards/leaf-icon-part1.svg')} alt="" />
+                    <img src={asset('/images/book-trip/tafiya/cards/leaf-icon-part2.svg')} alt="" />
+                  </div>
+                </div>
+
+                <div class="book-trip__option book-trip__option--map">
+                  <img
+                    class="book-trip__option-bg"
+                    src={asset('/images/book-trip/tafiya/cards/option-circle.svg')}
+                    alt=""
+                  />
+                  <img
+                    class="book-trip__option-map"
+                    src={asset('/images/book-trip/tafiya/cards/map-icon.svg')}
+                    alt=""
+                  />
+                </div>
+
+                <div class="book-trip__option book-trip__option--send">
+                  <img src={asset('/images/book-trip/tafiya/cards/send-icon.svg')} alt="" />
+                </div>
+              </div>
+
+              <div class="book-trip__card-footer">
+                <div class="book-trip__card-attendees">
+                  <img src={asset('/images/book-trip/tafiya/cards/building-icon.svg')} alt="" />
+                  <span>24 people going</span>
+                </div>
+                <img
+                  class="book-trip__card-heart"
+                  src={asset('/images/book-trip/tafiya/cards/heart-icon.svg')}
+                  alt=""
+                />
+              </div>
+            </article>
+
+            <article class="book-trip__card book-trip__card--status" data-book-trip-status>
+              <div class="book-trip__status-avatar">
+                <img
+                  class="book-trip__status-shadow"
+                  src={asset('/images/book-trip/tafiya/cards/avatar-shadow.svg')}
+                  alt=""
+                />
+                <img
+                  class="book-trip__status-photo"
+                  src={asset('/images/book-trip/tafiya/cards/rome-avatar.jpg')}
+                  alt=""
+                />
+              </div>
+
+              <p class="book-trip__status-label">Ongoing</p>
+              <p class="book-trip__status-title">Trip to rome</p>
+              <p class="book-trip__status-progress-text">
+                <span class="book-trip__status-percent">40%</span> completed
+              </p>
+
+              <div class="book-trip__status-bar">
+                <div class="book-trip__status-bar-fill" data-book-trip-progress></div>
+              </div>
+            </article>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
   </Container>
@@ -64,30 +168,46 @@ const stepColors: Record<string, string> = {
 
 <style>
   .book-trip__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-12);
-    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+    min-width: 0;
+    width: 100%;
+    padding-bottom: calc(min(92vw, 22rem) * 28.6875 / 30.3125 + 2.5rem);
+  }
+
+  .book-trip__content {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    width: 100%;
   }
 
   .book-trip :global(.book-trip__header) {
-    margin-bottom: var(--space-10);
+    margin-bottom: 1.9375rem;
   }
 
   .book-trip__steps {
     display: flex;
     flex-direction: column;
-    gap: var(--space-10);
+    gap: var(--book-trip-steps-gap);
     list-style: none;
     padding: 0;
     margin: 0;
+    max-width: 24.6875rem;
   }
 
   .book-trip__step {
     display: grid;
-    grid-template-columns: 2.9375rem 1fr;
-    gap: var(--space-5);
+    grid-template-columns: 2.9375rem minmax(0, 1fr);
+    gap: 1.3125rem;
     align-items: start;
+  }
+
+  .book-trip__step-copy {
+    min-width: 0;
   }
 
   .book-trip__step-icon {
@@ -98,53 +218,489 @@ const stepColors: Record<string, string> = {
     height: 3rem;
     border-radius: 0.8125rem;
     flex-shrink: 0;
+    margin-top: 0.25rem;
   }
 
-  .book-trip__step-icon img {
-    width: 2.9375rem;
-    height: 3rem;
+  .book-trip__step-glyph {
+    display: block;
+    width: 1.375rem;
+    height: 1.375rem;
     object-fit: contain;
+  }
+
+  .book-trip__step-glyph--payment {
+    width: 1.3784rem;
+    height: 1.1163rem;
+  }
+
+  .book-trip__step-glyph--airport {
+    width: 1.4063rem;
+    height: 1.1719rem;
   }
 
   .book-trip__step-title {
     font-family: var(--font-body);
     font-size: var(--text-base);
     font-weight: var(--font-weight-bold);
-    line-height: 1.245;
+    line-height: var(--leading-card);
     color: var(--color-text-muted);
-    margin-bottom: var(--space-1);
+    margin: 0 0 0.25rem;
   }
 
   .book-trip__step-desc {
     font-family: var(--font-body);
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
-    line-height: 1.245;
+    line-height: var(--leading-card);
     color: var(--color-text-muted);
-    max-width: 28rem;
+    margin: 0;
     white-space: pre-line;
   }
 
+  /* Right pane — Figma node 100:15 */
   .book-trip__visual {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 0;
     display: flex;
     justify-content: center;
+    width: min(92vw, 22rem);
+    min-width: 0;
+    max-width: 100%;
+    transform: translateX(-50%);
+    container-type: inline-size;
+    pointer-events: none;
+    padding: 0;
   }
 
-  .book-trip__preview {
+  .book-trip__illustration-wrap {
+    container-type: inline-size;
+    position: relative;
     width: 100%;
-    max-width: 40.3125rem;
-    height: auto;
+    max-width: 30.3125rem;
+    overflow: visible;
+    height: calc(100cqw * 28.6875 / 30.3125);
+  }
+
+  .book-trip__illustration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30.3125rem;
+    height: 28.6875rem;
+    transform-origin: top left;
+    transform: scale(calc(100cqw / 30.3125rem));
+  }
+
+  .book-trip__glow {
+    position: absolute;
+    left: 3.75rem;
+    top: 0;
+    width: 22.125rem;
+    height: 22.9375rem;
+    pointer-events: none;
+  }
+
+  .book-trip__glow img {
+    display: block;
+    width: 150%;
+    height: 150%;
+    max-width: none;
+    margin: -25% 0 0 -21%;
+  }
+
+  .book-trip__cards {
+    position: absolute;
+    left: 0;
+    top: 3.6875rem;
+    width: 30.3125rem;
+    height: 25rem;
+  }
+
+  .book-trip__card {
+    position: absolute;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .book-trip__card--primary {
+    left: 0;
+    top: 0;
+    width: 23.125rem;
+    height: 25rem;
+    border-radius: 1.625rem;
+  }
+
+  .book-trip__card-photo {
+    position: absolute;
+    left: 1.5625rem;
+    top: 1.25rem;
+    width: 20.0625rem;
+    height: 10.0625rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transform: scale(var(--book-trip-photo-scale, 0.84));
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .book-trip__card-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.06);
+    transform-origin: center center;
+  }
+
+  .book-trip__card-title {
+    position: absolute;
+    left: 1.5625rem;
+    top: 12.9375rem;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-card);
+    letter-spacing: 0.0169rem;
+    color: var(--color-text-strong);
+  }
+
+  .book-trip__card-meta {
+    position: absolute;
+    left: 0;
+    top: 15.125rem;
+    width: 100%;
+    height: 1.25rem;
+  }
+
+  .book-trip__card-date,
+  .book-trip__card-author {
+    position: absolute;
+    top: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-card);
+    letter-spacing: -0.005rem;
+    color: var(--color-text-subtle);
+    white-space: nowrap;
+  }
+
+  .book-trip__card-date {
+    left: 1.5625rem;
+  }
+
+  .book-trip__card-author {
+    left: 8.0625rem;
+  }
+
+  .book-trip__card-divider {
+    position: absolute;
+    left: 7.25rem;
+    top: 0.0625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .book-trip__card-divider img {
+    display: block;
+    width: 1px;
+    height: 1rem;
     object-fit: contain;
   }
 
-  @media (min-width: 1024px) {
+  .book-trip__options {
+    position: absolute;
+    left: 1.75rem;
+    top: 17.6875rem;
+    width: 8.6875rem;
+    height: 2.25rem;
+  }
+
+  .book-trip__option {
+    position: absolute;
+    top: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .book-trip__option--leaf {
+    left: 0;
+  }
+
+  .book-trip__option--map {
+    left: 3.375rem;
+  }
+
+  .book-trip__option--send {
+    left: 6.4375rem;
+  }
+
+  .book-trip__option-bg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .book-trip__option-leaf {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  .book-trip__option-leaf img {
+    position: absolute;
+    width: 0.875rem;
+    height: 0.875rem;
+    object-fit: contain;
+  }
+
+  .book-trip__option-map {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.875rem;
+    height: 0.875rem;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+
+  .book-trip__option--send img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .book-trip__card-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 21.75rem;
+    height: 1.25rem;
+  }
+
+  .book-trip__card-attendees {
+    position: absolute;
+    left: 1.5625rem;
+    top: 0.0625rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9375rem;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-card);
+    letter-spacing: -0.02rem;
+    color: var(--color-text-subtle);
+  }
+
+  .book-trip__card-attendees img {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+  }
+
+  .book-trip__card-heart {
+    position: absolute;
+    left: 20.3125rem;
+    top: 0.1069rem;
+    display: block;
+    width: 1.25rem;
+    height: 1.1616rem;
+    object-fit: contain;
+  }
+
+  .book-trip__card--status {
+    left: 13.875rem;
+    top: 13.6875rem;
+    width: 16.4375rem;
+    height: 8.0625rem;
+    border-radius: 1.125rem;
+    transform: translateX(var(--book-trip-status-x, -3.25rem));
+    will-change: transform;
+  }
+
+  .book-trip__status-avatar {
+    position: absolute;
+    left: 1.25rem;
+    top: 1.125rem;
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+
+  .book-trip__status-shadow {
+    position: absolute;
+    inset: 0 -14% -30% -10%;
+    width: calc(100% + 24%);
+    height: calc(100% + 30%);
+    max-width: none;
+    object-fit: contain;
+  }
+
+  .book-trip__status-photo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+  }
+
+  .book-trip__status-label {
+    position: absolute;
+    left: 5.125rem;
+    top: 1rem;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-card);
+    letter-spacing: -0.0306rem;
+    color: var(--color-text-subtle);
+  }
+
+  .book-trip__status-title {
+    position: absolute;
+    left: 5.0625rem;
+    top: 2.4375rem;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-card);
+    letter-spacing: -0.0169rem;
+    color: var(--color-text-strong);
+  }
+
+  .book-trip__status-progress-text {
+    position: absolute;
+    left: 5rem;
+    top: 4.6875rem;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-card);
+    letter-spacing: -0.0481rem;
+    color: var(--color-text-strong);
+  }
+
+  .book-trip__status-percent {
+    color: var(--color-purple);
+  }
+
+  .book-trip__status-bar {
+    position: absolute;
+    left: 5.125rem;
+    top: 6.375rem;
+    width: 9.75rem;
+    height: 0.3125rem;
+    border-radius: 1.875rem;
+    background-color: var(--color-track);
+    overflow: hidden;
+  }
+
+  .book-trip__status-bar-fill {
+    width: var(--book-trip-progress, 0%);
+    height: 100%;
+    border-radius: inherit;
+    background-color: var(--color-purple);
+    transition: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .book-trip__card-photo,
+    .book-trip__card--status {
+      transform: none;
+      will-change: auto;
+    }
+
+    .book-trip__status-bar-fill {
+      width: 46.8%;
+    }
+  }
+
+  @media (min-width: 1100px) {
     .book-trip__grid {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-      gap: var(--space-16);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) var(--content-max-sm);
+      gap: var(--book-trip-grid-gap);
+      align-items: start;
+      padding-bottom: 0;
     }
 
     .book-trip__visual {
-      justify-content: flex-end;
+      position: static;
+      transform: none;
+      left: auto;
+      bottom: auto;
+      z-index: auto;
+      width: 100%;
+      pointer-events: auto;
+      justify-content: flex-start;
+      overflow: visible;
+      padding: 1.25rem 2.5rem 2rem 1.25rem;
+      margin: -1.25rem -2.5rem -2rem -1.25rem;
+    }
+
+    .book-trip__illustration-wrap {
+      width: 30.3125rem;
+      max-width: none;
+      height: 30.1875rem;
+    }
+
+    .book-trip__illustration {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    :global(section.book-trip) {
+      overflow-x: clip;
+      overflow-y: visible;
+    }
+
+    .book-trip__steps {
+      max-width: none;
+      width: 100%;
+    }
+
+    .book-trip__step-desc {
+      max-width: none;
+      overflow-wrap: anywhere;
+    }
+
+    .book-trip__illustration-wrap {
+      max-width: 100%;
+      overflow: visible;
+      height: calc(100cqw * 28.6875 / 30.3125);
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .book-trip__grid {
+      padding-bottom: calc(min(94vw, 20rem) * 28.6875 / 30.3125 + 2rem);
+    }
+
+    .book-trip__visual {
+      width: min(94vw, 20rem);
+    }
+
+    .book-trip__steps {
+      gap: 2rem;
+    }
+
+    .book-trip :global(.book-trip__header) {
+      margin-bottom: var(--space-6);
     }
   }
 </style>

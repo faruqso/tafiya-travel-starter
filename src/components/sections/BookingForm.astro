@@ -1,0 +1,271 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import Heading from '../ui/Heading.astro';
+import Text from '../ui/Text.astro';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+import FormField from '../ui/FormField.astro';
+import type { Locale } from '../../config/locales';
+import type { CatalogKind } from '../../data/catalog';
+import type { BookingFormSection } from '../../types/content';
+import { serializeBookingCatalog } from '../../lib/booking-catalog';
+import { bookingKindLabels, resolveBookingPrefill } from '../../lib/booking-prefill';
+
+interface Props {
+  section: BookingFormSection['value'];
+  locale: Locale;
+}
+
+const { section, locale } = Astro.props;
+const catalog = await serializeBookingCatalog(locale);
+const catalogJson = JSON.stringify(catalog);
+const { kind: selectedKind, item: selectedItem } = resolveBookingPrefill(catalog, Astro.url.searchParams);
+const kindItems = catalog[selectedKind];
+const kindOptions = (Object.keys(bookingKindLabels) as CatalogKind[]).map((value) => ({
+  value,
+  label: bookingKindLabels[value],
+}));
+---
+
+<Section variant="muted" class="booking-form-section">
+  <Container>
+    <div class="booking-form-layout">
+      <div class="booking-form-layout__intro">
+        {section.eyebrow && <p class="booking-form__eyebrow">{section.eyebrow}</p>}
+        <Heading as="h2" size="lg">{section.headline}</Heading>
+        {section.subheadline && <Text variant="lead">{section.subheadline}</Text>}
+      </div>
+
+      <Card class="booking-form-card">
+        {section.formNote && <Text variant="muted" class="booking-form__note">{section.formNote}</Text>}
+
+        <div
+          class="booking-form-root"
+          data-booking-form
+          data-prefill-kind={selectedKind}
+          data-prefill-item={selectedItem?.slug ?? ''}
+        >
+          <script type="application/json" data-booking-catalog-json set:html={catalogJson} />
+
+          <form
+            class="booking-form"
+            data-json-form
+            data-endpoint="/api/book"
+            data-success-message="Booking request received! A tafiya specialist will confirm availability within one business day."
+            novalidate
+          >
+          <fieldset class="booking-form__group">
+            <legend class="booking-form__legend">Trip selection</legend>
+
+            <FormField label="Trip type">
+              <select name="kind" required>
+                {
+                  kindOptions.map((option) => (
+                    <option value={option.value} selected={option.value === selectedKind}>
+                      {option.label}
+                    </option>
+                  ))
+                }
+              </select>
+            </FormField>
+
+            <FormField label="Select trip">
+              <select name="item" required>
+                <option value="">Select…</option>
+                {
+                  kindItems.map((entry) => (
+                    <option
+                      value={entry.slug}
+                      selected={entry.slug === selectedItem?.slug}
+                    >
+                      {entry.name} — from {entry.priceFrom}
+                    </option>
+                  ))
+                }
+              </select>
+            </FormField>
+
+            <div class="booking-form__summary" data-booking-summary hidden={!selectedItem}>
+              <p class="booking-form__summary-label">Selected trip</p>
+              <p class="booking-form__summary-name" data-booking-summary-name>
+                {selectedItem?.name ?? ''}
+              </p>
+              <p class="booking-form__summary-meta" data-booking-summary-meta>
+                {selectedItem?.subtitle ?? ''}
+              </p>
+              <div class="booking-form__summary-tags">
+                <span class="badge badge--muted" data-booking-summary-badge>
+                  {selectedItem?.badge ?? ''}
+                </span>
+                <span class="badge badge--muted" data-booking-summary-region>
+                  {selectedItem?.region ?? ''}
+                </span>
+                <span class="badge badge--muted booking-form__price-badge">
+                  From <strong data-booking-summary-price>{selectedItem?.priceFrom ?? ''}</strong>
+                </span>
+              </div>
+            </div>
+
+            <input type="hidden" name="duration" value={selectedItem?.subtitle ?? ''} />
+            <input type="hidden" name="estimatedPrice" value={selectedItem?.priceFrom ?? ''} />
+          </fieldset>
+
+          <fieldset class="booking-form__group">
+            <legend class="booking-form__legend">Travel details</legend>
+
+            <div class="booking-form__row">
+              <FormField label="Departure date">
+                <input type="date" name="departureDate" required />
+              </FormField>
+              <FormField label="Return date" optional>
+                <input type="date" name="returnDate" />
+              </FormField>
+            </div>
+
+            <div class="booking-form__row">
+              <FormField label="Adults">
+                <input type="number" name="adults" min="1" max="20" value="2" required />
+              </FormField>
+              <FormField label="Children">
+                <input type="number" name="children" min="0" max="20" value="0" />
+              </FormField>
+            </div>
+          </fieldset>
+
+          <fieldset class="booking-form__group">
+            <legend class="booking-form__legend">Your details</legend>
+
+            <FormField label="Full name">
+              <input type="text" name="name" placeholder="Your name" required />
+            </FormField>
+
+            <div class="booking-form__row">
+              <FormField label="Email">
+                <input type="email" name="email" placeholder="you@example.com" required />
+              </FormField>
+              <FormField label="Phone" optional>
+                <input type="tel" name="phone" placeholder="+44 7700 900123" />
+              </FormField>
+            </div>
+
+            <FormField label="Special requests" optional>
+              <textarea
+                name="requests"
+                rows="4"
+                placeholder="Room preferences, dietary needs, flexible dates, add-on tours…"
+              />
+            </FormField>
+          </fieldset>
+
+          <Button type="submit" label="Request booking" variant="primary" size="lg" class="form-submit" />
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+        </div>
+      </Card>
+    </div>
+  </Container>
+</Section>
+
+<script is:inline src="/scripts/booking-form.js"></script>
+
+<style>
+  .booking-form-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .booking-form__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-brand);
+    margin-bottom: var(--space-3);
+  }
+
+  .booking-form-layout__intro :global(.text) {
+    margin-top: var(--space-4);
+  }
+
+  .booking-form__note {
+    margin-bottom: var(--space-6);
+  }
+
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .booking-form__group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .booking-form__legend {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-section);
+    margin-bottom: var(--space-2);
+    padding: 0;
+  }
+
+  .booking-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .booking-form__summary {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    background: var(--color-brand-subtle);
+    border: 1px solid var(--color-brand-border-subtle);
+  }
+
+  .booking-form__summary-label {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-subtle);
+  }
+
+  .booking-form__summary-name {
+    margin: 0 0 var(--space-1);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-strong);
+  }
+
+  .booking-form__summary-meta {
+    margin: 0 0 var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .booking-form__summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .booking-form__price-badge {
+    color: var(--color-brand);
+  }
+
+  @media (max-width: 900px) {
+    .booking-form-layout,
+    .booking-form__row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,22 @@
+slug: istanbul-cairo
+name: Istanbul → Cairo
+country: Egypt
+route: IST → CAI
+airline: Turkish Airlines
+image: https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $210
+priceValue: 210
+duration: 2h 05m
+stops: 0
+cabin: economy
+originCountry: Turkey
+destinationCountry: Egypt
+originRegion: middle-east
+region: middle-east
+rating: 4.55
+description: Short hop between two historic capitals with multiple daily frequencies.
+highlights:
+  - Multiple daily flights
+  - Miles&Smiles
+  - Short connection
+  - Meal included

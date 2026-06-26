@@ -1,0 +1,13 @@
+slug: new-york-london
+name: نيويورك ← لندن
+country: المملكة المتحدة
+route: JFK → LHR
+airline: Virgin Atlantic
+duration: 7h 10m
+description: درجة سياحية ممتازة مع ترقيات مقعد مسطح وترفيه عند الطلب عبر الأطلسي.
+priceFrom: $520
+highlights:
+  - خيارات رحلة ليلية
+  - مقصورة ممتازة
+  - مساحة أرجل إضافية
+  - صعود أولوية

@@ -1,0 +1,57 @@
+slug: about
+title: À propos
+description: >-
+  Découvrez comment tafiya aide les voyageurs à réserver plus intelligemment —
+  avec des voyages sélectionnés, des partenaires de confiance et un accompagnement
+  à chaque étape.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Notre histoire
+      headline: Voyager doit être excitant, pas épuisant
+      subheadline: >-
+        tafiya est né d'une idée simple — comparer les meilleurs itinéraires,
+        séjours et expériences locales sans jongler avec une douzaine d'onglets.
+      image: /images/destinations/tafiya/rome.jpg
+  - discriminant: textBlock
+    value:
+      eyebrow: Qui nous sommes
+      headline: Conçu pour les voyageurs modernes
+      body: >-
+        Nous collaborons avec des compagnies aériennes, des hôtels boutique et des
+        guides locaux dans plus de 50 destinations. Notre équipe vérifie chaque
+        itinéraire pour un timing réaliste, des prix clairs et un support fiable.
+
+
+        Que vous réserviez un circuit de 10 jours à Rome ou une aventure ferroviaire
+        multi-villes en Europe, tafiya centralise vos documents, paiements et mises
+        à jour — sur le web et mobile.
+
+
+        Ce starter open source reflète notre vision produit : des pages rapides, un
+        contenu honnête et un design system que vous pouvez forker pour votre
+        propre marque voyage.
+  - discriminant: features
+    value:
+      eyebrow: Pourquoi nous choisir
+      headline: Ce que vous pouvez attendre
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Tarifs transparents
+          description: >-
+            Taxes, bagages et frais de resort affichés dès le départ — pas de
+            surprises au paiement.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Expertise locale
+          description: >-
+            Guides et concierges vérifiés dans chaque destination, avec des avis
+            de vrais voyageurs tafiya.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Formules flexibles
+          description: >-
+            Modifiez les dates ou ajoutez des activités jusqu'à 72 h avant le
+            départ sur les forfaits éligibles.
+          featured: false

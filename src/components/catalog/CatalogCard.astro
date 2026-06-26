@@ -1,0 +1,223 @@
+---
+import type { CatalogKind } from '../../data/catalog';
+import { getCatalogLabels } from '../../i18n/catalog';
+import type { Locale } from '../../config/locales';
+import Badge from '../ui/Badge.astro';
+
+interface CatalogCardData {
+  slug: string;
+  name: string;
+  image: string;
+  priceFrom: string;
+  href: string;
+  subtitle?: string;
+  badge?: string;
+  rating: number;
+  region?: string;
+  category?: string;
+  stars?: number;
+  cabin?: string;
+}
+
+interface Props {
+  item: CatalogCardData;
+  kind: CatalogKind;
+  locale: Locale;
+}
+
+const { item, locale, kind } = Astro.props;
+const labels = getCatalogLabels(locale);
+---
+
+<a
+  href={item.href}
+  class="catalog-card"
+  data-catalog-card
+  data-slug={item.slug}
+  data-filter-region={item.region}
+  data-filter-category={item.category}
+  data-filter-stars={item.stars}
+  data-filter-cabin={item.cabin}
+  data-filter-price={item.priceFrom}
+>
+  <div class="catalog-card__image-wrap">
+    <img src={item.image} alt={item.name} class="catalog-card__image" loading="lazy" />
+    {item.badge && <Badge label={item.badge} variant="on-image" class="catalog-card__badge" />}
+  </div>
+  <div class="catalog-card__body">
+    <div class="catalog-card__row">
+      <h3 class="catalog-card__name">{item.name}</h3>
+      <span class="catalog-card__price">{item.priceFrom}</span>
+    </div>
+    {
+      item.subtitle && (
+        <p class="catalog-card__meta">
+          <img src="/images/destinations/tafiya/navigation.svg" alt="" width="16" height="16" />
+          <span>{item.subtitle}</span>
+        </p>
+      )
+    }
+    <p class="catalog-card__rating">{item.rating.toFixed(1)} ★</p>
+    <span class="catalog-card__cta">{labels.viewDetails}</span>
+  </div>
+</a>
+
+<style>
+  .catalog-card {
+    display: flex;
+    flex-direction: column;
+    height: var(--card-height-catalog);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    color: inherit;
+    text-decoration: none;
+    transition:
+      transform var(--transition-slow),
+      box-shadow var(--transition-slow);
+  }
+
+  .catalog-card:hover {
+    transform: translateY(-0.35rem);
+    box-shadow: var(--shadow-cta);
+  }
+
+  .catalog-card__image-wrap {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .catalog-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: var(--color-border-light);
+    transform: scale(1);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .catalog-card:hover .catalog-card__image,
+  .catalog-card:focus-visible .catalog-card__image {
+    transform: scale(1.08);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .catalog-card__image {
+      transition: none;
+    }
+
+    .catalog-card:hover .catalog-card__image,
+    .catalog-card:focus-visible .catalog-card__image {
+      transform: none;
+    }
+  }
+
+  .catalog-card__badge {
+    position: absolute;
+    top: var(--space-4);
+    inset-inline-start: var(--space-4);
+  }
+
+  .catalog-card__body {
+    padding: var(--space-5) var(--space-6) var(--space-6);
+  }
+
+  .catalog-card__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .catalog-card__name {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-card);
+  }
+
+  .catalog-card__price {
+    font-family: var(--font-ui);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .catalog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-base);
+    color: var(--color-text-subtle);
+  }
+
+  .catalog-card__rating {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-purple);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .catalog-card__cta {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
+  }
+
+  :global(.catalog-index__grid[data-view='list']) .catalog-card {
+    flex-direction: row;
+    align-items: stretch;
+    height: auto;
+    min-height: 11rem;
+  }
+
+  :global(.catalog-index__grid[data-view='list']) .catalog-card__image-wrap {
+    flex: 0 0 clamp(9rem, 32%, 16rem);
+    width: clamp(9rem, 32%, 16rem);
+    min-height: 11rem;
+    max-height: none;
+  }
+
+  :global(.catalog-index__grid[data-view='list']) .catalog-card__image {
+    min-height: 11rem;
+  }
+
+  :global(.catalog-index__grid[data-view='list']) .catalog-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    padding: var(--space-5) var(--space-6);
+  }
+
+  :global(.catalog-index__grid[data-view='list']) .catalog-card__cta {
+    margin-top: auto;
+    padding-top: var(--space-2);
+  }
+
+  @media (max-width: 640px) {
+    :global(.catalog-index__grid[data-view='list']) .catalog-card {
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    :global(.catalog-index__grid[data-view='list']) .catalog-card__image-wrap {
+      flex: 1 1 auto;
+      width: 100%;
+      min-height: 10rem;
+    }
+
+    :global(.catalog-index__grid[data-view='list']) .catalog-card__image {
+      min-height: 10rem;
+    }
+  }
+</style>

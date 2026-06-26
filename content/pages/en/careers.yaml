@@ -1,0 +1,88 @@
+slug: careers
+title: Careers
+description: Join tafiya — remote-first roles in product, engineering, and destination operations.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Company
+      headline: Build the future of travel with us
+      subheadline: We are a remote-first team designing tools that make planning trips calm, transparent, and genuinely enjoyable.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Apply now
+          href: '#apply'
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: Culture
+      headline: How we work
+      body: >-
+        tafiya is distributed across London, Lisbon, and Singapore with async-friendly rituals and quarterly team retreats in destinations we love. We hire for curiosity, clear writing, and empathy for travelers under real-world stress — missed connections, visa changes, and last-minute family trips included.
+
+
+        Everyone receives a travel stipend, learning budget, and flexible hours that respect local time zones. We publish salary bands on every role and keep interview loops focused — typically three conversations, never more than two weeks end to end.
+  - discriminant: features
+    value:
+      eyebrow: Benefits
+      headline: What you can expect
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Remote-first
+          description: Work from anywhere with core overlap hours and twice-yearly team gatherings.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Travel stipend
+          description: Annual budget to explore new routes and dogfood the product you ship.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Growth budget
+          description: Courses, conferences, and books — if it makes you better at your craft, we support it.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Open roles
+      headline: We are hiring
+      body: >-
+        ### Senior Product Designer — Trips & itineraries
+
+        Lead end-to-end flows for multi-city planning and mobile check-in. Remote (EU/UK time zones).
+
+
+        ### Full-stack Engineer — Search & pricing
+
+        Build fast, reliable fare search with Node and modern front-end tooling. Remote worldwide.
+
+
+        ### Destination Operations Lead — Mediterranean
+
+        Vet guides, negotiate hotel allotments, and keep on-the-ground partners accountable.
+
+
+        Don't see a fit? You can still apply below — we keep strong introductions on file.
+  - discriminant: textBlock
+    value:
+      eyebrow: How to apply
+      headline: Three steps to join tafiya
+      body: >-
+        ### Pick a role
+
+        Choose an open position above, or tell us where you would add the most value if you are applying generally.
+
+
+        ### Send your work
+
+        Include a portfolio, GitHub, or LinkedIn profile so we can understand how you think and ship.
+
+
+        ### Complete the form below
+
+        Our talent team reviews applications within three business days and follows up with a short intro call if there is a match.
+  - discriminant: contact
+    value:
+      purpose: careers
+      eyebrow: Apply now
+      headline: Submit your application
+      subheadline: Tell us which role interests you and share links to work you are proud of. We reply within three business days.
+      email: careers@tafiya.co
+      formNote: Prefer email? Send your CV and portfolio directly to careers@tafiya.co with the role title in the subject line.

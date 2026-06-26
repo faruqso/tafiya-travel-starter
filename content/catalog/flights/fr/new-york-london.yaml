@@ -1,0 +1,13 @@
+slug: new-york-london
+name: New York → Londres
+country: Royaume-Uni
+route: JFK → LHR
+airline: Virgin Atlantic
+duration: 7h 10m
+description: Premium economy avec surclassements lit plat et divertissement à la demande sur l’Atlantique.
+priceFrom: $520
+highlights:
+  - Options vol de nuit
+  - Cabine premium
+  - Espace jambes supplémentaire
+  - Embarquement prioritaire

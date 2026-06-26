@@ -1,0 +1,17 @@
+slug: book
+title: Book a trip
+description: Request a booking for destinations, hotels, or flights on tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Book
+      headline: Start your booking
+      subheadline: Choose your trip, pick dates, and send a request — our team confirms availability within one business day.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: bookingForm
+    value:
+      eyebrow: Booking request
+      headline: Tell us about your trip
+      subheadline: Your selection from any destination, hotel, or flight page carries over automatically. Adjust dates and traveler count before submitting.
+      formNote: No payment is taken here — a tafiya specialist will follow up with a confirmed quote and next steps.

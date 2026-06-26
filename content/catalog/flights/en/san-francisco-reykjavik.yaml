@@ -1,0 +1,22 @@
+slug: san-francisco-reykjavik
+name: San Francisco → Reykjavik
+country: Iceland
+route: SFO → KEF
+airline: Icelandair
+image: https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $480
+priceValue: 480
+duration: 9h 05m
+stops: 0
+cabin: economy
+originCountry: United States
+destinationCountry: Iceland
+originRegion: americas
+region: europe
+rating: 4.58
+description: Non-stop to Iceland with free stopover packages to explore the country en route to Europe.
+highlights:
+  - Free stopover
+  - Northern lights season
+  - Compact aircraft
+  - Flexible booking

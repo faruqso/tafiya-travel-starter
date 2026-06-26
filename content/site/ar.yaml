@@ -1,0 +1,58 @@
+locale: ar
+brandName: tafiya
+tagline: أفضل الوجهات حول العالم
+footerTagline: |-
+  احجز رحلتك في دقائق،
+  وابقَ مسيطراً لفترة أطول بكثير.
+logo: /images/brand/logo.svg
+loginLabel: تسجيل الدخول
+signupLabel: إنشاء حساب
+navLinks:
+  - label: الوجهات
+    href: /destinations
+  - label: الفنادق
+    href: /hotels
+  - label: الرحلات
+    href: /flights
+  - label: الحجوزات
+    href: /bookings
+footerColumns:
+  - title: الشركة
+    links:
+      - label: من نحن
+        href: /about
+      - label: الوظائف
+        href: /careers
+      - label: التطبيق
+        href: /mobile
+  - title: تواصل
+    links:
+      - label: المساعدة / الأسئلة
+        href: /help-faq
+      - label: الصحافة
+        href: /press
+      - label: الشركاء
+        href: /affiliates
+  - title: المزيد
+    links:
+      - label: رسوم الطيران
+        href: /airline-fees
+      - label: شركات الطيران
+        href: /airlines
+      - label: نصائح التوفير
+        href: /low-fare-tips
+socialLinks:
+  - label: Facebook
+    href: https://facebook.com
+  - label: Instagram
+    href: https://instagram.com
+  - label: Twitter
+    href: https://twitter.com
+appStoreLabel: اكتشف تطبيقنا
+googlePlayUrl: https://play.google.com
+appStoreUrl: https://apps.apple.com
+copyright: جميع الحقوق محفوظة · hello@tafiya.co
+seoTitleTemplate: '%s | tafiya'
+seoDescription: >-
+  اكتشف أفضل الوجهات حول العالم. سافر واستمتع وعِش حياة جديدة ومليئة مع tafiya.
+ogImage: /images/og/default.jpg

@@ -1,0 +1,53 @@
+slug: about
+title: من نحن
+description: >-
+  تعرّف على كيف يساعد tafiya المسافرين على الحجز بذكاء — برحلات منتقاة وشركاء
+  موثوقين ودعم في كل خطوة.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: قصتنا
+      headline: السفر يجب أن يكون ممتعًا لا مرهقًا
+      subheadline: >-
+        بدأ tafiya بفكرة بسيطة — مقارنة أفضل المسارات والإقامات والتجارب المحلية
+        دون التنقل بين عشرات التبويبات.
+      image: /images/destinations/tafiya/rome.jpg
+  - discriminant: textBlock
+    value:
+      eyebrow: من نحن
+      headline: صُمم للمسافر العصري
+      body: >-
+        نتعاون مع شركات طيران وفنادق بوتيك ومرشدين محليين في أكثر من 50 وجهة. يتحقق
+        فريقنا من كل خط سير لضمان توقيت واقعي وأسعار واضحة ودعم موثوق.
+
+
+        سواء كنت تحجز جولة 10 أيام في روما أو مغامرة قطارات أوروبية متعددة المدن،
+        يحتفظ tafiya بمستنداتك ومدفوعاتك وتحديثاتك في لوحة واحدة — على الويب
+        والجوال.
+
+
+        يعكس هذا المشروع مفتوح المصدر رؤيتنا: صفحات سريعة ومحتوى صادق ونظام تصميم
+        يمكنك تفريعه لعلامتك السياحية.
+  - discriminant: features
+    value:
+      eyebrow: لماذا يختارنا المسافرون
+      headline: ما الذي يمكنك توقعه
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: أسعار شفافة
+          description: >-
+            الضرائب والأمتعة ورسوم المنتجعات ظاهرة من البداية — بلا مفاجآت عند
+            الدفع.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: خبرة محلية
+          description: >-
+            مرشدون وكونسيرج معتمدون في كل وجهة، مع تقييمات من مسافري tafiya
+            الحقيقيين.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: خطط مرنة
+          description: >-
+            غيّر التواريخ أو أضف أنشطة حتى 72 ساعة قبل المغادرة للباقات المؤهلة.
+          featured: false

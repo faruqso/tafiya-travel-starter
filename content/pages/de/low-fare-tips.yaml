@@ -1,0 +1,57 @@
+slug: low-fare-tips
+title: Tipps für günstige Tarife
+description: Praktische Tipps für günstigere Flüge mit tafiya — flexible Daten, Alarme und smartes Routing.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Guides
+      headline: Smarter reisen, weniger ausgeben
+      subheadline: Flexible Daten, nahegelegene Flughäfen und Nebensaison-Fenster können Tarife deutlich senken.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: Schnelle Erfolge
+      headline: Vier Gewohnheiten für niedrigere Tarife
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Flexible Daten
+          description: Abflug um einen oder zwei Tage verschieben — Wochenmitte-Flüge sind auf beliebten Routen oft 20–30 % günstiger.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Nahegelegene Flughäfen
+          description: Alternative Flughäfen im Radius von zwei Stunden einbeziehen, um Low-Cost-Carrier freizuschalten.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Preisalarme
+          description: Suche speichern und wir mailen, wenn der Tarif unter Ihr Ziel fällt.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Tiefere Strategien
+      headline: Wann buchen und wie routen
+      body: |-
+        ### In der Nebensaison buchen
+
+        Europa im April oder Oktober, Südostasien zu Regensaisonbeginn und Skigebiete Ende März verbinden oft gutes Wetter mit geringerer Nachfrage.
+
+
+        ### Carrier durchdacht mischen
+
+        Zwei One-Ways bei verschiedenen Airlines können Round-Trip schlagen — tafiya markiert Self-Transfer-Zeiten für ausreichend Puffer.
+
+
+        ### Früh Alarme setzen
+
+        Für Feiertagsspitzen Alarm 4–6 Monate vorher erstellen. Wir verfolgen tägliche Preisbewegungen und heben den günstigsten Kauftag nach historischen Routentrends hervor.
+
+
+        Persönliche Routing-Ideen gewünscht? Schreiben Sie an support@tafiya.co mit Heimatflughafen und Reisemonat.
+  - discriminant: cta
+    value:
+      headline: Preisalarm starten
+      subheadline: Suchen Sie Ihre Route, tippen Sie Speichern und wir benachrichtigen bei Preisrückgang.
+      buttons:
+        - label: Flüge suchen
+          href: /flights
+          variant: primary

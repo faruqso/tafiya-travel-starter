@@ -1,0 +1,22 @@
+slug: sydney-singapore
+name: Sydney → Singapore
+country: Singapore
+route: SYD → SIN
+airline: Singapore Airlines
+image: https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $380
+priceValue: 380
+duration: 8h 20m
+stops: 0
+cabin: economy
+originCountry: Australia
+destinationCountry: Singapore
+originRegion: oceania
+region: asia
+rating: 4.85
+description: Award-winning service with seamless connections across Southeast Asia.
+highlights:
+  - Award-winning cabin
+  - Extra baggage
+  - KrisFlyer miles
+  - Star Alliance

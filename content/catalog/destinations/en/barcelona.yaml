@@ -1,0 +1,17 @@
+slug: barcelona
+name: Barcelona, Spain
+country: Spain
+image: https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $3.1k
+priceValue: 3100
+duration: 7 Days Trip
+durationDays: 7
+region: europe
+category: city
+rating: 4.77
+description: Gaudí architecture, tapas alleys, and Costa Brava day trips.
+highlights:
+  - Sagrada Família
+  - Gothic Quarter
+  - Costa Brava
+  - Tapas crawl

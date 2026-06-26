@@ -1,0 +1,52 @@
+slug: bookings
+title: Buchungen
+description: Melden Sie sich an, um Ihre tafiya-Reisen zu verwalten — Reisepläne, Rechnungen einsehen und Änderungen anfragen.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Ihr Konto
+      headline: Buchungen verwalten
+      subheadline: Ihr Reise-Dashboard — melden Sie sich an, um kommende Reisen einzusehen, Dokumente herunterzuladen und Änderungen anzufragen.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Anmelden
+          href: /login
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: Wofür diese Seite da ist
+      headline: Ihr Reise-Dashboard — kein neues Buchungsformular
+      body: |-
+        Buchungen ist der Bereich, in dem wiederkehrende Reisende bereits gekaufte Reisen verwalten. Nach der Anmeldung können Sie:
+
+
+        ### Kommende Reisepläne einsehen
+
+        Flüge, Hotels und Aktivitäten in einer Zeitleiste mit Live-Statusupdates.
+
+
+        ### Rechnungen und Dokumente herunterladen
+
+        Bordkarten, Hotelgutscheine und Belege, wann immer Sie sie brauchen.
+
+
+        ### Änderungen oder Support anfragen
+
+        Termine ändern, Gepäck hinzufügen oder unser Team zu einer bestehenden Buchung kontaktieren.
+
+
+        ### Eine neue Reise planen?
+
+        Um eine neue Destination, ein Hotel oder einen Flug anzufragen, nutzen Sie unser <a href="/book">Buchungsformular</a> — es übernimmt die Auswahl von jeder Katalogseite.
+  - discriminant: cta
+    value:
+      headline: Noch kein Konto?
+      subheadline: Erstellen Sie eines, um Favoriten zu speichern, Buchungen zu verfolgen und Mitgliedertarife freizuschalten — oder starten Sie eine neue Reiseanfrage ohne Anmeldung.
+      buttons:
+        - label: Konto erstellen
+          href: /signup
+          variant: primary
+        - label: Neue Buchung starten
+          href: /book
+          variant: secondary

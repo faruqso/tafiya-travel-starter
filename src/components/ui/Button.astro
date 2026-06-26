@@ -1,83 +1,68 @@
 ---
+import LabelSweep from './LabelSweep.astro';
 import type { ButtonVariant, ButtonSize } from '../../types/content';
 
 interface Props {
-  href: string;
+  href?: string;
   label: string;
-  variant?: ButtonVariant;
+  variant?: ButtonVariant | 'subscribe' | 'nav-signup';
   size?: ButtonSize;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
   class?: string;
+  /** Sets data-mock-fill for demo login autofill hook */
+  mockFill?: boolean;
+  /** Sets data-mock-logout for demo auth sign-out hook */
+  mockLogout?: boolean;
+  /** Redirect path after mock logout (data-logout-redirect) */
+  logoutRedirect?: string;
+  /** Mock download kind for bookings dashboard */
+  mockDownload?: 'itinerary' | 'invoice' | 'receipt';
+  /** Booking reference for mock download buttons */
+  bookingRef?: string;
+  /** Accessible label override */
+  ariaLabel?: string;
 }
 
-const { href, label, variant = 'primary', size = 'md', class: className = '' } = Astro.props;
+const {
+  href,
+  label,
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  disabled = false,
+  class: className = '',
+  mockFill = false,
+  mockLogout = false,
+  logoutRedirect,
+  mockDownload,
+  bookingRef,
+  ariaLabel,
+} = Astro.props;
+
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, className];
 ---
 
-<a href={href} class:list={['btn', `btn--${variant}`, `btn--${size}`, className]}>
-  {label}
-</a>
-
-<style>
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    font-weight: var(--font-weight-semibold);
-    border-radius: var(--radius-md);
-    border: 2px solid transparent;
-    transition: background-color var(--transition-base), color var(--transition-base),
-      border-color var(--transition-base), transform var(--transition-base);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .btn:hover {
-    transform: translateY(-1px);
-  }
-
-  .btn--sm {
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--text-sm);
-  }
-
-  .btn--md {
-    padding: var(--space-3) var(--space-6);
-    font-size: var(--text-base);
-  }
-
-  .btn--lg {
-    padding: var(--space-4) var(--space-8);
-    font-size: var(--text-lg);
-  }
-
-  .btn--primary {
-    background-color: var(--color-brand);
-    color: var(--color-text-on-brand);
-  }
-
-  .btn--primary:hover {
-    background-color: var(--color-brand-hover);
-  }
-
-  .btn--secondary {
-    background-color: transparent;
-    color: var(--color-text);
-    border-color: var(--color-border-strong);
-  }
-
-  .btn--secondary:hover {
-    border-color: var(--color-brand);
-    color: var(--color-brand);
-  }
-
-  .btn--ghost {
-    background-color: transparent;
-    color: var(--color-text-inverse);
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .btn--ghost:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-    border-color: var(--color-text-inverse);
-  }
-</style>
+{
+  href ? (
+    <a href={href} class:list={classes}>
+      <span class="btn__fill" aria-hidden="true" />
+      <LabelSweep label={label} />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class:list={classes}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      data-mock-fill={mockFill || undefined}
+      data-mock-logout={mockLogout || undefined}
+      data-logout-redirect={logoutRedirect}
+      data-mock-download={mockDownload}
+      data-booking-ref={bookingRef}
+    >
+      <span class="btn__fill" aria-hidden="true" />
+      <LabelSweep label={label} />
+    </button>
+  )
+}

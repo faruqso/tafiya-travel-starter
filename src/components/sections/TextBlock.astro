@@ -3,36 +3,62 @@ import Section from '../ui/Section.astro';
 import Container from '../ui/Container.astro';
 import Heading from '../ui/Heading.astro';
 import type { TextBlockSection } from '../../types/content';
+import { linkifyProseHtml, parseProseBlocks } from '../../lib/linkify';
 
 interface Props {
   section: TextBlockSection['value'];
 }
 
 const { section } = Astro.props;
-const paragraphs = section.body.split('\n\n').filter(Boolean);
+const blocks = parseProseBlocks(section.body);
 ---
 
-<Section variant="default">
+<Section variant="default" class="text-block">
   <Container narrow>
     {section.eyebrow && <p class="text-block__eyebrow">{section.eyebrow}</p>}
     {section.headline && <Heading as="h2" size="lg">{section.headline}</Heading>}
     <div class="prose">
-      {paragraphs.map((p) => <p>{p}</p>)}
+      {
+        blocks.map((block) =>
+          block.type === 'h3' ? (
+            <h3 set:html={linkifyProseHtml(block.content)} />
+          ) : (
+            <p set:html={linkifyProseHtml(block.content)} />
+          ),
+        )
+      }
     </div>
   </Container>
 </Section>
 
 <style>
+  .text-block {
+    text-align: center;
+  }
+
+  .text-block .prose {
+    max-width: var(--container-narrow);
+    margin-inline: auto;
+    text-align: center;
+  }
+
   .text-block__eyebrow {
-    font-size: var(--text-sm);
+    font-size: var(--text-eyebrow);
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.04em;
     color: var(--color-brand);
     margin-bottom: var(--space-3);
   }
 
-  :global(.heading) {
+  :global(.text-block .heading) {
+    font-size: var(--text-section);
     margin-bottom: var(--space-6);
+  }
+
+  @media (max-width: 768px) {
+    :global(.text-block .heading) {
+      font-size: var(--text-3xl);
+    }
   }
 </style>

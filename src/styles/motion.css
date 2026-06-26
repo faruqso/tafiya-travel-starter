@@ -1,0 +1,37 @@
+/* Scroll-reveal micro-animations (see src/lib/scroll-reveal.ts) */
+
+[data-reveal],
+[data-reveal-item] {
+  opacity: 0;
+  transform: translate3d(0, 1.5rem, 0);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal][data-reveal-direction='left'],
+[data-reveal-item][data-reveal-direction='left'] {
+  transform: translate3d(-1.5rem, 0, 0);
+}
+
+[data-reveal][data-reveal-direction='right'],
+[data-reveal-item][data-reveal-direction='right'] {
+  transform: translate3d(1.5rem, 0, 0);
+}
+
+[data-reveal].is-revealed,
+[data-reveal-item].is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-item] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}

@@ -1,0 +1,21 @@
+slug: patagonia-estancia
+name: Patagonia Estancia Lodge
+country: Argentina & Chile
+city: El Calafate
+image: https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $275/night
+priceValue: 275
+stars: 4
+region: americas
+rating: 4.88
+amenities:
+  - Excursion desk
+  - Restaurant
+  - Fireplace lounge
+  - Wi‑Fi
+description: Remote estancia lodge with glacier views and guided trekking packages.
+highlights:
+  - Glacier tours
+  - Horseback riding
+  - All-inclusive options
+  - Expert guides

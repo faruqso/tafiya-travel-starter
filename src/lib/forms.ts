@@ -8,7 +8,7 @@ export function isValidEmail(email: string): boolean {
 }
 
 export async function appendSubmission(
-  type: 'subscribe' | 'contact',
+  type: 'subscribe' | 'contact' | 'book',
   data: Record<string, string>,
 ): Promise<void> {
   await fs.mkdir(DATA_DIR, { recursive: true });

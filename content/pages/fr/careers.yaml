@@ -1,0 +1,88 @@
+slug: careers
+title: Carrières
+description: Rejoignez tafiya — postes remote-first en produit, ingénierie et opérations destination.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Entreprise
+      headline: Construisez l’avenir du voyage avec nous
+      subheadline: Nous sommes une équipe remote-first qui conçoit des outils pour rendre la planification de voyage calme, transparente et vraiment agréable.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Postuler maintenant
+          href: "#apply"
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: Culture
+      headline: Notre façon de travailler
+      body: |-
+        tafiya est distribuée entre Londres, Lisbonne et Singapour, avec des rituels async-friendly et des retraites trimestrielles dans des destinations que nous aimons. Nous recrutons pour la curiosité, l’écriture claire et l’empathie envers les voyageurs sous stress réel — correspondances manquées, changements de visa et voyages familiaux de dernière minute inclus.
+
+
+        Chacun reçoit une allocation voyage, un budget formation et des horaires flexibles qui respectent les fuseaux horaires locaux. Nous publions les fourchettes salariales sur chaque poste et gardons des processus d’entretien ciblés — en général trois échanges, jamais plus de deux semaines au total.
+  - discriminant: features
+    value:
+      eyebrow: Avantages
+      headline: Ce que vous pouvez attendre
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Remote-first
+          description: Travaillez de n’importe où avec des heures de chevauchement et deux rassemblements d’équipe par an.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Allocation voyage
+          description: Budget annuel pour explorer de nouvelles routes et tester le produit que vous livrez.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Budget développement
+          description: Formations, conférences et livres — si cela améliore votre métier, nous le soutenons.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Postes ouverts
+      headline: Nous recrutons
+      body: |-
+        ### Senior Product Designer — Voyages et itinéraires
+
+        Piloter les parcours de planification multi-villes et l’enregistrement mobile. Remote (fuseaux EU/UK).
+
+
+        ### Full-stack Engineer — Recherche et tarification
+
+        Construire une recherche de tarifs rapide et fiable avec Node et des outils front-end modernes. Remote mondial.
+
+
+        ### Destination Operations Lead — Méditerranée
+
+        Valider les guides, négocier les allotements hôteliers et tenir les partenaires sur le terrain responsables.
+
+
+        Vous ne voyez pas de poste adapté ? Postulez quand même ci-dessous — nous gardons les profils forts en dossier.
+  - discriminant: textBlock
+    value:
+      eyebrow: Comment postuler
+      headline: Trois étapes pour rejoindre tafiya
+      body: |-
+        ### Choisissez un poste
+
+        Sélectionnez une offre ouverte ci-dessus, ou dites-nous où vous apporteriez le plus de valeur pour une candidature générale.
+
+
+        ### Envoyez votre travail
+
+        Incluez un portfolio, GitHub ou profil LinkedIn pour que nous comprenions comment vous pensez et livrez.
+
+
+        ### Complétez le formulaire ci-dessous
+
+        Notre équipe talent examine les candidatures sous trois jours ouvrés et propose un court appel d’introduction en cas de match.
+  - discriminant: contact
+    value:
+      purpose: careers
+      eyebrow: Postuler maintenant
+      headline: Envoyez votre candidature
+      subheadline: Indiquez le poste qui vous intéresse et partagez des liens vers votre travail dont vous êtes fier. Nous répondons sous trois jours ouvrés.
+      email: careers@tafiya.co
+      formNote: Vous préférez l’e-mail ? Envoyez CV et portfolio directement à careers@tafiya.co avec l’intitulé du poste en objet.

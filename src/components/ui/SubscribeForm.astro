@@ -1,4 +1,6 @@
 ---
+import Button from './Button.astro';
+
 interface Props {
   id?: string;
   buttonLabel?: string;
@@ -40,7 +42,13 @@ const {
       required
     />
   </label>
-  <button type="submit" class="subscribe-form__submit">{buttonLabel}</button>
+  <Button
+    type="submit"
+    label={buttonLabel}
+    variant="subscribe"
+    size="lg"
+    class="subscribe-form__submit"
+  />
   <p class="subscribe-form__status" data-form-status role="status" aria-live="polite"></p>
 </form>
 
@@ -52,12 +60,13 @@ const {
     justify-content: center;
     gap: 1.5rem;
     width: 100%;
-    max-width: 38.8125rem;
+    max-width: var(--subscribe-form-max);
     margin-inline: auto;
   }
 
   .subscribe-form__field {
     position: relative;
+    display: block;
     flex: 1 1 16rem;
     min-width: min(100%, 16rem);
     max-width: 26.3125rem;
@@ -73,10 +82,11 @@ const {
 
   .subscribe-form__field input {
     width: 100%;
-    height: 4.25rem;
+    height: var(--btn-height-lg);
+    min-height: var(--btn-height-lg);
     padding: 0 1.5625rem 0 4.125rem;
     font-family: var(--font-subscribe-input);
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: var(--font-weight-normal);
     color: var(--color-input-text);
     background: var(--color-surface);
@@ -97,22 +107,7 @@ const {
   .subscribe-form__submit {
     flex: 0 0 auto;
     width: 11.25rem;
-    height: 4.25rem;
-    padding-inline: var(--space-6);
     font-family: var(--font-ui);
-    font-size: 1.0625rem;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-on-brand);
-    background: linear-gradient(180deg, var(--color-subscribe-start) 0%, var(--color-subscribe-end) 100%);
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: opacity var(--transition-base), transform var(--transition-base);
-  }
-
-  .subscribe-form__submit:hover:not(:disabled) {
-    opacity: 0.92;
-    transform: translateY(-1px);
   }
 
   .subscribe-form__submit:disabled {
@@ -143,10 +138,25 @@ const {
   @media (max-width: 640px) {
     .subscribe-form {
       flex-direction: column;
+      align-items: stretch;
       gap: var(--space-4);
     }
 
-    .subscribe-form__field,
+    .subscribe-form__field {
+      flex: 0 0 auto;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+    }
+
+    .subscribe-form__icon {
+      left: var(--space-5);
+    }
+
+    .subscribe-form__field input {
+      padding-left: 3.25rem;
+    }
+
     .subscribe-form__submit {
       width: 100%;
       max-width: none;

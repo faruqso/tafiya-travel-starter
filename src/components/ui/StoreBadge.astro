@@ -1,0 +1,141 @@
+---
+import type { SimpleIcon } from 'simple-icons';
+
+interface Props {
+  href: string;
+  store: 'google' | 'apple';
+  eyebrow: string;
+  title: string;
+  icon?: SimpleIcon;
+}
+
+const { href, store, eyebrow, title, icon } = Astro.props;
+---
+
+<a
+  class:list={['store-badge', `store-badge--${store}`]}
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <span class="store-badge__icon" aria-hidden="true">
+    {
+      store === 'google' ? (
+        <svg viewBox="0 0 20 20" fill="none" role="img" aria-hidden="true">
+          <path
+            d="M11.5074 10.0018L1.46386 19.673C0.993538 19.3516 0.714298 18.8169 0.719235 18.2473V1.75622C0.714298 1.18658 0.993538 0.651943 1.46386 0.330519L11.5074 10.0018Z"
+            fill="#2196F3"
+          />
+          <path
+            d="M15.0217 6.62364L11.5074 10.0018L1.46387 0.330526C1.50171 0.301197 1.54113 0.273912 1.5819 0.248797C2.11272 -0.0729245 2.77574 -0.0833108 3.31638 0.221554L15.0217 6.62364Z"
+            fill="#4CAF50"
+          />
+          <path
+            d="M19.2807 10.0018C19.2873 10.6448 18.9378 11.2388 18.3726 11.5455L15.0218 13.3799L11.5074 10.0018L15.0218 6.62365L18.3726 8.45799C18.9378 8.76473 19.2873 9.35871 19.2807 10.0018Z"
+            fill="#F0BB1F"
+          />
+          <path
+            d="M15.0217 13.3799L3.31638 19.782C2.77455 20.0821 2.11404 20.0717 1.5819 19.7547C1.54113 19.7296 1.50171 19.7023 1.46387 19.673L11.5074 10.0018L15.0217 13.3799Z"
+            fill="#F15A2B"
+          />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+          <path d={icon?.path} fill="currentColor" />
+        </svg>
+      )
+    }
+  </span>
+  <span class="store-badge__copy">
+    <span class="store-badge__eyebrow">{eyebrow}</span>
+    <span class="store-badge__title">{title}</span>
+  </span>
+</a>
+
+<style>
+  /* Figma badges: 107×35 (Google), 100×35 (Apple) */
+  .store-badge {
+    display: inline-grid;
+    grid-template-columns: 1.25rem auto;
+    align-items: center;
+    column-gap: 0.5rem;
+    width: auto;
+    min-width: 6.6875rem;
+    height: 2.1875rem;
+    padding: 0.375rem 0.9375rem 0.375rem 0.6875rem;
+    background-color: var(--color-text-strong);
+    border-radius: 1.09375rem;
+    color: var(--color-text-inverse);
+    text-decoration: none;
+    transition: opacity var(--transition-base);
+    box-sizing: border-box;
+  }
+
+  .store-badge--apple {
+    min-width: 6.25rem;
+    padding-inline: 0.6875rem 0.875rem;
+  }
+
+  .store-badge:hover {
+    opacity: 0.88;
+  }
+
+  .store-badge__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    color: var(--color-text-inverse);
+  }
+
+  .store-badge__icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Apple glyph is narrower — match visual weight to Play icon */
+  .store-badge--apple .store-badge__icon svg {
+    width: 0.8125rem;
+    height: 1rem;
+    margin: auto;
+  }
+
+  .store-badge__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.0625rem;
+    min-width: 0;
+    line-height: 1;
+  }
+
+  .store-badge__eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.4375rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .store-badge__title {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .store-badge--google .store-badge__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .store-badge--apple .store-badge__eyebrow {
+    letter-spacing: 0;
+  }
+</style>

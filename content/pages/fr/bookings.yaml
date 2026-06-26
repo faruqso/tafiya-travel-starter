@@ -1,0 +1,52 @@
+slug: bookings
+title: Réservations
+description: Connectez-vous pour gérer vos voyages tafiya — consultez les itinéraires, les factures et demandez des modifications.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Votre compte
+      headline: Gérez vos réservations
+      subheadline: Votre tableau de bord voyage — connectez-vous pour voir vos prochains départs, télécharger vos documents et demander des modifications.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Se connecter
+          href: /login
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: À quoi sert cette page
+      headline: Votre tableau de bord voyage — pas un nouveau formulaire de réservation
+      body: |-
+        Réservations est l’espace où les voyageurs de retour gèrent les voyages déjà achetés. Après connexion, vous pouvez :
+
+
+        ### Consulter vos itinéraires à venir
+
+        Vols, hôtels et activités sur une seule frise chronologique avec mises à jour en direct.
+
+
+        ### Télécharger factures et documents
+
+        Cartes d’embarquement, bons d’hôtel et reçus quand vous en avez besoin.
+
+
+        ### Demander des modifications ou de l’aide
+
+        Modifier les dates, ajouter des bagages ou contacter notre équipe au sujet d’une réservation existante.
+
+
+        ### Préparer un nouveau voyage ?
+
+        Pour demander une nouvelle destination, un hôtel ou un vol, utilisez notre <a href="/book">formulaire de réservation</a> — il préremplit le voyage choisi sur n’importe quelle page du catalogue.
+  - discriminant: cta
+    value:
+      headline: Pas encore de compte ?
+      subheadline: Créez-en un pour enregistrer vos favoris, suivre vos réservations et accéder aux tarifs membres — ou lancez une nouvelle demande de voyage sans vous connecter.
+      buttons:
+        - label: Créer un compte
+          href: /signup
+          variant: primary
+        - label: Nouvelle réservation
+          href: /book
+          variant: secondary

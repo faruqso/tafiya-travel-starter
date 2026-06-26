@@ -1,0 +1,376 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Badge from '../../components/ui/Badge.astro';
+import { getSiteSettings } from '../../lib/keystatic-reader';
+import { locales, getLocaleMeta } from '../../config/locales';
+import { getLocalizedPath } from '../../lib/i18n';
+import {
+  getPageTranslationStatus,
+  getSiteTranslationStatus,
+  getCatalogTranslationStatus,
+} from '../../lib/translation-status';
+import { catalogKindLabels, getCatalogCollectionKey } from '../../lib/catalog-collections';
+import type { CatalogKind } from '../../data/catalog';
+
+const site = await getSiteSettings('en');
+const pageRows = getPageTranslationStatus();
+const siteRows = getSiteTranslationStatus();
+const catalogByKind = getCatalogTranslationStatus();
+const catalogKindsList = ['destinations', 'hotels', 'flights'] as const satisfies readonly CatalogKind[];
+
+const localeLabels = Object.fromEntries(locales.map((l) => [l.code, l.label]));
+const keystaticUrl = '/keystatic';
+---
+
+<BaseLayout
+  site={site}
+  title="Translation status | tafiya"
+  description="Overview of translated pages and site settings per locale."
+  locale="en"
+>
+  <main class="admin">
+    <Container>
+      <header class="admin__header">
+        <p class="admin__eyebrow">Content ops</p>
+        <h1 class="admin__title">Translation status</h1>
+        <p class="admin__intro">
+          See which locales have content files, preview live pages, and jump into Keystatic to edit.
+          Arabic pages include an RTL preview link.
+        </p>
+        <div class="admin__actions">
+          <Button href={keystaticUrl} label="Open Keystatic" variant="primary" size="sm" />
+          <Button href="/" label="View site" variant="secondary" size="sm" />
+        </div>
+      </header>
+
+      <section class="admin__section">
+        <h2 class="admin__section-title">Site settings</h2>
+        <div class="admin__table-wrap">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>Locale</th>
+                <th>File</th>
+                <th>Status</th>
+                <th>Preview</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                siteRows.map((row) => {
+                  const meta = getLocaleMeta(row.locale);
+                  const previewPath = getLocalizedPath('/', row.locale);
+                  return (
+                    <tr>
+                      <td>
+                        {meta.flag} {localeLabels[row.locale]}
+                      </td>
+                      <td>
+                        <code>content/site/{row.locale}.yaml</code>
+                      </td>
+                      <td>
+                        <Badge
+                          label={row.status}
+                          variant={row.status === 'present' ? 'success' : 'error'}
+                        />
+                      </td>
+                      <td>
+                        <a href={previewPath} target="_blank" rel="noopener noreferrer">
+                          View site {meta.dir === 'rtl' ? '(RTL)' : ''}
+                        </a>
+                      </td>
+                      <td>
+                        <a href={`${keystaticUrl}/collection/site/item/${row.locale}`}>Edit in CMS</a>
+                      </td>
+                    </tr>
+                  );
+                })
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin__section">
+        <h2 class="admin__section-title">Catalog by locale</h2>
+        <p class="admin__intro admin__intro--tight">
+          English files (<code>content/catalog/&#123;kind&#125;/en/</code>) hold images, filters, prices, and ratings.
+          Locale files (<code>fr/</code>, <code>de/</code>, <code>ar/</code>) only override display copy — the slug must match the English master.
+        </p>
+        {
+          catalogKindsList.map((kind) => (
+            <>
+              <h3 class="admin__subsection-title">{catalogKindLabels[kind]}</h3>
+              <div class="admin__table-wrap">
+                <table class="admin__table admin__table--matrix">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      {
+                        locales.map((locale) => (
+                          <th>
+                            {locale.flag} {locale.code}
+                          </th>
+                        ))
+                      }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      catalogByKind[kind].map((row) => (
+                        <tr>
+                          <td>
+                            <strong>{row.slug}</strong>
+                          </td>
+                          {
+                            locales.map((locale) => {
+                              const status = row.locales[locale.code];
+                              const previewPath = getLocalizedPath(`/${kind}/${row.slug}`, locale.code);
+                              const collectionKey = getCatalogCollectionKey(kind, locale.code);
+                              return (
+                                <td>
+                                  <Badge
+                                    label={status === 'present' ? '✓' : '—'}
+                                    variant={status === 'present' ? 'success' : 'muted'}
+                                    title={status}
+                                  />
+                                  {status === 'present' && (
+                                    <div class="admin__cell-links">
+                                      <a href={previewPath} target="_blank" rel="noopener noreferrer">
+                                        Preview{locale.dir === 'rtl' ? ' RTL' : ''}
+                                      </a>
+                                      <a href={`${keystaticUrl}/collection/${collectionKey}/item/${row.slug}`}>
+                                        Edit
+                                      </a>
+                                    </div>
+                                  )}
+                                </td>
+                              );
+                            })
+                          }
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </>
+          ))
+        }
+      </section>
+
+      <section class="admin__section">
+        <h2 class="admin__section-title">Pages by locale</h2>
+        <div class="admin__table-wrap">
+          <table class="admin__table admin__table--matrix">
+            <thead>
+              <tr>
+                <th>Page</th>
+                {
+                  locales.map((locale) => (
+                    <th>
+                      {locale.flag} {locale.code}
+                    </th>
+                  ))
+                }
+              </tr>
+            </thead>
+            <tbody>
+              {
+                pageRows.map((row) => (
+                  <tr>
+                    <td>
+                      <strong>{row.slug}</strong>
+                    </td>
+                    {
+                      locales.map((locale) => {
+                        const status = row.locales[locale.code];
+                        const previewPath = getLocalizedPath(
+                          row.slug === 'home' ? '/' : `/${row.slug}`,
+                          locale.code,
+                        );
+                        const collectionKey = `pages${locale.code.toUpperCase()}`;
+                        return (
+                          <td>
+                            <Badge
+                              label={status === 'present' ? '✓' : '—'}
+                              variant={status === 'present' ? 'success' : 'muted'}
+                              title={status}
+                            />
+                            {status === 'present' && (
+                              <div class="admin__cell-links">
+                                <a href={previewPath} target="_blank" rel="noopener noreferrer">
+                                  Preview{locale.dir === 'rtl' ? ' RTL' : ''}
+                                </a>
+                                <a href={`${keystaticUrl}/collection/${collectionKey}/item/${row.slug}`}>
+                                  Edit
+                                </a>
+                              </div>
+                            )}
+                          </td>
+                        );
+                      })
+                    }
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin__section admin__section--tools">
+        <h2 class="admin__section-title">Bulk tools</h2>
+        <ul class="admin__tools">
+          <li>
+            <strong>CSV import</strong> — <code>npm run content:import -- file.csv</code>
+          </li>
+          <li>
+            <strong>JSON import</strong> — <code>npm run content:import:json -- file.json</code>
+          </li>
+          <li>
+            <strong>Clone from English</strong> —{' '}
+            <code>npm run content:clone -- --from en --to fr --all</code>
+          </li>
+          <li>
+            <strong>Re-export catalog from code</strong> — <code>npm run content:export-catalog</code> (legacy; catalog now lives in CMS YAML)
+          </li>
+          <li>
+            <strong>Seed catalog translations</strong> — <code>npm run content:seed-catalog-translations</code> merges FR/DE/AR blocks into all catalog YAML (edit strings in <code>scripts/catalog-translations-data.mjs</code> or directly in Keystatic)
+          </li>
+          <li>
+            See <code>docs/translation-workflow.md</code> in the repo for Crowdin, Lokalise, and export workflows
+          </li>
+        </ul>
+      </section>
+    </Container>
+  </main>
+</BaseLayout>
+
+<style>
+  .admin {
+    padding-block: var(--space-16) var(--space-20);
+    background: var(--color-surface-raised);
+    min-height: 60vh;
+  }
+
+  .admin__header {
+    margin-bottom: var(--space-12);
+  }
+
+  .admin__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .admin__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .admin__intro {
+    color: var(--color-text-muted);
+    max-width: var(--container-narrow);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-6);
+  }
+
+  .admin__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .admin__section {
+    margin-bottom: var(--space-12);
+  }
+
+  .admin__section-title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+  }
+
+  .admin__subsection-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    margin: var(--space-8) 0 var(--space-3);
+    color: var(--color-text);
+  }
+
+  .admin__subsection-title:first-of-type {
+    margin-top: var(--space-4);
+  }
+
+  .admin__table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .admin__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .admin__table th,
+  .admin__table td {
+    padding: var(--space-4);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border-light);
+    vertical-align: top;
+  }
+
+  .admin__table th {
+    background: var(--color-surface-raised);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+  }
+
+  .admin__table--matrix td {
+    min-width: 7rem;
+  }
+
+  .admin__cell-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: var(--space-2);
+    font-size: var(--text-xs);
+  }
+
+  .admin__cell-links a {
+    color: var(--color-brand-hover);
+  }
+
+  .admin__tools {
+    list-style: none;
+    padding: var(--space-6);
+    margin: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    display: grid;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .admin__tools code {
+    font-size: 0.85em;
+    background: var(--color-surface-raised);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+  }
+</style>

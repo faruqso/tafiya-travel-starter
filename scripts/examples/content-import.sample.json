@@ -1,0 +1,12 @@
+[
+  {
+    "type": "page",
+    "locale": "fr",
+    "slug": "home",
+    "data": {
+      "slug": "home",
+      "title": "Accueil",
+      "description": "Exemple — remplacez par le contenu traduit complet."
+    }
+  }
+]

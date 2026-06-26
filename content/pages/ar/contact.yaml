@@ -1,0 +1,50 @@
+slug: contact
+title: اتصل بنا
+description: تواصل مع فريق tafiya للحجوزات أو الشراكات أو المساعدة في تخطيط رحلتك القادمة.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: تواصل معنا
+      headline: نحن هنا لمساعدتك على السفر
+      subheadline: أخبرنا أين تريد الذهاب ومتى — سيرد عليك أخصائي tafiya خلال يوم عمل واحد.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: contact
+    value:
+      purpose: general
+      eyebrow: اتصل بنا
+      headline: ابدأ التخطيط اليوم
+      subheadline: شارك وجهتك وتواريخك وميزانيتك. سنرسل لك خطة سفر مخصصة بأسعار مباشرة.
+      email: hello@tafiya.co
+      phone: +44 20 7946 0958
+      address: |-
+        221B Baker Street
+        London, NW1 6XE
+        United Kingdom
+      formNote: تُخزَّن الرسائل بأمان لأغراض العرض التوضيحي. اربط Formspree أو نظام CRM في الإنتاج — راجع docs/customization.md.
+  - discriminant: textBlock
+    value:
+      eyebrow: لا تخطط لرحلة؟
+      headline: اعثر على نموذج الاتصال المناسب
+      body: |-
+        هذه الصفحة مخصصة لاستفسارات تخطيط السفر فقط. لكل شيء آخر، استخدم النموذج المخصص في كل صفحة:
+
+
+        ### الوظائف — طلبات التوظيف
+
+        <a href="/careers#apply">قدّم طلبك مع ملف أعمالك وتفاصيل الدور</a>.
+
+
+        ### الصحافة — إعلام ومقابلات
+
+        <a href="/press#press">اطلب مواد أو اقتباسات أو مقابلات</a>.
+
+
+        ### الشركاء — طلبات الشراكة
+
+        <a href="/affiliates#partners">قدّم طلب الانضمام لبرنامج الشركاء</a>.
+
+
+        ### الدعم — الحجوزات والحساب
+
+        <a href="/help-faq#support">احصل على مساعدة بشأن رحلة قائمة</a>.

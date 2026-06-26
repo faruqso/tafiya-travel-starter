@@ -1,0 +1,5 @@
+type,locale,slug,field,value
+site,en,,tagline,Best destinations around the world
+site,fr,,tagline,Les meilleures destinations du monde
+page,en,home,title,Home
+page,fr,home,title,Accueil

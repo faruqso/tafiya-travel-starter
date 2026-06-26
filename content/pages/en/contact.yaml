@@ -1,0 +1,58 @@
+slug: contact
+title: Contact
+description: >-
+  Reach the tafiya team for bookings, partnership inquiries, or help planning
+  your next trip.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Get in touch
+      headline: We are here to help you travel
+      subheadline: >-
+        Tell us where you want to go and when — a tafiya specialist will reply
+        within one business day.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: contact
+    value:
+      purpose: general
+      eyebrow: Contact us
+      headline: Start planning today
+      subheadline: >-
+        Share your destination, dates, and budget. We will send a tailored
+        itinerary with live pricing.
+      email: hello@tafiya.co
+      phone: +44 20 7946 0958
+      address: |-
+        221B Baker Street
+        London, NW1 6XE
+        United Kingdom
+      formNote: >-
+        Messages are stored securely for demo purposes. Connect Formspree or your
+        CRM in production — see docs/customization.md.
+  - discriminant: textBlock
+    value:
+      eyebrow: Not planning a trip?
+      headline: Find the right contact form
+      body: >-
+        This page is for travel planning inquiries only. For everything else, use the dedicated form on each page:
+
+
+        ### Careers — job applications
+
+        <a href="/careers#apply">Apply with your portfolio and role details</a>.
+
+
+        ### Press — media & interviews
+
+        <a href="/press#press">Request assets, quotes, or interviews</a>.
+
+
+        ### Affiliates — partnership applications
+
+        <a href="/affiliates#partners">Apply to the affiliate program</a>.
+
+
+        ### Support — bookings & account help
+
+        <a href="/help-faq#support">Get help with an existing trip</a>.

@@ -1,0 +1,59 @@
+locale: en
+brandName: tafiya
+tagline: Best destinations around the world
+footerTagline: |-
+  Book your trip in minute, get full
+  Control for much longer.
+logo: /images/brand/logo.svg
+loginLabel: Login
+signupLabel: Sign up
+navLinks:
+  - label: Destinations
+    href: /destinations
+  - label: Hotels
+    href: /hotels
+  - label: Flights
+    href: /flights
+  - label: Bookings
+    href: /bookings
+footerColumns:
+  - title: Company
+    links:
+      - label: About
+        href: /about
+      - label: Careers
+        href: /careers
+      - label: Mobile
+        href: /mobile
+  - title: Contact
+    links:
+      - label: Help/FAQ
+        href: /help-faq
+      - label: Press
+        href: /press
+      - label: Affiliates
+        href: /affiliates
+  - title: More
+    links:
+      - label: Airline fees
+        href: /airline-fees
+      - label: Airlines
+        href: /airlines
+      - label: Low fare tips
+        href: /low-fare-tips
+socialLinks:
+  - label: Facebook
+    href: https://facebook.com
+  - label: Instagram
+    href: https://instagram.com
+  - label: Twitter
+    href: https://twitter.com
+appStoreLabel: Discover our app
+googlePlayUrl: https://play.google.com
+appStoreUrl: https://apps.apple.com
+copyright: All rights reserved · hello@tafiya.co
+seoTitleTemplate: '%s | tafiya'
+seoDescription: >-
+  Discover the best destinations around the world. Travel, enjoy and live a new
+  and full life with tafiya.
+ogImage: /images/og/default.jpg

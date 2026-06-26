@@ -1,0 +1,17 @@
+slug: book
+title: Reise buchen
+description: Stellen Sie eine Buchungsanfrage für Destinationen, Hotels oder Flüge auf tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Buchen
+      headline: Buchung starten
+      subheadline: Wählen Sie Ihre Reise, Daten und senden Sie eine Anfrage — unser Team bestätigt die Verfügbarkeit innerhalb eines Werktags.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: bookingForm
+    value:
+      eyebrow: Buchungsanfrage
+      headline: Erzählen Sie uns von Ihrer Reise
+      subheadline: Ihre Auswahl von jeder Destination-, Hotel- oder Flugseite wird automatisch übernommen. Passen Sie Daten und Reisendenzahl vor dem Absenden an.
+      formNote: Hier erfolgt keine Zahlung — ein tafiya-Spezialist meldet sich mit einem bestätigten Angebot und den nächsten Schritten.

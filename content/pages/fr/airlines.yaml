@@ -1,0 +1,69 @@
+slug: airlines
+title: Compagnies aériennes
+description: Comparez plus de 600 compagnies partenaires dans le monde sur tafiya — compagnies traditionnelles et low-cost.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Vols
+      headline: Plus de 600 compagnies partenaires
+      subheadline: Une seule recherche parmi compagnies traditionnelles, low-cost et opérateurs régionaux — avec filtres alliance, cabine et escales.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: Rechercher des vols
+          href: /flights
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: Recherche intelligente
+      headline: Trouvez le bon tarif plus vite
+      logoTickerLabel: Comparez les tarifs des principales compagnies, dont
+      logos:
+        - image: /images/logos/tafiya/axon.png
+          alt: Axon Airlines
+          featured: false
+        - image: /images/logos/tafiya/jetstar.png
+          alt: Jetstar
+          featured: false
+        - image: /images/logos/tafiya/qantas.png
+          alt: Qantas
+          featured: false
+        - image: /images/logos/tafiya/alitalia.png
+          alt: Alitalia
+          featured: false
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Filtres alliance et compagnie
+          description: Affinez par Star Alliance, oneworld, SkyTeam ou votre compagnie préférée.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Comparaison du coût réel
+          description: Voyez bagages, choix de siège et frais de modification avant de valider — pas à l’aéroport.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Rebooking en direct
+          description: Correspondance manquée ? Rebooker les itinéraires éligibles depuis l’app pendant que le support suit votre dossier.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Couverture
+      headline: Une recherche, toutes les grandes compagnies
+      body: |-
+        tafiya récupère horaires et tarifs en direct des compagnies full-service, low-cost et régionales sur six continents. Filtrez par alliance, cabine, escales ou compagnie préférée — puis comparez le coût réel de chaque tarif avant de réserver.
+
+
+        L’inventaire se met à jour en quasi temps réel. Si un tarif change après avoir enregistré un voyage, nous vous prévenons pour verrouiller le meilleur prix ou ajuster les dates.
+
+
+        Pour des réservations corporate ou de groupe sur plusieurs compagnies, écrivez à groups@tafiya.co et notre équipe coordonnera tarifs et sièges.
+  - discriminant: cta
+    value:
+      headline: Prêt à comparer les compagnies ?
+      subheadline: Recherchez des tarifs en direct avec filtres alliance et prix tout compris — ou découvrez comment les frais sont affichés avant le paiement.
+      buttons:
+        - label: Rechercher des vols
+          href: /flights
+          variant: primary
+        - label: Comprendre les frais aériens
+          href: /airline-fees
+          variant: secondary

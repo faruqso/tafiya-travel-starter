@@ -51,7 +51,45 @@
 
   /* Semantic */
   --color-success: #059669;
+  --color-success-subtle: #ecfdf5;
+  --color-success-muted: #dcfce7;
+  --color-success-text: #166534;
   --color-error: #dc2626;
+  --color-error-subtle: #fee2e2;
+  --color-error-text: #991b1b;
+  --color-warning-text: #92400e;
+  --color-brand-border: rgba(241, 165, 1, 0.35);
+  --color-brand-border-subtle: rgba(241, 165, 1, 0.2);
+
+  /* Overlays & scrims */
+  --color-hero-overlay-start: rgba(24, 30, 75, 0.82);
+  --color-hero-overlay-mid: rgba(24, 30, 75, 0.55);
+  --color-hero-overlay-end: rgba(241, 165, 1, 0.25);
+  --color-hero-subtext: rgba(255, 255, 255, 0.85);
+  --color-hero-subtext-strong: rgba(255, 255, 255, 0.88);
+  --color-cta-subtext: rgba(255, 255, 255, 0.75);
+  --color-detail-overlay: rgb(15 23 42 / 0.78);
+  --color-detail-subtext: rgb(255 255 255 / 0.82);
+  --color-detail-subtext-strong: rgb(255 255 255 / 0.88);
+  --color-drawer-scrim: rgb(15 23 42 / 0.45);
+  --color-filter-scrollbar: rgb(94 98 130 / 0.28);
+  --color-filter-scrollbar-hover: rgb(94 98 130 / 0.42);
+  --color-nav-scrim: rgba(15, 23, 42, 0.04);
+  --color-nav-toggle-active: rgba(241, 165, 1, 0.08);
+  --color-overlay-inverse-border: rgba(255, 255, 255, 0.65);
+  --color-overlay-inverse-border-soft: rgba(255, 255, 255, 0.5);
+  --color-overlay-inverse-surface: rgba(255, 255, 255, 0.12);
+  --color-badge-on-image: rgb(255 255 255 / 0.92);
+
+  /* Device mockups (app download) */
+  --color-device-frame: #1e2449;
+  --color-device-frame-dark: #0f1428;
+  --color-device-notch: #0a0d1a;
+
+  /* Testimonials */
+  --color-testimonial-dot: var(--color-deco-muted);
+  --color-testimonial-dot-active: var(--color-input-text);
+  --color-testimonial-nav: #bcb7c2;
 
   /* Typography */
   --font-display: 'Volkhov', Georgia, 'Times New Roman', serif;
@@ -71,12 +109,35 @@
   --text-5xl: 3rem;
   --text-hero: 5.25rem;
   --text-section: 3.125rem;
+  --text-eyebrow: var(--text-lg);
+  --text-stat: var(--text-4xl);
+  --text-subhead: var(--text-base);
+  --text-subhead-weight: var(--font-weight-medium);
+  --text-nav-desktop: 1.0625rem;
+  --text-subscribe-headline-max: 2.0625rem;
+  --text-footer-title: 1.3125rem;
+  --text-footer-link: 1.25rem;
+  --text-plus-grid: 1.375rem;
+
+  /* Buttons — min 44px touch height on mobile via tokens */
+  --btn-height-sm: 2.25rem;
+  --btn-height-md: 2.75rem;
+  --btn-height-lg: 3.75rem;
+  --btn-font-sm: var(--text-sm);
+  --btn-font-md: var(--text-base);
+  --btn-font-lg: 1.125rem;
+  --btn-padding-x-sm: var(--space-4);
+  --btn-padding-x-md: var(--space-6);
+  --btn-padding-x-lg: var(--space-8);
 
   --leading-tight: 1.2;
   --leading-snug: 1.35;
   --leading-normal: 1.6;
   --leading-hero: 1.06;
   --leading-service: 1.625;
+  --leading-card: 1.245;
+  --leading-subscribe: 1.55;
+  --leading-detail-title: 1.15;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -100,10 +161,73 @@
   /* Layout */
   --container-max: 90rem;
   --container-narrow: 42rem;
+  --content-max-sm: 36rem;
+  --content-max-md: 38rem;
+  --hero-copy-max: 33rem;
+  --hero-lead-max: 34.0625rem;
+  --hero-subcopy-max: 24.0625rem;
+  --hero-actions-max: 29.8125rem;
+  --hero-copy-max-lg: 39.375rem;
+  --subscribe-shell-max: 73.125rem;
+  --subscribe-form-max: 38.8125rem;
+
+  /*
+   * Breakpoints — use these literal values in @media queries (CSS vars cannot be used in @media).
+   * xs: 480 | sm: 640 | md: 768 | content: 900 | nav: 1024 | desktop: 1100 | footer-tight: 560
+   */
+  --bp-xs: 480px;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-content: 900px;
+  --bp-nav: 1024px;
+  --bp-desktop: 1100px;
+  --bp-footer-tight: 560px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1440px;
+
+  --letter-spacing-eyebrow: 0.08em;
+  --letter-spacing-badge: 0.04em;
+  --letter-spacing-label: 0.06em;
+
+  --form-control-height-compact: var(--btn-height-md);
+  --form-control-padding-block-compact: 0.55rem;
   --container-padding-x: clamp(1.5rem, 8vw, 9.375rem);
   --section-padding-y: var(--space-20);
   --section-padding-y-sm: var(--space-12);
   --header-height: 5rem;
+
+  /* Component layout */
+  --card-height-catalog: 28.125rem;
+  --card-height-catalog-detail-min: 22rem;
+  --catalog-toolbar-sticky-height: 5.25rem;
+  --catalog-toolbar-sticky-height-expanded: 6.75rem;
+  --service-card-max-width: 16.6875rem;
+  --service-icon-wrap-width: 10.4375rem;
+  --service-icon-wrap-height: 9.625rem;
+  --services-grid-gap: 2.5rem;
+  --services-grid-padding-bottom: 7rem;
+  --services-header-margin-bottom: 1.875rem;
+  --footer-padding-top: 5rem;
+  --footer-padding-bottom: 3.75rem;
+  --footer-inner-padding-bottom: 2.625rem;
+  --footer-tagline-max-width: 14rem;
+  --footer-column-width: 13.375rem;
+  --footer-deco-top: 8.5625rem;
+  --footer-deco-width: 29.934rem;
+  --hero-min-height: 42rem;
+  --hero-min-height-desktop: 52rem;
+  --hero-compact-min-height: 42vh;
+  --book-trip-grid-gap: 7.375rem;
+  --book-trip-steps-gap: 3rem;
+  --subscribe-content-padding-y: 4.9375rem;
+  --subscribe-headline-margin-bottom: 4.625rem;
+  --subscribe-headline-max-width: 44.625rem;
+  --auth-card-max-width: 28rem;
+  --booking-row-thumb-width: 7rem;
+  --booking-row-thumb-height: 5.25rem;
+  --booking-row-actions-min-width: 9.5rem;
+  --catalog-sort-min-width: 11rem;
+  --pagination-btn-size: 2.5rem;
 
   /* Effects */
   --radius-sm: 0.3125rem;
@@ -124,21 +248,76 @@
     0 100px 80px rgba(0, 0, 0, 0.02), 0 64.815px 46.852px rgba(0, 0, 0, 0.02),
     0 38.519px 25.481px rgba(0, 0, 0, 0.01), 0 20px 13px rgba(0, 0, 0, 0.01),
     0 8.148px 6.519px rgba(0, 0, 0, 0.01), 0 1.852px 3.148px rgba(0, 0, 0, 0);
+  --shadow-nav: 0 1px 0 var(--color-nav-scrim);
+  --shadow-btn-primary: 0 16px 32px rgba(24, 30, 75, 0.18);
+  --shadow-btn-secondary: 0 12px 28px rgba(241, 165, 1, 0.22);
+  --shadow-btn-secondary-strong: 0 12px 28px rgba(241, 165, 1, 0.28);
+  --shadow-btn-ghost: 0 12px 28px var(--color-overlay-inverse-surface);
+  --shadow-btn-subscribe: 0 14px 30px rgba(24, 30, 75, 0.2);
+  --shadow-btn-nav: 0 14px 30px rgba(24, 30, 75, 0.18);
+  --shadow-view-toggle: 0 1px 3px rgb(15 23 42 / 0.1);
+  --shadow-drawer: 0 -12px 40px rgb(15 23 42 / 0.18);
+  --shadow-play-btn: 0 0.9375rem 1.875rem rgba(223, 105, 81, 0.3);
+  --shadow-testimonial-dot: 0 0.125rem 0.625rem rgba(15, 23, 42, 0.08);
+  --shadow-testimonial-dot-active: 0 0.125rem 0.875rem rgba(15, 23, 42, 0.14);
+  --shadow-icon-btn: 0 0.125rem 0.625rem rgba(15, 23, 42, 0.1);
 
   --transition-base: 180ms ease;
+  --transition-fast: 120ms ease;
   --transition-slow: 320ms ease;
+
+  /* Motion — Lenis + hero parallax (see src/lib/lenis.ts) */
+  --lenis-duration: 1.1;
+  --parallax-hero-decore-slow: 0.08;
+  --parallax-hero-decore: 0.14;
+  --parallax-hero-copy: 0.22;
+  --parallax-hero-visual: 0.32;
+  --parallax-hero-plane-near: 0.38;
+  --parallax-hero-plane-far: 0.44;
 
   /* Z-index scale */
   --z-header: 100;
+  --z-drawer: 200;
   --z-overlay: 200;
+  --z-toast: 101;
+  --z-testimonial-nav: 4;
+  --z-testimonial-stack-base: 20;
 }
 
 @media (max-width: 768px) {
   :root {
+    /* Type scale — mobile (16px body floor, tighter display sizes) */
+    --text-lg: 1.0625rem;
+    --text-xl: 1.125rem;
+    --text-2xl: 1.375rem;
+    --text-3xl: 1.5rem;
     --text-4xl: 1.875rem;
-    --text-5xl: 2.25rem;
-    --text-hero: 2.75rem;
-    --text-section: 2rem;
+    --text-5xl: 2rem;
+    --text-hero: 3rem;
+    --text-section: 1.75rem;
+    --text-eyebrow: var(--text-sm);
+    --text-stat: var(--text-3xl);
+    --text-subhead: 1rem;
+
+    /* Buttons — 44px min touch targets, 16px label floor */
+    --btn-height-sm: 2.5rem;
+    --btn-height-md: 2.75rem;
+    --btn-height-lg: 3rem;
+    --btn-font-sm: var(--text-sm);
+    --btn-font-md: 1rem;
+    --btn-font-lg: 1rem;
+
+    --leading-hero: 1.12;
     --section-padding-y: var(--space-12);
+    --header-height: 4.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --text-section: 1.625rem;
+    --text-3xl: 1.375rem;
+    --text-4xl: 1.625rem;
+    --text-stat: 1.75rem;
   }
 }

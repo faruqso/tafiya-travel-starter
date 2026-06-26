@@ -1,0 +1,69 @@
+slug: airlines
+title: Airlines
+description: Compare 600+ airline partners worldwide on tafiya — legacy carriers and low-cost airlines.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Flights
+      headline: 600+ airline partners
+      subheadline: One search across legacy carriers, low-cost airlines, and regional operators — with filters for alliance, cabin, and layovers.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: Search flights
+          href: /flights
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: Search smarter
+      headline: Find the right fare faster
+      logoTickerLabel: Compare fares across leading carriers including
+      logos:
+        - image: /images/logos/tafiya/axon.png
+          alt: Axon Airlines
+          featured: false
+        - image: /images/logos/tafiya/jetstar.png
+          alt: Jetstar
+          featured: false
+        - image: /images/logos/tafiya/qantas.png
+          alt: Qantas
+          featured: false
+        - image: /images/logos/tafiya/alitalia.png
+          alt: Alitalia
+          featured: false
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Alliance & airline filters
+          description: Narrow results by Star Alliance, oneworld, SkyTeam, or your preferred carrier.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: True cost comparison
+          description: See baggage, seat selection, and change fees before you commit — not at the airport.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Live rebooking
+          description: Missed a connection? Rebook eligible itineraries from the app while support tracks your case.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Coverage
+      headline: One search, every major carrier
+      body: >-
+        tafiya pulls live schedules and fares from full-service airlines, low-cost carriers, and regional operators across six continents. Filter by alliance, cabin, stops, or preferred airline — then compare the true cost of each fare before you book.
+
+
+        Inventory updates in near real time. If a fare changes after you save a trip, we notify you so you can lock in the better price or adjust dates.
+
+
+        For corporate or group bookings across multiple carriers, email groups@tafiya.co and our team will coordinate fares and seating together.
+  - discriminant: cta
+    value:
+      headline: Ready to compare airlines?
+      subheadline: Search live fares with alliance filters and all-in pricing — or learn how fees are shown before checkout.
+      buttons:
+        - label: Search flights
+          href: /flights
+          variant: primary
+        - label: Understand airline fees
+          href: /airline-fees
+          variant: secondary

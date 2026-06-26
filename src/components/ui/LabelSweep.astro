@@ -1,0 +1,15 @@
+---
+interface Props {
+  label: string;
+  class?: string;
+}
+
+const { label, class: className = '' } = Astro.props;
+---
+
+<span class:list={['sweep-label', className]}>
+  <span class="sweep-label__track">
+    <span class="sweep-label__line">{label}</span>
+    <span class="sweep-label__line sweep-label__line--hover" aria-hidden="true">{label}</span>
+  </span>
+</span>

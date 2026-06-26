@@ -1,0 +1,17 @@
+slug: book
+title: Réserver un voyage
+description: Demandez une réservation pour des destinations, hôtels ou vols sur tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Réserver
+      headline: Commencez votre réservation
+      subheadline: Choisissez votre voyage, vos dates et envoyez une demande — notre équipe confirme la disponibilité sous un jour ouvré.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: bookingForm
+    value:
+      eyebrow: Demande de réservation
+      headline: Parlez-nous de votre voyage
+      subheadline: Votre sélection depuis une page destination, hôtel ou vol est reprise automatiquement. Ajustez les dates et le nombre de voyageurs avant d’envoyer.
+      formNote: Aucun paiement n’est effectué ici — un spécialiste tafiya vous enverra un devis confirmé et les prochaines étapes.

@@ -1,0 +1,67 @@
+slug: press
+title: Press
+description: News, brand assets, and media contacts for tafiya travel coverage.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Media
+      headline: Press & brand resources
+      subheadline: Logos, product imagery, leadership bios, and story angles for journalists covering modern travel.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: Contact press team
+          href: '#press'
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: Media desk
+      headline: How we can help
+      body: >-
+        tafiya helps travelers compare flights, boutique stays, and local experiences in one place. We are happy to support features on flexible travel, price transparency, and mobile-first trip planning.
+
+
+        For interview requests, embargoed announcements, or high-resolution assets, email press@tafiya.co with your outlet, deadline, and preferred contact number. We aim to respond within one business day.
+  - discriminant: features
+    value:
+      eyebrow: Brand kit
+      headline: What you can download
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Logo & wordmark
+          description: SVG and PNG lockups for light and dark backgrounds, with clear-space guidelines.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Product screenshots
+          description: Web and mobile flows for search, checkout, and itinerary management.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Leadership bios
+          description: Short and long-form bios plus headshots for founders and product leads.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Recent news
+      headline: Story angles we can discuss
+      body: >-
+        ### Mobile-first rebooking
+
+        How tafiya helps travelers change plans from the gate with live airline inventory.
+
+
+        ### Price transparency
+
+        Why surfacing baggage and change fees upfront builds trust at checkout.
+
+
+        ### Sustainable routes
+
+        Partner programs that highlight rail connections and lower-emission itineraries across Europe.
+  - discriminant: contact
+    value:
+      purpose: press
+      eyebrow: Media inquiries
+      headline: Contact the press team
+      subheadline: Request assets, interviews, or quotes for your story. Include your outlet and deadline so we can prioritize.
+      email: press@tafiya.co
+      formNote: For urgent same-day requests, email press@tafiya.co directly with URGENT in the subject line.

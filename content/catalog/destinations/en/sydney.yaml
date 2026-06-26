@@ -1,0 +1,17 @@
+slug: sydney
+name: Sydney, Australia
+country: Australia
+image: https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $5.5k
+priceValue: 5500
+duration: 11 Days Trip
+durationDays: 11
+region: oceania
+category: city
+rating: 4.79
+description: Harbour icons, Bondi to Coogee walk, and Blue Mountains escape.
+highlights:
+  - Opera House tour
+  - Harbour bridge climb
+  - Blue Mountains
+  - Coastal walk

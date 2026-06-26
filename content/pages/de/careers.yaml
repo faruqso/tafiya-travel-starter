@@ -1,0 +1,88 @@
+slug: careers
+title: Karriere
+description: Werden Sie Teil von tafiya — Remote-first-Rollen in Produkt, Engineering und Destination Operations.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Unternehmen
+      headline: Gestalten Sie mit uns die Zukunft des Reisens
+      subheadline: Wir sind ein Remote-first-Team, das Tools entwickelt, die Reiseplanung ruhig, transparent und wirklich angenehm machen.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Jetzt bewerben
+          href: "#apply"
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: Kultur
+      headline: Wie wir arbeiten
+      body: |-
+        tafiya ist über London, Lissabon und Singapur verteilt, mit async-freundlichen Ritualen und vierteljährlichen Team-Retreats an Destinationen, die wir lieben. Wir stellen nach Neugier, klarer Schrift und Empathie für Reisende unter realem Stress ein — verpasste Anschlüsse, Visumänderungen und Last-Minute-Familienreisen inklusive.
+
+
+        Alle erhalten ein Reisebudget, Weiterbildungsbudget und flexible Zeiten, die lokale Zeitzonen respektieren. Wir veröffentlichen Gehaltsbänder für jede Rolle und halten Interviewprozesse fokussiert — typischerweise drei Gespräche, nie länger als zwei Wochen insgesamt.
+  - discriminant: features
+    value:
+      eyebrow: Benefits
+      headline: Was Sie erwarten können
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Remote-first
+          description: Arbeiten Sie von überall mit Kern-Overlap-Zeiten und zweimal jährlichen Team-Treffen.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Reisebudget
+          description: Jahresbudget, um neue Routen zu erkunden und das Produkt zu testen, das Sie ausliefern.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Weiterbildungsbudget
+          description: Kurse, Konferenzen und Bücher — wenn es Ihr Handwerk verbessert, unterstützen wir es.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Offene Stellen
+      headline: Wir stellen ein
+      body: |-
+        ### Senior Product Designer — Trips & Itineraries
+
+        End-to-End-Flows für Multi-City-Planung und mobiles Check-in leiten. Remote (EU/UK-Zeitzonen).
+
+
+        ### Full-stack Engineer — Search & Pricing
+
+        Schnelle, zuverlässige Tarifsuche mit Node und modernen Front-end-Tools bauen. Remote weltweit.
+
+
+        ### Destination Operations Lead — Mittelmeer
+
+        Guides prüfen, Hotelkontingente verhandeln und Partner vor Ort accountable halten.
+
+
+        Kein passender Job? Bewerben Sie sich trotzdem unten — wir behalten starke Profile in der Pipeline.
+  - discriminant: textBlock
+    value:
+      eyebrow: So bewerben Sie sich
+      headline: Drei Schritte zu tafiya
+      body: |-
+        ### Rolle wählen
+
+        Wählen Sie eine offene Position oben oder sagen Sie uns, wo Sie am meisten Mehrwert bringen würden.
+
+
+        ### Arbeit senden
+
+        Fügen Sie Portfolio, GitHub oder LinkedIn bei, damit wir verstehen, wie Sie denken und liefern.
+
+
+        ### Formular unten ausfüllen
+
+        Unser Talent-Team prüft Bewerbungen innerhalb von drei Werktagen und meldet sich bei Match für ein kurzes Intro-Gespräch.
+  - discriminant: contact
+    value:
+      purpose: careers
+      eyebrow: Jetzt bewerben
+      headline: Bewerbung einreichen
+      subheadline: Nennen Sie die Rolle, die Sie interessiert, und teilen Sie Links zu Arbeit, auf die Sie stolz sind. Wir antworten innerhalb von drei Werktagen.
+      email: careers@tafiya.co
+      formNote: Lieber per E-Mail? Senden Sie Lebenslauf und Portfolio direkt an careers@tafiya.co mit Rollentitel im Betreff.

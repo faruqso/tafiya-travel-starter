@@ -1,0 +1,17 @@
+slug: amsterdam
+name: Amsterdam, Netherlands
+country: Netherlands
+image: https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $2.8k
+priceValue: 2800
+duration: 5 Days Trip
+durationDays: 5
+region: europe
+category: city
+rating: 4.74
+description: Canal cruises, museum mornings, and tulip-season countryside rides.
+highlights:
+  - Rijksmuseum
+  - Canal cruise
+  - Keukenhof day trip
+  - Jordaan cafés

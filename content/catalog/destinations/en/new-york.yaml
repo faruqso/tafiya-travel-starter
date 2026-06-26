@@ -1,0 +1,17 @@
+slug: new-york
+name: New York, USA
+country: United States
+image: https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $4.4k
+priceValue: 4400
+duration: 8 Days Trip
+durationDays: 8
+region: americas
+category: city
+rating: 4.84
+description: Broadway, borough food tours, and skyline views across four iconic neighbourhoods.
+highlights:
+  - Broadway tickets
+  - Brooklyn food crawl
+  - Central Park
+  - Top of the Rock

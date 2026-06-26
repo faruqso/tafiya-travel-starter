@@ -1,4 +1,4 @@
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type ButtonVariant = 'primary' | 'secondary' | 'secondary-inverse' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonData {
@@ -32,6 +32,8 @@ export interface SiteSettings {
   tagline: string;
   footerTagline?: string;
   logo?: string;
+  loginLabel?: string;
+  signupLabel?: string;
   navLinks: NavLink[];
   footerColumns: FooterColumn[];
   socialLinks: SocialLink[];
@@ -77,6 +79,8 @@ export interface DestinationGridSection {
     eyebrow?: string;
     headline: string;
     subheadline?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
     destinations: DestinationItem[];
   };
 }
@@ -95,6 +99,8 @@ export interface FeaturesSection {
     headline: string;
     subheadline?: string;
     items: FeatureItem[];
+    logos?: LogoItem[];
+    logoTickerLabel?: string;
   };
 }
 
@@ -190,8 +196,32 @@ export interface ContactSection {
     headline: string;
     subheadline?: string;
     email: string;
-    phone: string;
-    address: string;
+    phone?: string;
+    address?: string;
+    formNote?: string;
+    purpose?: 'general' | 'careers' | 'press' | 'partners' | 'support';
+  };
+}
+
+export interface AppDownloadSection {
+  discriminant: 'appDownload';
+  value: {
+    eyebrow?: string;
+    headline: string;
+    subheadline?: string;
+    screenshot?: string;
+    bullets?: string[];
+    googlePlayUrl?: string;
+    appStoreUrl?: string;
+  };
+}
+
+export interface BookingFormSection {
+  discriminant: 'bookingForm';
+  value: {
+    eyebrow?: string;
+    headline: string;
+    subheadline?: string;
     formNote?: string;
   };
 }
@@ -207,7 +237,9 @@ export type PageSection =
   | StatsSection
   | TextBlockSection
   | CtaSection
-  | ContactSection;
+  | ContactSection
+  | AppDownloadSection
+  | BookingFormSection;
 
 export interface PageData {
   slug: string;

@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
-import { getLocaleMeta } from '../config/locales';
-import { getLocaleFromPath } from '../lib/i18n';
+import { getLocaleMeta, locales, defaultLocale } from '../config/locales';
+import { getLocaleFromPath, getLocalizedPath } from '../lib/i18n';
 import type { SiteSettings } from '../types/content';
 
 import type { Locale } from '../config/locales';
@@ -14,12 +14,15 @@ interface Props {
   description: string;
   ogImage?: string;
   locale?: Locale;
+  transparentNav?: boolean;
 }
 
-const { site, title, description, ogImage = site.ogImage, locale: localeProp } = Astro.props;
+const { site, title, description, ogImage = site.ogImage, locale: localeProp, transparentNav = false } =
+  Astro.props;
 const locale = localeProp ?? getLocaleFromPath(Astro.url.pathname);
 const localeMeta = getLocaleMeta(locale);
 const pageDir = localeMeta.dir ?? 'ltr';
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
@@ -39,6 +42,22 @@ const pageDir = localeMeta.dir ?? 'ltr';
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
+    <link rel="canonical" href={canonicalUrl.href} />
+    {
+      locales.map((entry) => (
+        <link
+          rel="alternate"
+          hreflang={entry.code}
+          href={new URL(getLocalizedPath(Astro.url.pathname, entry.code), Astro.site ?? Astro.url).href}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(getLocalizedPath(Astro.url.pathname, defaultLocale), Astro.site ?? Astro.url).href}
+    />
+
     <link rel="icon" type="image/png" href="/favicon.png" sizes="50x50" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,12 +68,30 @@ const pageDir = localeMeta.dir ?? 'ltr';
     />
     <title>{title}</title>
   </head>
-  <body>
-    <Nav site={site} locale={locale} currentPath={Astro.url.pathname} />
+  <body class:list={[transparentNav && 'has-transparent-nav']}>
+    <Nav site={site} locale={locale} currentPath={Astro.url.pathname} transparent={transparentNav} />
     <main>
       <slot />
     </main>
-    <Footer site={site} />
+    <Footer site={site} locale={locale} currentPath={Astro.url.pathname} />
     <script src="/scripts/forms.js" defer></script>
+    <script src="/scripts/mock-auth.js" defer></script>
+    <script>
+      import { initBookTripScroll } from '../lib/book-trip-scroll';
+      import { initSmoothScroll } from '../lib/lenis';
+      import { destroyLogoTickers, initLogoTickers } from '../lib/logo-ticker';
+      import { initScrollReveal } from '../lib/scroll-reveal';
+
+      function initPageMotion() {
+        initScrollReveal();
+        destroyLogoTickers();
+        initLogoTickers();
+        initBookTripScroll();
+      }
+
+      initSmoothScroll();
+      initPageMotion();
+      document.addEventListener('astro:page-load', initPageMotion);
+    </script>
   </body>
 </html>

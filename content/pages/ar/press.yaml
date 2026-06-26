@@ -1,0 +1,67 @@
+slug: press
+title: الصحافة
+description: أخبار وأصول العلامة التجارية وجهات اتصال إعلامية لتغطية سفر tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: الإعلام
+      headline: الصحافة وموارد العلامة
+      subheadline: شعارات وصور المنتج وسير القيادة وزوايا قصصية للصحفيين الذين يغطون السفر الحديث.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: تواصل مع فريق الصحافة
+          href: "#press"
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: مكتب الإعلام
+      headline: كيف يمكننا المساعدة
+      body: |-
+        يساعد tafiya المسافرين على مقارنة رحلات الطيران والإقامات البوتيكية والتجارب المحلية في مكان واحد. يسعدنا دعم موضوعات السفر المرن وشفافية الأسعار والتخطيط عبر الهاتف.
+
+
+        لطلبات المقابلات أو الإعلانات تحت الحظر أو المواد عالية الدقة، راسل press@tafiya.co مع وسيلتك والموعد النهائي ورقم الاتصال. نهدف للرد خلال يوم عمل واحد.
+  - discriminant: features
+    value:
+      eyebrow: حزمة العلامة
+      headline: ما يمكنك تنزيله
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: الشعار والاسم
+          description: نسخ SVG وPNG للخلفيات الفاتحة والداكنة مع إرشادات المساحة الحرة.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: لقطات المنتج
+          description: مسارات الويب والجوال للبحث والدفع وإدارة خط السير.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: سير القيادة
+          description: سير قصيرة وطويلة وصور للمؤسسين وقادة المنتج.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: أخبار حديثة
+      headline: زوايا يمكننا مناقشتها
+      body: |-
+        ### إعادة الحجز عبر الجوال أولًا
+
+        كيف يساعد tafiya المسافرين على تغيير الخطط من البوابة مع مخزون شركات الطيران المباشر.
+
+
+        ### شفافية الأسعار
+
+        لماذا عرض أمتعة ورسوم التغيير مبكرًا يبني الثقة عند الدفع.
+
+
+        ### مسارات مستدامة
+
+        برامج شراكة تبرز الاتصالات بالقطار وخطوط السير الأقل انبعاثات عبر أوروبا.
+  - discriminant: contact
+    value:
+      purpose: press
+      eyebrow: استفسارات إعلامية
+      headline: تواصل مع فريق الصحافة
+      subheadline: اطلب مواد أو مقابلات أو اقتباسات لقصتك. أدرج وسيلتك والموعد النهائي لنرتب الأولوية.
+      email: press@tafiya.co
+      formNote: للطلبات العاجلة في نفس اليوم، راسل press@tafiya.co مباشرة مع URGENT في عنوان الرسالة.

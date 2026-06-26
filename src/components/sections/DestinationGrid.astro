@@ -2,23 +2,29 @@
 import Section from '../ui/Section.astro';
 import Container from '../ui/Container.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
+import Button from '../ui/Button.astro';
+import type { Locale } from '../../config/locales';
+import { localizeHref } from '../../lib/i18n';
 import type { DestinationGridSection } from '../../types/content';
 
 interface Props {
   section: DestinationGridSection['value'];
+  locale: Locale;
 }
 
-const { section } = Astro.props;
+const { section, locale } = Astro.props;
+const ctaLabel = section.ctaLabel ?? 'View destinations';
+const ctaHref = localizeHref(section.ctaHref ?? '/destinations', locale);
 ---
 
 <Section variant="default" class="destinations">
   <Container class="destinations__container">
     <SectionHeader eyebrow={section.eyebrow} headline={section.headline} />
 
-    <div class="destinations__grid">
+    <div class="destinations__grid" data-reveal-group data-reveal-stagger="110">
       {
         section.destinations.map((dest) => (
-          <a href={dest.href} class="destinations__link">
+          <a href={localizeHref(dest.href, locale)} class="destinations__link" data-reveal-item>
             <article class="dest-card">
               <div class="dest-card__image-wrap">
                 <img src={dest.image} alt={dest.name} class="dest-card__image" loading="lazy" />
@@ -47,12 +53,9 @@ const { section } = Astro.props;
       }
     </div>
 
-    <img
-      src="/images/destinations/tafiya/decore.svg"
-      alt=""
-      class="destinations__deco"
-      aria-hidden="true"
-    />
+    <div class="destinations__cta" data-reveal>
+      <Button href={ctaHref} label={ctaLabel} variant="primary" size="lg" />
+    </div>
   </Container>
 </Section>
 
@@ -70,11 +73,17 @@ const { section } = Astro.props;
 
   .destinations__link {
     position: relative;
+    display: block;
+    width: 100%;
     color: inherit;
     text-decoration: none;
   }
 
   .dest-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: var(--card-height-catalog);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
     overflow: hidden;
@@ -87,7 +96,8 @@ const { section } = Astro.props;
   }
 
   .dest-card__image-wrap {
-    aspect-ratio: 314 / 457;
+    flex: 1;
+    min-height: 0;
     overflow: hidden;
   }
 
@@ -99,8 +109,8 @@ const { section } = Astro.props;
   }
 
   .dest-card__footer {
+    flex-shrink: 0;
     padding: var(--space-5) var(--space-5) var(--space-6);
-    min-height: 8.125rem;
   }
 
   .dest-card__row {
@@ -116,7 +126,7 @@ const { section } = Astro.props;
     font-family: var(--font-body);
     font-size: var(--text-lg);
     font-weight: var(--font-weight-medium);
-    line-height: 1.245;
+    line-height: var(--leading-card);
     color: var(--color-text-muted);
   }
 
@@ -136,36 +146,40 @@ const { section } = Astro.props;
     font-family: var(--font-body);
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
-    line-height: 1.245;
+    line-height: var(--leading-card);
     color: var(--color-text-muted);
   }
 
-  .destinations__deco {
-    position: absolute;
-    top: 55%;
-    right: calc(var(--container-padding-x) - 2rem);
-    width: 6rem;
-    height: auto;
-    pointer-events: none;
-    z-index: 0;
+  .destinations__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-12);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
+    .destinations__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      width: calc(100% + 2 * var(--space-4));
+      max-width: none;
+      margin-inline: calc(-1 * var(--space-4));
+      padding-inline: var(--space-4);
+    }
+
+    .dest-card {
+      border-radius: var(--radius-lg);
+    }
+
+    .dest-card__name,
+    .dest-card__price {
+      font-size: var(--text-base);
+    }
+  }
+
+  @media (max-width: 1024px) and (min-width: 769px) {
     .destinations__grid {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-8);
-    }
-
-    .destinations__deco {
-      display: none;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .destinations__grid {
-      grid-template-columns: 1fr;
-      max-width: 19.625rem;
-      margin-inline: auto;
     }
   }
 </style>

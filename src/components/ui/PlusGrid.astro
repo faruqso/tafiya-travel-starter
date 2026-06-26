@@ -19,20 +19,20 @@ const tones = PLUS_GRIDS[variant];
 <style>
   .plus-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1.375rem);
+    grid-template-columns: repeat(5, var(--text-plus-grid));
     gap: 0.625rem 0.875rem;
     pointer-events: none;
     user-select: none;
   }
 
   .plus-grid--subscribe {
-    grid-template-columns: repeat(5, 1.375rem);
+    grid-template-columns: repeat(5, var(--text-plus-grid));
     gap: 0.875rem 1.375rem;
   }
 
   .plus-grid__item {
-    font-family: var(--font-body);
-    font-size: 1.375rem;
+    font-family: var(--font-plus-grid);
+    font-size: var(--text-plus-grid);
     font-weight: var(--font-weight-normal);
     line-height: 1;
     text-align: center;
@@ -52,6 +52,6 @@ const tones = PLUS_GRIDS[variant];
 
   .plus-grid--subscribe .plus-grid__item {
     font-family: var(--font-plus-grid);
-    font-size: 1.375rem;
+    font-size: var(--text-plus-grid);
   }
 </style>

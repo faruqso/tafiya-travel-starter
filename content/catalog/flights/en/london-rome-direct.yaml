@@ -1,0 +1,23 @@
+slug: london-rome-direct
+name: London → Rome
+country: Italy
+route: LHR → FCO
+airline: British Airways
+image: https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $189
+priceValue: 189
+duration: 2h 35m
+stops: 0
+cabin: economy
+originCountry: United Kingdom
+destinationCountry: Italy
+originRegion: europe
+region: europe
+rating: 4.6
+featured: true
+description: Daily non-stop service with generous carry-on and lounge access upgrades available.
+highlights:
+  - Non-stop
+  - Morning & evening departures
+  - Seat selection included
+  - Fast-track security

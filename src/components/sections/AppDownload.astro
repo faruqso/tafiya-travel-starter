@@ -1,0 +1,212 @@
+---
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import StoreBadge from '../ui/StoreBadge.astro';
+import type { AppDownloadSection } from '../../types/content';
+import { siApple } from 'simple-icons';
+
+interface Props {
+  section: AppDownloadSection['value'];
+}
+
+const { section } = Astro.props;
+
+const googlePlayUrl = section.googlePlayUrl ?? 'https://play.google.com';
+const appStoreUrl = section.appStoreUrl ?? 'https://apps.apple.com';
+const screenshot = section.screenshot ?? '/images/book-trip/tafiya/cards/greece-trip.jpg';
+const bullets = section.bullets ?? [];
+---
+
+<Section variant="muted" class="app-download" id="download">
+  <Container>
+    <div class="app-download__grid">
+      <div class="app-download__copy">
+        {section.eyebrow && <p class="app-download__eyebrow">{section.eyebrow}</p>}
+        <h2 class="app-download__headline">{section.headline}</h2>
+        {section.subheadline && <p class="app-download__sub">{section.subheadline}</p>}
+
+        {
+          bullets.length > 0 && (
+            <ul class="app-download__bullets">
+              {bullets.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )
+        }
+
+        <div class="app-download__stores">
+          <StoreBadge
+            href={googlePlayUrl}
+            store="google"
+            eyebrow="GET IT ON"
+            title="Google Play"
+          />
+          <StoreBadge
+            href={appStoreUrl}
+            store="apple"
+            eyebrow="Download on the"
+            title="App Store"
+            icon={siApple}
+          />
+        </div>
+      </div>
+
+      <div class="app-download__device" aria-hidden="true">
+        <div class="app-download__phone">
+          <div class="app-download__phone-notch" />
+          <img class="app-download__screenshot" src={screenshot} alt="" />
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .app-download__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .app-download__copy {
+    text-align: center;
+  }
+
+  .app-download__eyebrow {
+    font-size: var(--text-eyebrow);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-brand);
+    margin-bottom: var(--space-3);
+  }
+
+  .app-download__headline {
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-text-section);
+    margin: 0 0 var(--space-4);
+    text-wrap: balance;
+  }
+
+  .app-download__sub {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin: 0 auto var(--space-6);
+    max-width: 32rem;
+  }
+
+  .app-download__bullets {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: start;
+    max-width: 28rem;
+    margin: 0 auto var(--space-8);
+    padding: 0;
+    list-style: none;
+  }
+
+  .app-download__bullets li {
+    position: relative;
+    padding-inline-start: 1.5rem;
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .app-download__bullets li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.55em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-brand);
+  }
+
+  .app-download__stores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .app-download__device {
+    display: flex;
+    justify-content: center;
+  }
+
+  .app-download__phone {
+    position: relative;
+    width: min(100%, 15.5rem);
+    aspect-ratio: 9 / 19;
+    padding: 0.625rem;
+    border-radius: 2rem;
+    background: linear-gradient(160deg, var(--color-device-frame) 0%, var(--color-device-frame-dark) 100%);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .app-download__phone-notch {
+    position: absolute;
+    top: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5rem;
+    height: 1.125rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-device-notch);
+    z-index: 2;
+  }
+
+  .app-download__screenshot {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .app-download__copy {
+      text-align: start;
+    }
+
+    .app-download__sub {
+      margin-inline: 0;
+    }
+
+    .app-download__bullets {
+      margin-inline: 0;
+    }
+
+    .app-download__stores {
+      justify-content: flex-start;
+    }
+
+    .app-download__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+      gap: var(--space-16);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .app-download__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .app-download__device {
+      order: -1;
+    }
+
+    .app-download__phone {
+      width: min(72vw, 14rem);
+    }
+  }
+</style>

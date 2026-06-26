@@ -1,10 +1,10 @@
 # Contributing
 
-Thank you for helping improve Wanderlust Travel Starter!
+Thank you for helping improve **tafiya Travel Starter**!
 
 ## Development setup
 
-1. Fork and clone the repository
+1. Fork and clone [tafiya-travel-starter](https://github.com/faruqso/tafiya-travel-starter)
 2. Run `npm install`
 3. Run `npm run dev` to start the dev server
 4. Run `npm run build` before submitting a PR to verify the build passes
@@ -16,8 +16,9 @@ Thank you for helping improve Wanderlust Travel Starter!
 | Rebrand colors, fonts, spacing | `src/styles/tokens.css` |
 | UI primitives (Button, Card, etc.) | `src/components/ui/` |
 | Page sections (Hero, DestinationGrid, etc.) | `src/components/sections/` |
-| Site-wide nav, footer, SEO defaults | `content/site/site.yaml` or `/keystatic` |
-| Page content | `content/pages/*.yaml` or `/keystatic` |
+| Site-wide nav, footer, SEO defaults | `content/site/{locale}.yaml` or `/keystatic` |
+| Page content | `content/pages/{locale}/*.yaml` or `/keystatic` |
+| Catalog items | `content/catalog/{kind}/{locale}/*.yaml` or `/keystatic` |
 | Static images | `public/images/` |
 
 ## Pull request guidelines

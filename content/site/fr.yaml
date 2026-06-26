@@ -1,0 +1,59 @@
+locale: fr
+brandName: tafiya
+tagline: Les meilleures destinations du monde
+footerTagline: |-
+  Réservez votre voyage en quelques minutes,
+  gardez le contrôle bien plus longtemps.
+logo: /images/brand/logo.svg
+loginLabel: Connexion
+signupLabel: S'inscrire
+navLinks:
+  - label: Destinations
+    href: /destinations
+  - label: Hôtels
+    href: /hotels
+  - label: Vols
+    href: /flights
+  - label: Réservations
+    href: /bookings
+footerColumns:
+  - title: Entreprise
+    links:
+      - label: À propos
+        href: /about
+      - label: Carrières
+        href: /careers
+      - label: Mobile
+        href: /mobile
+  - title: Contact
+    links:
+      - label: Aide / FAQ
+        href: /help-faq
+      - label: Presse
+        href: /press
+      - label: Affiliés
+        href: /affiliates
+  - title: Plus
+    links:
+      - label: Frais aériens
+        href: /airline-fees
+      - label: Compagnies
+        href: /airlines
+      - label: Bons plans
+        href: /low-fare-tips
+socialLinks:
+  - label: Facebook
+    href: https://facebook.com
+  - label: Instagram
+    href: https://instagram.com
+  - label: Twitter
+    href: https://twitter.com
+appStoreLabel: Découvrez notre application
+googlePlayUrl: https://play.google.com
+appStoreUrl: https://apps.apple.com
+copyright: Tous droits réservés · hello@tafiya.co
+seoTitleTemplate: '%s | tafiya'
+seoDescription: >-
+  Découvrez les meilleures destinations du monde. Voyagez, profitez et vivez une
+  vie nouvelle et pleine avec tafiya.
+ogImage: /images/og/default.jpg

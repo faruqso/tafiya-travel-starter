@@ -1,0 +1,21 @@
+slug: kyoto-garden-ryokan
+name: Kyoto Garden Ryokan
+country: Japan
+city: Kyoto
+image: https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $265/night
+priceValue: 265
+stars: 4
+region: asia
+rating: 4.9
+amenities:
+  - Onsen
+  - Kaiseki dinner
+  - Garden
+  - Kimono service
+description: Traditional wooden ryokan with tatami rooms and a moss garden courtyard.
+highlights:
+  - Tea ceremony
+  - Seasonal kaiseki
+  - Bicycle rental
+  - Temple proximity

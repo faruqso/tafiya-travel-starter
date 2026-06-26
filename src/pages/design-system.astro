@@ -4,26 +4,68 @@ export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandLogo from '../components/ui/BrandLogo.astro';
 import Button from '../components/ui/Button.astro';
+import Badge from '../components/ui/Badge.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import SubscribeForm from '../components/ui/SubscribeForm.astro';
 import PlusGrid from '../components/ui/PlusGrid.astro';
 import { getSiteSettings } from '../lib/keystatic-reader';
 
-const site = await getSiteSettings();
+const site = await getSiteSettings('en');
 
 const colorTokens = [
   { name: 'Brand', token: '--color-brand', use: 'Primary CTA, logo accent' },
+  { name: 'Brand muted', token: '--color-brand-muted', use: 'Secondary buttons, warning badges' },
   { name: 'Accent', token: '--color-accent', use: 'Eyebrows, highlights' },
   { name: 'Text', token: '--color-text', use: 'Hero headlines' },
   { name: 'Text section', token: '--color-text-section', use: 'Section titles' },
   { name: 'Text muted', token: '--color-text-muted', use: 'Body copy, nav' },
   { name: 'Text strong', token: '--color-text-strong', use: 'Card titles, footer headings' },
+  { name: 'Success', token: '--color-success', use: 'Form success, confirmed badges' },
+  { name: 'Success subtle', token: '--color-success-subtle', use: 'Success badge backgrounds' },
+  { name: 'Warning text', token: '--color-warning-text', use: 'Check-in badges, brand CTAs' },
+  { name: 'Error', token: '--color-error', use: 'Form errors' },
   { name: 'Purple', token: '--color-purple', use: 'Progress, accents' },
   { name: 'Step 1', token: '--color-step-1', use: 'Book trip step icons' },
   { name: 'Step 2', token: '--color-step-2', use: 'Book trip step icons' },
   { name: 'Step 3', token: '--color-step-3', use: 'Book trip step icons' },
   { name: 'Subscribe start', token: '--color-subscribe-start', use: 'Subscribe button gradient' },
   { name: 'Subscribe end', token: '--color-subscribe-end', use: 'Subscribe button gradient' },
+];
+
+const buttonSizeTokens = [
+  { size: 'sm', height: '--btn-height-sm', font: '--btn-font-sm', padding: '--btn-padding-x-sm', use: 'Nav actions, dashboard toolbars, card CTAs' },
+  { size: 'md', height: '--btn-height-md', font: '--btn-font-md', padding: '--btn-padding-x-md', use: 'Default — forms, inline actions' },
+  { size: 'lg', height: '--btn-height-lg', font: '--btn-font-lg', padding: '--btn-padding-x-lg', use: 'Hero CTAs, section highlights' },
+];
+
+const layoutTokens = [
+  { name: 'Container max', token: '--container-max', use: 'Page content width' },
+  { name: 'Container narrow', token: '--container-narrow', use: 'Prose blocks, section notes (42rem)' },
+  { name: 'Content max sm', token: '--content-max-sm', use: 'CTA, hero mobile, support copy (36rem)' },
+  { name: 'Content max md', token: '--content-max-md', use: 'Catalog intro (38rem)' },
+  { name: 'Hero copy max', token: '--hero-copy-max', use: 'Hero headline column' },
+  { name: 'Subscribe shell', token: '--subscribe-shell-max', use: 'Subscribe section container' },
+  { name: 'Subscribe form', token: '--subscribe-form-max', use: 'Subscribe email row' },
+  { name: 'Auth card max', token: '--auth-card-max-width', use: 'Login / signup card' },
+  { name: 'Book trip grid gap', token: '--book-trip-grid-gap', use: 'Book trip desktop columns' },
+];
+
+const breakpointTokens = [
+  { name: 'xs', value: '480px', use: 'Small phone type scale' },
+  { name: 'sm', value: '640px', use: 'Form grids, subscribe stack' },
+  { name: 'md', value: '768px', use: 'Mobile layout floor' },
+  { name: 'content', value: '900px', use: 'Split layouts (contact, booking, catalog)' },
+  { name: 'nav', value: '1024px', use: 'Catalog toolbar, brand logo' },
+  { name: 'desktop', value: '1100px', use: 'Nav drawer, hero desktop, features' },
+];
+
+const effectTokens = [
+  { name: 'Shadow sm', token: '--shadow-sm', use: 'Cards, subtle elevation' },
+  { name: 'Shadow md', token: '--shadow-md', use: 'Raised panels' },
+  { name: 'Shadow lg', token: '--shadow-lg', use: 'Toasts, modals' },
+  { name: 'Shadow btn primary', token: '--shadow-btn-primary', use: 'Primary button hover' },
+  { name: 'Z toast', token: '--z-toast', use: 'Download toast, notifications' },
+  { name: 'Z drawer', token: '--z-drawer', use: 'Mobile nav drawer' },
 ];
 ---
 
@@ -67,6 +109,66 @@ const colorTokens = [
     </section>
 
     <section class="ds__section">
+      <h2 class="ds__section-title">Breakpoints</h2>
+      <p class="ds__lead ds__lead--compact">
+        Defined in <code>tokens.css</code> as <code>--bp-*</code> (for JS/docs). Use the literal values in <code>@media</code> queries.
+      </p>
+      <div class="ds__token-list">
+        {
+          breakpointTokens.map((bp) => (
+            <div class="ds__token-row">
+              <code>--bp-{bp.name}</code>
+              <span>{bp.value}</span>
+              <span class="ds__token-use">{bp.use}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Layout tokens</h2>
+      <div class="ds__token-list">
+        {
+          layoutTokens.map((token) => (
+            <div class="ds__token-row">
+              <code>{token.token}</code>
+              <span>{token.name}</span>
+              <span class="ds__token-use">{token.use}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Effect tokens</h2>
+      <div class="ds__token-list">
+        {
+          effectTokens.map((token) => (
+            <div class="ds__token-row">
+              <code>{token.token}</code>
+              <span>{token.name}</span>
+              <span class="ds__token-use">{token.use}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Badges</h2>
+      <div class="ds__row">
+        <Badge label="Confirmed" variant="success" />
+        <Badge label="Check-in open" variant="warning" />
+        <Badge label="Completed" variant="muted" />
+        <Badge label="Missing" variant="error" />
+        <Badge label="Featured" variant="brand" />
+        <Badge label="On card" variant="on-image" />
+      </div>
+    </section>
+
+    <section class="ds__section">
       <h2 class="ds__section-title">Typography</h2>
       <div class="ds__type-stack">
         <p class="ds__type-hero">Hero display — Volkhov 84px</p>
@@ -89,11 +191,51 @@ const colorTokens = [
     </section>
 
     <section class="ds__section">
+      <h2 class="ds__section-title">Button sizes</h2>
+      <p class="ds__lead ds__lead--compact">
+        Pass <code>size="sm" | "md" | "lg"</code> on <code>Button</code>. Pair the same size when placing primary and secondary actions side by side.
+      </p>
+      <div class="ds__button-sizes">
+        {
+          buttonSizeTokens.map(({ size }) => (
+            <div class="ds__button-size-row">
+              <code class="ds__button-size-label">{size}</code>
+              <div class="ds__row">
+                <Button href="#" label="Primary" variant="primary" size={size} />
+                <Button href="#" label="Secondary" variant="secondary" size={size} />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="ds__token-list ds__token-list--compact">
+        {
+          buttonSizeTokens.map((token) => (
+            <div class="ds__token-row">
+              <code>{token.size}</code>
+              <span>{token.height}, {token.font}, {token.padding}</span>
+              <span class="ds__token-use">{token.use}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="ds__section">
       <h2 class="ds__section-title">Buttons</h2>
       <div class="ds__row">
         <Button href="#" label="Find out more" variant="primary" size="lg" />
         <Button href="#" label="View destinations" variant="secondary" size="md" />
         <Button href="#" label="Play Demo" variant="ghost" size="md" />
+        <Button href="#" label="Subscribe" variant="subscribe" size="lg" />
+      </div>
+      <div class="ds__buttons-dark">
+        <p class="ds__buttons-dark-label">On dark backgrounds</p>
+        <div class="ds__row">
+          <Button href="#" label="Search flights" variant="primary" size="lg" />
+          <Button href="#" label="Understand airline fees" variant="secondary-inverse" size="lg" />
+          <Button href="#" label="Play Demo" variant="ghost" size="md" />
+        </div>
       </div>
     </section>
 
@@ -126,6 +268,105 @@ const colorTokens = [
         <div class="ds__card ds__card--radius">Service radius</div>
       </div>
     </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Homepage section map</h2>
+      <p class="ds__lead ds__lead--compact">
+        The home page is composed from Keystatic blocks rendered by
+        <code>SectionRenderer.astro</code>. Reuse these section components on any CMS page.
+      </p>
+      <div class="ds__map">
+        <article class="ds__map-item">
+          <h3>Hero</h3>
+          <p>Full variant with parallax planes, headline highlight, play demo, and scroll-linked traveller fade. Compact variant for inner pages.</p>
+          <code>src/components/sections/Hero.astro</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Features</h3>
+          <p>Four service cards with illustrated icons, hover lift, and staggered scroll reveal.</p>
+          <code>src/components/sections/Features.astro</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Destination grid</h3>
+          <p>Three-column destination cards (28.125rem height) linking to catalog detail pages.</p>
+          <code>src/components/sections/DestinationGrid.astro</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Book a trip</h3>
+          <p>Three-step list plus illustrated cards. Scroll-driven photo scale, ongoing-card slide, and progress bar fill.</p>
+          <code>src/components/sections/BookTrip.astro</code> · <code>src/lib/book-trip-scroll.ts</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Testimonials</h3>
+          <p>Slider with avatar cards, arrow controls, and scroll reveal.</p>
+          <code>src/components/sections/Testimonials.astro</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Logo cloud</h3>
+          <p>Infinite partner ticker with scroll-driven speed easing and fixed-width logo slots.</p>
+          <code>src/components/sections/LogoCloud.astro</code> · <code>src/lib/logo-ticker.ts</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Subscribe</h3>
+          <p>Decorative plus grid, email field with icon, and gradient subscribe button.</p>
+          <code>src/components/sections/Subscribe.astro</code>
+        </article>
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Interaction patterns</h2>
+      <div class="ds__map">
+        <article class="ds__map-item">
+          <h3>Buttons & nav links</h3>
+          <p>Fill-sweep hover with dual label slide via <code>LabelSweep</code>. Variants: primary, secondary, secondary-inverse (dark surfaces), ghost, subscribe, nav-signup.</p>
+          <code>src/styles/buttons.css</code> · <code>src/components/ui/TextNavLink.astro</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Scroll reveal</h3>
+          <p>One-time enter animation for <code>data-reveal</code> and staggered <code>data-reveal-group</code> children.</p>
+          <code>src/lib/scroll-reveal.ts</code> · <code>src/styles/motion.css</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Smooth scroll</h3>
+          <p>Lenis-powered scrolling with hero parallax and shared scroll velocity for the logo ticker.</p>
+          <code>src/lib/lenis.ts</code>
+        </article>
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Catalog pages (destinations, hotels, flights)</h2>
+      <p class="ds__lead ds__lead--compact">
+        Listing pages use a left filter sidebar, card grid, client-side pagination, and detail pages with related items.
+        Data lives in <code>content/catalog/&#123;kind&#125;/&#123;locale&#125;/</code> (e.g. destinations/en) via Keystatic.
+      </p>
+      <div class="ds__map">
+        <article class="ds__map-item">
+          <h3>Catalog card</h3>
+          <p>Same card proportions as the home destination grid — reuse for hotels and flights.</p>
+          <code>src/components/catalog/CatalogCard.astro</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Filter sidebar</h3>
+          <p>Region, category/stars/cabin filters, price range, and sort select. Sticky on desktop.</p>
+          <code>src/components/catalog/CatalogFilterSidebar.astro</code>
+        </article>
+        <article class="ds__map-item">
+          <h3>Auth pages</h3>
+          <p>Login and sign-up forms using the same button tokens and narrow container layout.</p>
+          <code>src/components/pages/AuthPage.astro</code>
+        </article>
+      </div>
+    </section>
+
+    <section class="ds__section">
+      <h2 class="ds__section-title">Text nav link</h2>
+      <div class="ds__row">
+        <a href="#" class="text-nav-link text-nav-link--header"><span class="btn__label-stack"><span class="btn__label btn__label--primary">Destinations</span><span class="btn__label btn__label--ghost" aria-hidden="true">Destinations</span></span></a>
+        <a href="#" class="text-nav-link text-nav-link--footer"><span class="btn__label-stack"><span class="btn__label btn__label--primary">About</span><span class="btn__label btn__label--ghost" aria-hidden="true">About</span></span></a>
+      </div>
+    </section>
   </div>
 </BaseLayout>
 
@@ -138,7 +379,7 @@ const colorTokens = [
 
   .ds__hero {
     margin-bottom: var(--space-16);
-    max-width: 42rem;
+    max-width: var(--container-narrow);
   }
 
   .ds__eyebrow {
@@ -159,6 +400,11 @@ const colorTokens = [
   .ds__lead {
     color: var(--color-text-muted);
     line-height: var(--leading-normal);
+  }
+
+  .ds__lead--compact {
+    margin-bottom: var(--space-6);
+    font-size: var(--text-sm);
   }
 
   .ds__section {
@@ -183,6 +429,23 @@ const colorTokens = [
 
   .ds__row--start {
     align-items: flex-start;
+  }
+
+  .ds__buttons-dark {
+    margin-top: var(--space-10);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-text);
+    color: var(--color-text-inverse);
+  }
+
+  .ds__buttons-dark-label {
+    margin-bottom: var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-cta-subtext);
   }
 
   .ds__swatches {
@@ -212,6 +475,54 @@ const colorTokens = [
 
   .ds__swatch-use {
     font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .ds__token-list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .ds__token-list--compact {
+    margin-top: var(--space-8);
+  }
+
+  .ds__button-sizes {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .ds__button-size-row {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .ds__button-size-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-subtle);
+    text-transform: uppercase;
+  }
+
+  .ds__token-row {
+    display: grid;
+    grid-template-columns: minmax(0, 14rem) minmax(0, 10rem) 1fr;
+    gap: var(--space-4);
+    align-items: baseline;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-raised);
+    font-size: var(--text-sm);
+  }
+
+  .ds__token-row code {
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+  }
+
+  .ds__token-use {
     color: var(--color-text-muted);
   }
 
@@ -248,7 +559,7 @@ const colorTokens = [
     font-family: var(--font-body);
     font-size: var(--text-base);
     color: var(--color-text-muted);
-    max-width: 36rem;
+    max-width: var(--content-max-sm);
   }
 
   .ds__type-ui {
@@ -301,5 +612,39 @@ const colorTokens = [
   .ds__card--radius {
     border-radius: var(--radius-service-card);
     border: 1px solid var(--color-border-light);
+  }
+
+  .ds__map {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .ds__map-item {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .ds__map-item h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-text-section);
+  }
+
+  .ds__map-item p {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .ds__map-item code {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+    word-break: break-all;
   }
 </style>

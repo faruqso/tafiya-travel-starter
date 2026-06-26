@@ -1,0 +1,57 @@
+slug: low-fare-tips
+title: Low Fare Tips
+description: Practical tips to find cheaper flights with tafiya — flexible dates, alerts, and smart routing.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Guides
+      headline: Travel smarter, spend less
+      subheadline: Flexible dates, nearby airports, and shoulder-season windows can cut fares dramatically.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: Quick wins
+      headline: Four habits that lower fares
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Flexible dates
+          description: Shift departures by a day or two — mid-week flights are often 20–30% cheaper on popular routes.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Nearby airports
+          description: Include alternate airports within a two-hour radius to unlock low-cost carriers.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Price alerts
+          description: Save a search and we email you when the fare drops below your target.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Deeper strategies
+      headline: When to book & how to route
+      body: >-
+        ### Book shoulder seasons
+
+        Europe in April or October, Southeast Asia at the start of rainy season, and ski destinations in late March often combine good weather with lower demand.
+
+
+        ### Mix carriers thoughtfully
+
+        Two one-way tickets on different airlines can beat a round-trip — tafiya flags self-transfer times so you leave enough connection buffer.
+
+
+        ### Set alerts early
+
+        For peak holidays, create an alert 4–6 months out. We track daily price movement and highlight the cheapest day to buy based on historical trends for your route.
+
+
+        Want personalized routing ideas? Email support@tafiya.co with your home airport and month of travel.
+  - discriminant: cta
+    value:
+      headline: Start a price alert
+      subheadline: Search your route, tap Save, and we will notify you when fares drop.
+      buttons:
+        - label: Search flights
+          href: /flights
+          variant: primary

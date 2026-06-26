@@ -1,0 +1,33 @@
+---
+import type { SimpleIcon } from 'simple-icons';
+
+interface Props {
+  icon: SimpleIcon;
+  label: string;
+  href: string;
+}
+
+const { icon, label, href } = Astro.props;
+---
+
+<a
+  class="footer-social-icon icon-btn"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+>
+  <span class="icon-btn__fill" aria-hidden="true" />
+  <span class="icon-btn__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+      <path d={icon.path} fill="currentColor" />
+    </svg>
+  </span>
+</a>
+
+<style>
+  .footer-social-icon {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+</style>

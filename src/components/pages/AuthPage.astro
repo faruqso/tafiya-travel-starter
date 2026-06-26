@@ -1,0 +1,201 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import Button from '../ui/Button.astro';
+import FormField from '../ui/FormField.astro';
+import type { Locale } from '../../config/locales';
+import { getLocalizedPath } from '../../lib/i18n';
+import { getAppLabels } from '../../i18n/app';
+import { MOCK_AUTH } from '../../lib/mock-auth';
+
+interface Props {
+  page: 'login' | 'signup';
+  locale: Locale;
+  site: { loginLabel?: string; signupLabel?: string };
+}
+
+const { page, locale, site } = Astro.props;
+const app = getAppLabels(locale);
+const isLogin = page === 'login';
+const title = isLogin ? (site.loginLabel ?? app.loginTitle) : (site.signupLabel ?? app.signupTitle);
+const alternateHref = getLocalizedPath(isLogin ? '/signup' : '/login', locale);
+const alternateLabel = isLogin ? (site.signupLabel ?? app.signupTitle) : (site.loginLabel ?? app.loginTitle);
+const bookingsHref = getLocalizedPath('/bookings', locale);
+---
+
+<Section variant="muted" class="auth-page">
+  <Container narrow>
+    <div class="auth-card">
+      <h1 class="auth-card__title">{title}</h1>
+      <p class="auth-card__lead">
+        {isLogin ? app.loginLead : app.signupLead}
+      </p>
+
+      {
+        isLogin && (
+          <div class="auth-demo" role="note">
+            <p class="auth-demo__title">{app.demoCredentials}</p>
+            <p class="auth-demo__text">
+              Email: <code>{MOCK_AUTH.email}</code>
+              <br />
+              Password: <code>{MOCK_AUTH.password}</code>
+            </p>
+            <Button
+              type="button"
+              label="Fill demo credentials"
+              variant="secondary"
+              size="sm"
+              mockFill
+              class="auth-demo__fill"
+            />
+          </div>
+        )
+      }
+
+      <form
+        class="auth-form"
+        data-mock-login={isLogin ? '' : undefined}
+        data-default-redirect={bookingsHref}
+      >
+        {
+          !isLogin && (
+            <FormField label="Full name" variant="auth">
+              <input type="text" name="name" autocomplete="name" required />
+            </FormField>
+          )
+        }
+        <FormField label="Email" variant="auth">
+          <input type="email" name="email" autocomplete="email" required />
+        </FormField>
+        <FormField label="Password" variant="auth">
+          <input
+            type="password"
+            name="password"
+            autocomplete={isLogin ? 'current-password' : 'new-password'}
+            required
+          />
+        </FormField>
+        {
+          !isLogin && (
+            <label class="auth-form__checkbox">
+              <input type="checkbox" required />
+              <span>I agree to the terms and privacy policy</span>
+            </label>
+          )
+        }
+        {
+          isLogin && (
+            <p class="auth-form__status" data-mock-login-status aria-live="polite"></p>
+          )
+        }
+        <Button type="submit" label={title} variant="primary" size="lg" class="auth-form__submit" />
+      </form>
+
+      <p class="auth-card__switch">
+        {isLogin ? app.loginPrompt : app.signupPrompt}
+        <a href={alternateHref}>{alternateLabel}</a>
+      </p>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .auth-page :global(.container--narrow) {
+    max-width: var(--auth-card-max-width);
+  }
+
+  .auth-card {
+    padding: var(--space-10);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .auth-card__title {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--color-text-section);
+  }
+
+  .auth-card__lead {
+    margin: 0 0 var(--space-6);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .auth-demo {
+    margin-bottom: var(--space-6);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-brand-muted);
+    border: 1px solid var(--color-brand-border);
+  }
+
+  .auth-demo__title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-section);
+  }
+
+  .auth-demo__text {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .auth-demo__text code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.9em;
+    color: var(--color-text-section);
+  }
+
+  .auth-demo :global(.auth-demo__fill) {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .auth-form {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .auth-form__checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .auth-form__status {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-error);
+  }
+
+  .auth-form__status.is-success {
+    color: var(--color-success);
+  }
+
+  .auth-form :global(.auth-form__submit) {
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--space-2);
+  }
+
+  .auth-card__switch {
+    margin: var(--space-6) 0 0;
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .auth-card__switch a {
+    color: var(--color-brand);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+  }
+</style>

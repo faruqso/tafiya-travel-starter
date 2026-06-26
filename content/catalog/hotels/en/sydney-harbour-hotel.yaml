@@ -1,0 +1,21 @@
+slug: sydney-harbour-hotel
+name: Sydney Harbour Hotel
+country: Australia
+city: Sydney
+image: https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $240/night
+priceValue: 240
+stars: 5
+region: oceania
+rating: 4.87
+amenities:
+  - Harbour view
+  - Rooftop bar
+  - Pool
+  - Spa
+description: Circular Quay address with Opera House views and harbour-side dining.
+highlights:
+  - Opera views
+  - Ferry pier
+  - Rooftop cinema
+  - Business centre

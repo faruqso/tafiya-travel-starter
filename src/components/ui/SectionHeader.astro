@@ -5,6 +5,7 @@ interface Props {
   align?: 'left' | 'center';
   uppercaseEyebrow?: boolean;
   class?: string;
+  reveal?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   align = 'center',
   uppercaseEyebrow = true,
   class: className = '',
+  reveal = true,
 } = Astro.props;
 
 const headlineLines = headline.split('\n').map((line) => line.trim()).filter(Boolean);
@@ -25,6 +27,7 @@ const headlineLines = headline.split('\n').map((line) => line.trim()).filter(Boo
     !uppercaseEyebrow && 'section-header--no-uppercase',
     className,
   ]}
+  {...(reveal && { 'data-reveal': true })}
 >
   {eyebrow && <p class="section-header__eyebrow">{eyebrow}</p>}
   <h2 class="section-header__title">
@@ -41,15 +44,15 @@ const headlineLines = headline.split('\n').map((line) => line.trim()).filter(Boo
   }
 
   .section-header--left {
-    text-align: left;
+    text-align: start;
   }
 
   .section-header__eyebrow {
     font-family: var(--font-body);
-    font-size: var(--text-lg);
+    font-size: var(--text-eyebrow);
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0;
+    letter-spacing: 0.04em;
     color: var(--color-text-muted);
     margin-bottom: var(--space-3);
   }
@@ -65,6 +68,13 @@ const headlineLines = headline.split('\n').map((line) => line.trim()).filter(Boo
     line-height: var(--leading-tight);
     color: var(--color-text-section);
     text-transform: capitalize;
+    text-wrap: balance;
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      margin-bottom: var(--space-8);
+    }
   }
 
   .section-header__title-line {

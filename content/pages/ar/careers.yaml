@@ -1,0 +1,88 @@
+slug: careers
+title: الوظائف
+description: انضم إلى tafiya — أدوار عن بُعد في المنتج والهندسة وعمليات الوجهات.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: الشركة
+      headline: ابنِ مستقبل السفر معنا
+      subheadline: نحن فريق يعمل عن بُعد أولًا يصمم أدوات تجعل تخطيط الرحلات هادئًا وشفافًا وممتعًا حقًا.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: قدّم الآن
+          href: "#apply"
+          variant: primary
+  - discriminant: textBlock
+    value:
+      eyebrow: الثقافة
+      headline: كيف نعمل
+      body: |-
+        tafiya موزعة بين لندن ولشبونة وسنغافورة، مع طقوس تتسامح مع العمل غير المتزامن وخلوات ربع سنوية في وجهات نحبها. نوظف للفضول والكتابة الواضحة والتعاطف مع المسافرين تحت ضغط حقيقي — رحلات فائتة وتغييرات تأشيرة ورحلات عائلية في اللحظة الأخيرة.
+
+
+        يحصل الجميع على بدل سفر وميزانية تعلم وساعات مرنة تحترم المناطق الزمنية المحلية. ننشر نطاقات الرواتب لكل دور ونبقي مقابلات التوظيف مركزة — عادة ثلاث محادثات، لا تتجاوز أسبوعين إجمالًا.
+  - discriminant: features
+    value:
+      eyebrow: المزايا
+      headline: ما يمكنك توقعه
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: عن بُعد أولًا
+          description: اعمل من أي مكان مع ساعات تداخل أساسية ولقاءين فريقيين سنويًا.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: بدل السفر
+          description: ميزانية سنوية لاستكشاف مسارات جديدة وتجربة المنتج الذي تطوره.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: ميزانية النمو
+          description: دورات ومؤتمرات وكتب — إن كان يطور مهارتك، ندعمه.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: الوظائف المفتوحة
+      headline: نوظف حاليًا
+      body: |-
+        ### مصمم منتج أول — الرحلات وخطوط السير
+
+        قيادة مسارات التخطيط متعدد المدن وتسجيل الوصول عبر الجوال. عن بُعد (مناطق EU/UK).
+
+
+        ### مهندس full-stack — البحث والتسعير
+
+        بناء بحث أسعار سريع وموثوق بـ Node وأدوات واجهة حديثة. عن بُعد عالميًا.
+
+
+        ### قائد عمليات الوجهات — البحر الأبيض المتوسط
+
+        تقييم المرشدين والتفاوض على حصص الفنادق ومساءلة الشركاء الميدانيين.
+
+
+        لا ترى دورًا مناسبًا؟ قدّم أدناه على أي حال — نحتفظ بالملفات القوية.
+  - discriminant: textBlock
+    value:
+      eyebrow: كيفية التقديم
+      headline: ثلاث خطوات للانضمام إلى tafiya
+      body: |-
+        ### اختر دورًا
+
+        اختر وظيفة مفتوحة أعلاه، أو أخبرنا أين تضيف أكبر قيمة للتقديم العام.
+
+
+        ### أرسل عملك
+
+        أرفق ملف أعمال أو GitHub أو LinkedIn لنفهم كيف تفكر وتنجز.
+
+
+        ### أكمل النموذج أدناه
+
+        يراجع فريق المواهب الطلبات خلال ثلاثة أيام عمل ويتواصل لمكالمة تعريفية قصيرة عند التطابق.
+  - discriminant: contact
+    value:
+      purpose: careers
+      eyebrow: قدّم الآن
+      headline: أرسل طلبك
+      subheadline: أخبرنا بالدور الذي يهمك وشارك روابط لعمل تفخر به. نرد خلال ثلاثة أيام عمل.
+      email: careers@tafiya.co
+      formNote: تفضل البريد؟ أرسل سيرتك وملف أعمالك مباشرة إلى careers@tafiya.co مع عنوان الدور في الموضوع.

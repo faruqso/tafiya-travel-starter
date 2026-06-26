@@ -1,0 +1,76 @@
+slug: help-faq
+title: Aide et FAQ
+description: Réponses sur les réservations, paiements, annulations et le support compte tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Support
+      headline: Comment pouvons-nous vous aider ?
+      subheadline: Parcourez les questions fréquentes ou contactez notre équipe — nous répondons sous un jour ouvré.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: textBlock
+    value:
+      eyebrow: Réservations
+      headline: Avant de voyager
+      body: |-
+        ### Comment modifier mes dates ?
+
+        Ouvrez votre voyage dans l’app ou le tableau de bord web, sélectionnez Modifier les dates et choisissez parmi la disponibilité en direct. Les frais de modification de la compagnie ou de l’hôtel s’affichent avant confirmation.
+
+
+        ### Puis-je ajouter des bagages après réservation ?
+
+        Oui — allez dans les détails du vol et appuyez sur Ajouter des bagages. Les prix viennent directement de la compagnie et peuvent être plus bas en achat anticipé.
+
+
+        ### Où sont mes documents ?
+
+        Cartes d’embarquement, bons d’hôtel et billets d’activité se trouvent sous Documents dans chaque voyage. Vous pouvez les transférer à vos compagnons de voyage depuis le même écran.
+  - discriminant: textBlock
+    value:
+      eyebrow: Paiements
+      headline: Facturation et remboursements
+      body: |-
+        ### Quels moyens de paiement acceptez-vous ?
+
+        Cartes de crédit et débit majeures, Apple Pay, Google Pay et virement bancaire pour certains forfaits au-delà de 2 000 £.
+
+
+        ### Quand suis-je débité ?
+
+        Vols et hôtels sont facturés à la réservation sauf si le tarif est réservable — les options de mise en attente affichent une date d’expiration claire au paiement.
+
+
+        ### Comment fonctionnent les remboursements ?
+
+        L’éligibilité dépend des règles tarifaires affichées avant achat. Les remboursements approuvés reviennent sur votre moyen de paiement d’origine sous 5 à 10 jours ouvrés.
+  - discriminant: textBlock
+    value:
+      eyebrow: Compte
+      headline: Profil et sécurité
+      body: |-
+        ### J’ai oublié mon mot de passe
+
+        Utilisez Mot de passe oublié sur l’écran de connexion. Les liens de réinitialisation expirent après 24 heures pour la sécurité.
+
+
+        ### Comment supprimer mon compte ?
+
+        Écrivez à privacy@tafiya.co depuis l’adresse de votre compte. Nous finalisons la suppression sous 30 jours et confirmons par e-mail.
+
+
+        Toujours bloqué ? Contactez support@tafiya.co ou appelez le +44 20 7946 0958 du lundi au vendredi, 9h00–18h00 GMT.
+  - discriminant: contact
+    value:
+      purpose: support
+      eyebrow: Contactez-nous
+      headline: Parler à un spécialiste
+      subheadline: Partagez votre référence de réservation et nous reprenons là où la FAQ s’arrête.
+      email: support@tafiya.co
+      phone: +44 20 7946 0958
+      address: |-
+        221B Baker Street
+        London, NW1 6XE
+        United Kingdom
+      formNote: Incluez votre ID de voyage pour une aide plus rapide. Pour la presse, utilisez press@tafiya.co.

@@ -1,0 +1,57 @@
+slug: low-fare-tips
+title: Conseils petits prix
+description: Conseils pratiques pour trouver des vols moins chers avec tafiya — dates flexibles, alertes et routage malin.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Guides
+      headline: Voyagez plus malin, dépensez moins
+      subheadline: Dates flexibles, aéroports voisins et périodes inter-saison peuvent réduire fortement les tarifs.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: Gains rapides
+      headline: Quatre habitudes qui baissent les tarifs
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Dates flexibles
+          description: Décalez le départ d’un jour ou deux — les vols en milieu de semaine sont souvent 20 à 30 % moins chers sur les routes populaires.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Aéroports voisins
+          description: Incluez des aéroports alternatifs dans un rayon de deux heures pour débloquer les low-cost.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Alertes prix
+          description: Enregistrez une recherche et nous vous e-mailons quand le tarif passe sous votre objectif.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Stratégies avancées
+      headline: Quand réserver et comment router
+      body: |-
+        ### Réserver en inter-saison
+
+        L’Europe en avril ou octobre, l’Asie du Sud-Est en début de mousson et les stations de ski fin mars combinent souvent bon temps et demande plus faible.
+
+
+        ### Mixer les compagnies avec discernement
+
+        Deux allers simples sur des compagnies différentes peuvent battre un aller-retour — tafiya signale les temps de correspondance pour laisser assez de marge.
+
+
+        ### Créer des alertes tôt
+
+        Pour les fêtes de pointe, créez une alerte 4 à 6 mois à l’avance. Nous suivons l’évolution quotidienne et mettons en avant le jour le moins cher selon les tendances historiques de votre route.
+
+
+        Vous voulez des idées de routage personnalisées ? Écrivez à support@tafiya.co avec votre aéroport de départ et le mois de voyage.
+  - discriminant: cta
+    value:
+      headline: Lancer une alerte prix
+      subheadline: Recherchez votre route, appuyez sur Enregistrer et nous vous prévenons quand les tarifs baissent.
+      buttons:
+        - label: Rechercher des vols
+          href: /flights
+          variant: primary

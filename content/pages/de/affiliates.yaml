@@ -1,0 +1,61 @@
+slug: affiliates
+title: Partner
+description: Werden Sie tafiya-Partner — wettbewerbsfähige Provisionen und Echtzeit-Reporting.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Partner
+      headline: Mit tafiya verdienen
+      subheadline: Teilen Sie kuratierte Reisen und Flugangebote mit Ihrer Zielgruppe und verdienen Sie bei jeder qualifizierten Buchung.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Partnerprogramm beantragen
+          href: "#partners"
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: Programmvorteile
+      headline: Für Creator und Reiseseiten gemacht
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Wettbewerbsfähige Provisionen
+          description: Verdienen Sie an Flügen, Hotels und Paketen mit transparenten Auszahlungsstufen.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Echtzeit-Dashboard
+          description: Klicks, Conversions und Einnahmen mit Tagesberichten und CSV-Export verfolgen.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Partner-Support
+          description: Dedizierte Affiliate-Manager, Kampagnen-Assets und Deep Links zu jeder Zielseite.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: So funktioniert es
+      headline: Drei Schritte zum Verdienen
+      body: |-
+        ### Online bewerben
+
+        Erzählen Sie uns von Ihrer Website, Publikumsgröße und Hauptmärkten. Die meisten Bewerbungen prüfen wir innerhalb von drei Werktagen.
+
+
+        ### Links teilen
+
+        Nutzen Sie getrackte URLs in Blogposts, Newslettern oder Social Media. Deep Links führen Reisende genau zu der Route oder dem Hotel, das Sie empfehlen.
+
+
+        ### Monatlich ausgezahlt werden
+
+        Provisionen werden nach Reisedatum validiert und am 15. jedes Monats per Banküberweisung oder PayPal ausgezahlt.
+
+
+        Fragen? Schreiben Sie an partners@tafiya.co — wir erläutern gerne Provisionssätze und Aktionskalender.
+  - discriminant: contact
+    value:
+      purpose: partners
+      eyebrow: Partnerbewerbung
+      headline: Für das Affiliate-Programm bewerben
+      subheadline: Erzählen Sie uns von Ihrer Zielgruppe und wie Sie tafiya teilen möchten. Die meisten Bewerbungen prüfen wir innerhalb von drei Werktagen.
+      email: partners@tafiya.co
+      formNote: Bereits genehmigt? Schreiben Sie an partners@tafiya.co für Kampagnen-Assets und Deep Links.

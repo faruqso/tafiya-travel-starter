@@ -1,0 +1,133 @@
+---
+import type { CatalogKind } from '../../data/catalog';
+import { getCatalogLabels } from '../../i18n/catalog';
+import type { Locale } from '../../config/locales';
+
+interface Props {
+  kind: CatalogKind;
+  locale: Locale;
+  totalCount: number;
+}
+
+const { kind, locale, totalCount } = Astro.props;
+const labels = getCatalogLabels(locale);
+const copy = labels[kind];
+const sortId = `catalog-sort-toolbar-${kind}-${locale}`;
+const searchId = `catalog-search-toolbar-${kind}-${locale}`;
+const viewModes = ['grid-2', 'grid-3', 'list'] as const;
+---
+
+<div class="catalog-index__sticky-head">
+  <div class="catalog-toolbar" data-catalog-toolbar>
+  <p class="catalog-toolbar__count" data-catalog-count>
+    {labels.showing} 1–{Math.min(9, totalCount)} {labels.of} {totalCount} {labels.results}
+  </p>
+
+  <div class="catalog-toolbar__actions">
+    <div class="catalog-toolbar__view" role="group" aria-label={labels.viewLabel}>
+      <span class="catalog-toolbar__view-label">{labels.viewLabel}</span>
+      <div class="catalog-toolbar__view-group">
+        {
+          viewModes.map((mode) => (
+            <button
+              type="button"
+              class:list={['catalog-toolbar__view-btn', mode === 'grid-3' && 'is-active']}
+              data-catalog-view={mode}
+              aria-label={labels.viewOptions[mode]}
+              aria-pressed={mode === 'grid-3' ? 'true' : 'false'}
+            >
+              {mode === 'grid-2' && (
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="1" y="1" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1.5" />
+                  <rect x="9" y="1" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              )}
+              {mode === 'grid-3' && (
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="1" y="1" width="3.5" height="14" rx="0.75" stroke="currentColor" stroke-width="1.5" />
+                  <rect x="6.25" y="1" width="3.5" height="14" rx="0.75" stroke="currentColor" stroke-width="1.5" />
+                  <rect x="11.5" y="1" width="3.5" height="14" rx="0.75" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              )}
+              {mode === 'list' && (
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="1" y="2" width="14" height="3" rx="0.75" stroke="currentColor" stroke-width="1.5" />
+                  <rect x="1" y="6.5" width="14" height="3" rx="0.75" stroke="currentColor" stroke-width="1.5" />
+                  <rect x="1" y="11" width="14" height="3" rx="0.75" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+              )}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="catalog-toolbar__sort">
+      <label class="catalog-toolbar__sort-label" for={sortId}>{labels.sortLabel}</label>
+      <select
+        id={sortId}
+        class="form-control form-control--compact form-control--select catalog-filter__select catalog-toolbar__select"
+        data-catalog-sort
+      >
+        {Object.entries(labels.sortOptions).map(([value, label]) => (
+          <option value={value}>{label}</option>
+        ))}
+      </select>
+    </div>
+
+    <div class="catalog-toolbar__search">
+      <label class="sr-only" for={searchId}>{labels.searchLabel}</label>
+      <div class="catalog-toolbar__search-field">
+        <svg class="catalog-toolbar__search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.75" stroke="currentColor" stroke-width="1.5"></circle>
+          <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+        <input
+          id={searchId}
+          type="search"
+          class="form-control form-control--compact form-control--search catalog-toolbar__search-input"
+          data-catalog-search
+          placeholder={copy.searchPlaceholder}
+          autocomplete="off"
+          enterkeyhint="search"
+        />
+        <button
+          type="button"
+          class="catalog-toolbar__search-clear"
+          data-catalog-search-clear
+          hidden
+          aria-label={labels.clearSearch}
+        >
+          ×
+        </button>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="catalog-toolbar__filter-btn"
+      data-catalog-filter-open
+      aria-expanded="false"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path
+          d="M2 4h12M4 8h8M6 12h4"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"></path>
+      </svg>
+      <span>{labels.filtersOnly}</span>
+      <span class="catalog-toolbar__filter-badge" data-catalog-active-count hidden>0</span>
+    </button>
+  </div>
+  </div>
+
+  <div class="catalog-active-filters" data-catalog-active-filters hidden></div>
+</div>
+
+<style>
+  .catalog-toolbar__select {
+    width: auto;
+    min-width: var(--catalog-sort-min-width);
+  }
+</style>

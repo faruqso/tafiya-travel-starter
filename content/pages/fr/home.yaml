@@ -1,0 +1,180 @@
+slug: home
+title: Accueil
+description: >-
+  Découvrez les meilleures destinations du monde. Voyagez, profitez et vivez une
+  vie nouvelle et pleine avec tafiya.
+sections:
+  - discriminant: hero
+    value:
+      variant: full
+      eyebrow: Les meilleures destinations du monde
+      headline: |
+        Voyagez, profitez
+        et vivez une vie
+        nouvelle et pleine
+      highlightWord: profitez
+      subheadline: >-
+        Des escapades urbaines du week-end aux aventures d'un mois, tafiya vous
+        aide à comparer vols, hôtels et expériences locales en un seul endroit —
+        pour moins planifier et plus explorer.
+      buttons:
+        - label: En savoir plus
+          href: /destinations
+          variant: primary
+      playDemoLabel: Voir la démo
+      playDemoHref: '#demo'
+      showPlayDemo: true
+  - discriminant: features
+    value:
+      eyebrow: CATÉGORIE
+      headline: Nous offrons les meilleurs services
+      items:
+        - icon: /images/services/tafiya/icons/illustration-weather.svg
+          title: Météo calculée
+          description: >-
+            Consultez les moyennes météo pour vos dates de voyage afin de préparer
+            votre valise une seule fois.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Meilleurs vols
+          description: >-
+            Comparez itinéraires et tarifs de plus de 600 compagnies avec des
+            filtres bagages, escales et classe.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Événements locaux
+          description: >-
+            Découvrez festivals, marchés et événements culturels pendant votre
+            séjour.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Personnalisation
+          description: >-
+            Construisez un voyage à votre rythme — ajoutez visites guidées,
+            transferts ou nuits supplémentaires en quelques clics.
+          featured: false
+  - discriminant: destinationGrid
+    value:
+      eyebrow: Meilleures ventes
+      headline: Top destinations
+      ctaLabel: Voir les destinations
+      ctaHref: /destinations
+      destinations:
+        - name: Rome, Italie
+          image: https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=800&h=600&q=80
+          priceFrom: 5 420 $
+          duration: Voyage de 10 jours
+          href: /destinations/rome
+        - name: Londres, Royaume-Uni
+          image: https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&h=600&q=80
+          priceFrom: 4 200 $
+          duration: Voyage de 12 jours
+          href: /destinations/rome
+        - name: Europe complète
+          image: https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&h=600&q=80
+          priceFrom: 15 000 $
+          duration: Voyage de 28 jours
+          href: /destinations/rome
+  - discriminant: bookTrip
+    value:
+      eyebrow: Simple et rapide
+      headline: |
+        Réservez votre prochain voyage
+        en 3 étapes faciles
+      previewImage: /images/book-trip/tafiya/trip-preview.jpg
+      steps:
+        - icon: /images/book-trip/tafiya/icons/step-destination.svg
+          color: yellow
+          title: Choisir la destination
+          description: |
+            Parcourez les villes populaires ou recherchez par région, budget et dates.
+        - icon: /images/book-trip/tafiya/icons/step-payment.svg
+          color: orange
+          title: Effectuer le paiement
+          description: |
+            Payez en toute sécurité par carte ou virement. Paiements fractionnés sur certains forfaits.
+        - icon: /images/book-trip/tafiya/icons/step-airport.svg
+          color: teal
+          title: Arriver à l'aéroport à la date choisie
+          description: |
+            Recevez votre itinéraire, cartes d'embarquement et assistance 24h/24 avant le départ.
+  - discriminant: testimonials
+    value:
+      eyebrow: Témoignages
+      headline: |
+        Ce que les gens disent
+        de nous.
+      items:
+        - quote: >-
+            tafiya a rendu notre lune de miel sans effort. Vols, hôtel et croisière
+            au coucher du soleil à Santorin confirmés en un après-midi — et l'app
+            gardait tous les documents au même endroit.
+          author: Mike Taylor
+          role: Lahore, Pakistan
+          avatar: /images/testimonials/tafiya/mike-taylor.jpg
+        - quote: >-
+            Nous avons rebooké une correspondance manquée depuis l'app encore à la
+            porte. Le support a répondu en moins de cinq minutes — ce niveau de
+            service attentif est vraiment rare aujourd'hui.
+          author: Chris Thomas
+          role: PDG de Red Button
+          avatar: /images/testimonials/tafiya/chris-thomas.jpg
+        - quote: >-
+            J'ai planifié un voyage familial de deux semaines au Japon sans aucun
+            tableur. tafiya a trouvé de meilleurs horaires de train et des hôtels
+            adaptés aux enfants que je n'aurais jamais trouvés seule en ligne.
+          author: Sarah Chen
+          role: San Francisco, États-Unis
+          avatar: /images/testimonials/avatar-sarah.svg
+        - quote: >-
+            Les alertes prix nous ont fait économiser plus de 400 £ sur des vols pour
+            Lisbonne. Tout le groupe a réservé depuis un seul itinéraire partagé —
+            fini le chaos de captures d'écran dans le chat de groupe.
+          author: Marcus Webb
+          role: Londres, Royaume-Uni
+          avatar: /images/testimonials/avatar-marcus.svg
+        - quote: >-
+            En voyage solo, j'ai adoré la façon dont tafiya signale les quartiers sûrs
+            et me met en relation avec des guides locaux vérifiés avant mon arrivée à
+            Marrakech le printemps dernier.
+          author: Elena Rossi
+          role: Milan, Italie
+          avatar: /images/testimonials/avatar-elena.svg
+        - quote: >-
+            Notre séminaire d'entreprise pour quarante personnes était confirmé en un
+            après-midi. Chambres, transferts aéroport et activités réservés avant la
+            fin de la journée.
+          author: James Okonkwo
+          role: Responsable RH, Nova Labs
+          avatar: /images/testimonials/tafiya/chris-thomas.jpg
+        - quote: >-
+            J'ai utilisé tafiya pour un week-end de dernière minute à Barcelone. Hôtels
+            en bord de mer, visite gastronomique et transfert aéroport réservés avant
+            la fin de ma réunion du matin.
+          author: Priya Nair
+          role: Bangalore, Inde
+          avatar: /images/testimonials/tafiya/mike-taylor.jpg
+  - discriminant: logoCloud
+    value:
+      logos:
+        - image: /images/logos/tafiya/axon.png
+          alt: Axon Airlines
+          featured: false
+        - image: /images/logos/tafiya/jetstar.png
+          alt: Jetstar
+          featured: false
+        - image: /images/logos/tafiya/expedia.png
+          alt: Expedia
+          featured: false
+        - image: /images/logos/tafiya/qantas.png
+          alt: Qantas
+          featured: false
+        - image: /images/logos/tafiya/alitalia.png
+          alt: Alitalia
+          featured: false
+  - discriminant: subscribe
+    value:
+      headline: |
+        Abonnez-vous pour recevoir des informations, des actualités et des
+        offres intéressantes sur tafiya
+      buttonLabel: S'abonner

@@ -1,0 +1,61 @@
+slug: affiliates
+title: Affiliates
+description: Join the tafiya affiliate program — competitive commissions and real-time reporting.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Partners
+      headline: Earn with tafiya
+      subheadline: Share curated trips and flight deals with your audience and earn on every qualified booking.
+      image: /images/destinations/tafiya/rome.jpg
+      buttons:
+        - label: Apply to partner program
+          href: '#partners'
+          variant: primary
+  - discriminant: features
+    value:
+      eyebrow: Program benefits
+      headline: Built for creators and travel sites
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Competitive commissions
+          description: Earn on flights, hotels, and package bookings with transparent payout tiers.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Real-time dashboard
+          description: Track clicks, conversions, and earnings with daily reporting and exportable CSV.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Partner support
+          description: Dedicated affiliate managers, campaign assets, and deep links for any destination page.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: How it works
+      headline: Three steps to start earning
+      body: >-
+        ### Apply online
+
+        Tell us about your site, audience size, and primary markets. We review most applications within three business days.
+
+
+        ### Share your links
+
+        Use tracked URLs in blog posts, newsletters, or social content. Deep links land travelers on the exact route or hotel you recommend.
+
+
+        ### Get paid monthly
+
+        Commissions are validated after travel dates pass and paid by bank transfer or PayPal on the 15th of each month.
+
+
+        Questions? Email partners@tafiya.co — we are happy to walk through commission rates and promotional calendars.
+  - discriminant: contact
+    value:
+      purpose: partners
+      eyebrow: Partner application
+      headline: Apply to the affiliate program
+      subheadline: Tell us about your audience and how you plan to share tafiya. We review most applications within three business days.
+      email: partners@tafiya.co
+      formNote: Already approved? Email partners@tafiya.co for campaign assets and deep links.

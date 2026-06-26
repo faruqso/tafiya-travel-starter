@@ -1,0 +1,18 @@
+---
+interface Props {
+  label: string;
+  optional?: boolean;
+  class?: string;
+  variant?: 'default' | 'auth';
+}
+
+const { label, optional = false, class: className = '', variant = 'default' } = Astro.props;
+---
+
+<label class:list={['form-field', variant === 'auth' && 'form-field--auth', className]}>
+  <span class="form-field__label">
+    {label}
+    {optional && <span class="form-field__optional"> (optional)</span>}
+  </span>
+  <slot />
+</label>

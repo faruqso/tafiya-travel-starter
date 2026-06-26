@@ -1,0 +1,18 @@
+slug: full-europe
+name: Full Europe
+country: Multi-country (Europe)
+image: https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $15k
+priceValue: 15000
+duration: 28 Days Trip
+durationDays: 28
+region: europe
+category: cultural
+rating: 4.95
+featured: true
+description: A grand rail-and-flight loop through Paris, Amsterdam, Prague, Vienna, and the Mediterranean coast.
+highlights:
+  - Schengen concierge
+  - First-class rail pass
+  - 12 curated cities
+  - Flexible hop-on dates

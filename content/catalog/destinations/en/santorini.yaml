@@ -1,0 +1,17 @@
+slug: santorini
+name: Santorini, Greece
+country: Greece
+image: https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $3.8k
+priceValue: 3800
+duration: 7 Days Trip
+durationDays: 7
+region: europe
+category: romantic
+rating: 4.85
+description: Caldera sunsets, cliff-side suites, and sailing days across the Aegean.
+highlights:
+  - Oia sunset dinner
+  - Catamaran cruise
+  - Wine tasting
+  - Volcano hike

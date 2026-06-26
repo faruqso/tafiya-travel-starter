@@ -4,21 +4,28 @@ import Container from '../ui/Container.astro';
 import Heading from '../ui/Heading.astro';
 import Text from '../ui/Text.astro';
 import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+import FormField from '../ui/FormField.astro';
 import type { ContactSection } from '../../types/content';
+import { contactPurposeConfigs, resolveContactPurpose } from '../../lib/contact-purpose';
 
 interface Props {
   section: ContactSection['value'];
 }
 
 const { section } = Astro.props;
+const purpose = resolveContactPurpose(section.purpose);
+const formConfig = contactPurposeConfigs[purpose];
+const sectionId = purpose === 'careers' ? 'apply' : purpose !== 'general' ? purpose : undefined;
 ---
 
-<Section variant="muted">
+<Section variant="muted" id={sectionId}>
   <Container>
     <div class="contact">
       <div class="contact__info">
         {section.eyebrow && <p class="contact__eyebrow">{section.eyebrow}</p>}
         <Heading as="h2" size="lg">{section.headline}</Heading>
+        {purpose !== 'general' && <p class="contact__purpose">{formConfig.label}</p>}
         {section.subheadline && <Text variant="lead">{section.subheadline}</Text>}
 
         <ul class="contact__details">
@@ -26,40 +33,60 @@ const { section } = Astro.props;
             <span class="contact__label">Email</span>
             <a href={`mailto:${section.email}`}>{section.email}</a>
           </li>
-          <li>
-            <span class="contact__label">Phone</span>
-            <a href={`tel:${section.phone.replace(/\s/g, '')}`}>{section.phone}</a>
-          </li>
-          <li>
-            <span class="contact__label">Address</span>
-            <span>{section.address}</span>
-          </li>
+          {
+            section.phone && (
+              <li>
+                <span class="contact__label">Phone</span>
+                <a href={`tel:${section.phone.replace(/\s/g, '')}`}>{section.phone}</a>
+              </li>
+            )
+          }
+          {
+            section.address && (
+              <li>
+                <span class="contact__label">Address</span>
+                <span>{section.address}</span>
+              </li>
+            )
+          }
         </ul>
       </div>
 
       <Card>
         {section.formNote && <Text variant="muted" class="contact__note">{section.formNote}</Text>}
         <form
-          class="contact__form"
+          class="form-grid contact__form"
           data-json-form
           data-endpoint="/api/contact"
-          data-success-message="Thanks! Our travel team will reply within one business day."
+          data-success-message={formConfig.successMessage}
           novalidate
         >
-          <label class="contact__field">
-            <span>Name</span>
-            <input type="text" name="name" placeholder="Your name" required />
-          </label>
-          <label class="contact__field">
-            <span>Email</span>
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-          <label class="contact__field">
-            <span>Message</span>
-            <textarea name="message" rows="4" placeholder="Tell us about your dream trip..." required />
-          </label>
-          <button type="submit" class="contact__submit">Send message</button>
-          <p class="contact__status" data-form-status role="status" aria-live="polite"></p>
+          <input type="hidden" name="purpose" value={purpose} />
+          {
+            formConfig.fields.map((field) => (
+              <FormField label={field.label} optional={!field.required}>
+                {
+                  field.type === 'textarea' ? (
+                    <textarea
+                      name={field.name}
+                      rows={field.rows ?? 4}
+                      placeholder={field.placeholder}
+                      required={field.required}
+                    />
+                  ) : (
+                    <input
+                      type={field.type}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      required={field.required}
+                    />
+                  )
+                }
+              </FormField>
+            ))
+          }
+          <Button type="submit" label={formConfig.submitLabel} variant="primary" size="lg" class="form-submit" />
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
         </form>
       </Card>
     </div>
@@ -69,43 +96,41 @@ const { section } = Astro.props;
 <style>
   .contact {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
     gap: var(--space-12);
     align-items: start;
   }
 
   .contact__eyebrow {
-    font-size: var(--text-sm);
+    font-size: var(--text-eyebrow);
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.04em;
     color: var(--color-brand);
     margin-bottom: var(--space-3);
   }
 
-  .contact__info :global(.text) {
-    margin-top: var(--space-4);
+  .contact__purpose {
+    margin: calc(-1 * var(--space-2)) 0 var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
   }
 
   .contact__details {
     margin-top: var(--space-8);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  .contact__details li {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
+    display: grid;
+    gap: var(--space-4);
   }
 
   .contact__label {
+    display: block;
     font-size: var(--text-xs);
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--color-text-muted);
+    color: var(--color-text-subtle);
+    margin-bottom: var(--space-1);
   }
 
   .contact__details a {
@@ -121,73 +146,7 @@ const { section } = Astro.props;
     margin-bottom: var(--space-6);
   }
 
-  .contact__form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .contact__field {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .contact__field input,
-  .contact__field textarea {
-    padding: var(--space-3) var(--space-4);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    font: inherit;
-    background: var(--color-surface);
-    transition: border-color var(--transition-base);
-  }
-
-  .contact__field input:focus,
-  .contact__field textarea:focus {
-    outline: none;
-    border-color: var(--color-brand);
-  }
-
-  .contact__submit {
-    padding: var(--space-3) var(--space-6);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-on-brand);
-    background-color: var(--color-brand);
-    border: none;
-    border-radius: var(--radius-md);
-    transition: background-color var(--transition-base);
-  }
-
-  .contact__submit:hover {
-    background-color: var(--color-brand-hover);
-  }
-
-  .contact__submit:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  .contact__status {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-
-  .contact__status:empty {
-    display: none;
-  }
-
-  .contact__status.is-success {
-    color: var(--color-success);
-  }
-
-  .contact__status.is-error {
-    color: var(--color-error);
-  }
-
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .contact {
       grid-template-columns: 1fr;
     }

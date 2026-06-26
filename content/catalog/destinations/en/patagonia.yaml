@@ -1,0 +1,17 @@
+slug: patagonia
+name: Patagonia
+country: Argentina & Chile
+image: https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $6.8k
+priceValue: 6800
+duration: 14 Days Trip
+durationDays: 14
+region: americas
+category: adventure
+rating: 4.93
+description: Torres del Paine treks, Perito Moreno glacier, and remote estancia lodges.
+highlights:
+  - W Trek highlights
+  - Glacier cruise
+  - Estancia BBQ
+  - Expert mountain guides

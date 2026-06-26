@@ -1,0 +1,21 @@
+slug: dubai-marina-suites
+name: Dubai Marina Suites
+country: United Arab Emirates
+city: Dubai
+image: https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $175/night
+priceValue: 175
+stars: 5
+region: middle-east
+rating: 4.73
+amenities:
+  - Marina view
+  - Pool
+  - Gym
+  - Kitchenette
+description: Serviced apartments on the marina promenade with skyline panoramas.
+highlights:
+  - Beach shuttle
+  - Kids club
+  - 24h reception
+  - Metro link

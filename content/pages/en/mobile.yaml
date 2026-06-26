@@ -1,0 +1,66 @@
+slug: mobile
+title: Mobile App
+description: Download the tafiya app for iOS and Android — itineraries, boarding passes, and price alerts on the go.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Mobile app
+      headline: Travel plans in your pocket
+      subheadline: Download tafiya for iOS and Android — itineraries, boarding passes, and price alerts synced with your web account.
+      image: /images/destinations/tafiya/europe.jpg
+      buttons:
+        - label: Get the app
+          href: '#download'
+          variant: primary
+  - discriminant: appDownload
+    value:
+      eyebrow: iOS & Android
+      headline: Your trips, always with you
+      subheadline: Search flights, manage bookings, and get gate changes in real time — synced with your tafiya web account.
+      screenshot: /images/book-trip/tafiya/cards/greece-trip.jpg
+      bullets:
+        - Offline access to itineraries, boarding passes, and hotel vouchers
+        - Price drop alerts when saved routes fall below your target
+        - Biometric sign-in and encrypted document storage
+      googlePlayUrl: https://play.google.com
+      appStoreUrl: https://apps.apple.com
+  - discriminant: features
+    value:
+      eyebrow: App features
+      headline: Built for travel days
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Live trip timeline
+          description: Flights, hotels, and activities in one scrollable itinerary that updates as plans change.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Smart notifications
+          description: Gate changes, check-in windows, and price drops — only the alerts you turn on.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Mobile boarding passes
+          description: Wallet-ready passes with automatic refresh when airlines reissue seats or gates.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Requirements
+      headline: Works on the phones you already carry
+      body: >-
+        tafiya requires iOS 16 or later, or Android 10+. Download is free — sign in with your existing account and your trips appear immediately.
+
+
+        ### Need help installing?
+
+        Email support@tafiya.co with your device model and OS version. For account or booking questions, visit Help/FAQ.
+  - discriminant: cta
+    value:
+      headline: Questions about the app?
+      subheadline: Our support team can help with install issues, login, and notification settings.
+      buttons:
+        - label: Visit Help & FAQ
+          href: /help-faq
+          variant: primary
+        - label: Contact support
+          href: /help-faq#support
+          variant: ghost

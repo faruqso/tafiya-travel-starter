@@ -1,0 +1,17 @@
+slug: paris
+name: Paris, France
+country: France
+image: https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&h=600&q=80
+priceFrom: $3.5k
+priceValue: 3500
+duration: 7 Days Trip
+durationDays: 7
+region: europe
+category: romantic
+rating: 4.86
+description: Museum mornings, café afternoons, and Seine evenings in the City of Light.
+highlights:
+  - Louvre skip-the-line
+  - Montmartre walk
+  - Versailles day trip
+  - Michelin bistro

@@ -1,0 +1,48 @@
+slug: airline-fees
+title: Airline-Gebühren
+description: Verstehen Sie Gepäck-, Sitz- und Änderungsgebühren, bevor Sie auf tafiya buchen.
+sections:
+  - discriminant: hero
+    value:
+      variant: compact
+      eyebrow: Flüge
+      headline: Airline-Gebühren von Anfang an verstehen
+      subheadline: Wir zeigen Gepäck, Sitzwahl und Änderungsgebühren vor dem Checkout, damit Sie die echten Kosten jedes Tarifs vergleichen.
+      image: /images/destinations/tafiya/europe.jpg
+  - discriminant: features
+    value:
+      eyebrow: Gebührenarten
+      headline: Was wir vor der Zahlung anzeigen
+      items:
+        - icon: /images/services/tafiya/icons/illustration-flights.svg
+          title: Gepäck
+          description: Handgepäck- und Aufgabegepäck-Freigaben plus Prepaid-Gepäckpreise, wenn Airlines sie bereitstellen.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-events.svg
+          title: Sitzwahl
+          description: Standard-, Preferred- und Extra-Beinfreiheit-Sitze mit Preisen pro Segment.
+          featured: false
+        - icon: /images/services/tafiya/icons/illustration-customization.svg
+          title: Änderungen und Stornierungen
+          description: Airline-Änderungsgebühren und Schätzungen der Tarifdifferenz bei Datums- oder Routenänderung.
+          featured: false
+  - discriminant: textBlock
+    value:
+      eyebrow: Warum das wichtig ist
+      headline: Keine Überraschungen am Flughafen
+      body: |-
+        Basic-Economy-Tarife wirken günstig, bis Gepäck- und Sitzgebühren addiert werden. tafiya kennzeichnet jeden Tarif mit einer All-in-Schätzung, wenn Airlines Gebührendaten teilen, und hebt hervor, wenn ein Legacy-Economy-Ticket aufgegebenes Gepäck enthält.
+
+
+        Manche Low-Cost-Carrier berechnen Handgepäck, das ins Overhead passt. Wir weisen darauf in den Suchergebnissen hin, damit Sie mit Full-Service-Optionen auf derselben Route vergleichen können.
+
+
+        Gebührendaten stammen von Airlines und können sich ohne Vorankündigung ändern. Endbeträge werden auf dem Airline-Checkout-Bildschirm vor Zahlung bestätigt. Fragen zu einem bestimmten Tarif? Schreiben Sie an support@tafiya.co mit Route und Reisedaten.
+  - discriminant: cta
+    value:
+      headline: All-in-Tarife vergleichen
+      subheadline: Flüge suchen mit sichtbarer Gebührenaufschlüsselung ab dem ersten Ergebnis.
+      buttons:
+        - label: Flüge suchen
+          href: /flights
+          variant: primary
