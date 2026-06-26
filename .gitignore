@@ -18,8 +18,8 @@ pnpm-debug.log*
 .env
 .env.production
 
-# form submissions (demo API)
-data/
+# form submissions (demo API) — root only, not src/data/
+/data/
 
 # macOS-specific files
 .DS_Store
